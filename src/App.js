@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import './App.css'
 
 function App() {
@@ -37,12 +37,19 @@ function App() {
     setButton(true)
   }
 
+  const formatedCountdown = useMemo(() => {
+    if (countdownValue > 0) {
+      let minutes = Math.floor((countdownValue / 60) % 60)
+      let seconds = ('00' + Math.floor((countdownValue) % 60)).slice(-2)
+      return `${minutes}:${seconds}`
+    }
+  }, [countdownValue])
+
   return (
     <div className='container'>
       <h2>{pomo.title}</h2>
       <span>{pomo.realizedPomos}</span>
-      <p>{pomo.defaultMinutesPomo}</p>
-      <p>{countdownValue}</p>
+      <p>{formatedCountdown}</p>
       {button && <button
         onClick={() => startCountdown(countdownValue)}
       >
