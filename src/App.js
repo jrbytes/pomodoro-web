@@ -12,7 +12,7 @@ function App() {
       const task = {
         title: 'Tarefa 1',
         realizedPomos: 7,
-        defaultMinutesPomo: 0,
+        defaultMinutesPomo: 1,
       }
 
       setPomo(task)
@@ -50,6 +50,11 @@ function App() {
     setPomo(pomo)
   }
 
+  const resetCountdown = () => {
+    setCountdownValue(pomo.defaultMinutesPomo * 60)
+    setButton('start')
+  }
+
   const formatedCountdown = useMemo(() => {
     if (countdownValue > 0) {
       let minutes = Math.floor((countdownValue / 60) % 60)
@@ -76,7 +81,7 @@ function App() {
         Pause
       </button>}
       {button === 'continue' && <button
-        onClick={pauseCountdown}
+        onClick={resetCountdown}
       >
         Continue
       </button>}
