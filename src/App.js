@@ -5,7 +5,7 @@ function App() {
   const [pomo, setPomo] = useState({})
   const [countdownValue, setCountdownValue] = useState('')
   const [countdownTimeout, setCountdownTimeout] = useState(0)
-  const [button, setButton] = useState(true)
+  const [button, setButton] = useState('start')
 
   useEffect(() => {
     function loadTaskData() {
@@ -24,7 +24,7 @@ function App() {
 
   const pauseCountdown = () => {
     clearTimeout(countdownTimeout)
-    setButton(true)
+    setButton('start')
   }
 
   const startCountdown = (result) => {
@@ -35,13 +35,14 @@ function App() {
       startCountdown(second)
       setCountdownValue(second)
     }, 1000))
-    setButton(false)
+    setButton('pause')
     console.log(result)
   }
 
   const registerPomoAndStopCountdown = () => {
     pauseCountdown()
     registerPomo()
+    setButton('continue')
   }
 
   const registerPomo = () => {
@@ -64,15 +65,20 @@ function App() {
       <h2>{pomo.title}</h2>
       <span>{pomo.realizedPomos}</span>
       <p>{formatedCountdown}</p>
-      {button && <button
+      {button === 'start' && <button
         onClick={() => startCountdown(countdownValue)}
       >
         Start
       </button>}
-      {!button && <button
+      {button === 'pause' && <button
         onClick={pauseCountdown}
       >
         Pause
+      </button>}
+      {button === 'continue' && <button
+        onClick={pauseCountdown}
+      >
+        Continue
       </button>}
     </div>
   )
