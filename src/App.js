@@ -65,27 +65,37 @@ function App() {
     }
   }, [countdownValue])
 
+  const progressBar = useMemo(() => {
+    if (countdownValue > 0) {
+      return <div className='progress-bar'></div>
+    }
+  }, [countdownValue])
+
   return (
-    <div className='container'>
-      <h2>{pomo.title}</h2>
-      <span>{pomo.realizedPomos}</span>
-      <p>{formatedCountdown}</p>
-      {button === 'start' && <button
-        onClick={() => startCountdown(countdownValue)}
-      >
-        Start
-      </button>}
-      {button === 'pause' && <button
-        onClick={pauseCountdown}
-      >
-        Pause
-      </button>}
-      {button === 'continue' && <button
-        onClick={resetCountdown}
-      >
-        Continue
-      </button>}
-    </div>
+    <>
+      <div className='container'>
+        <h2>{pomo.title}</h2>
+        <span>{pomo.realizedPomos}</span>
+        <p>{formatedCountdown}</p>
+        {button === 'start' && <button
+          onClick={() => startCountdown(countdownValue)}
+        >
+          Start
+        </button>}
+        {button === 'pause' && <button
+          onClick={pauseCountdown}
+        >
+          Pause
+        </button>}
+        {button === 'continue' && <button
+          onClick={resetCountdown}
+        >
+          Continue
+        </button>}
+
+        {progressBar}
+      </div>
+    </>
   )
 }
 
