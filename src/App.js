@@ -3,7 +3,7 @@ import './App.css'
 
 function App() {
   const [pomo, setPomo] = useState({})
-  const [countdownValue, setCountdownValue] = useState(0)
+  const [countdownValue, setCountdownValue] = useState('')
   const [countdownTimeout, setCountdownTimeout] = useState(0)
   const [button, setButton] = useState(true)
 
@@ -12,7 +12,7 @@ function App() {
       const task = {
         title: 'Tarefa 1',
         realizedPomos: 7,
-        defaultMinutesPomo: 25
+        defaultMinutesPomo: 0,
       }
 
       setPomo(task)
@@ -22,7 +22,14 @@ function App() {
     loadTaskData()
   }, [])
 
+  const pauseCountdown = () => {
+    clearTimeout(countdownTimeout)
+    setButton(true)
+  }
+
   const startCountdown = (result) => {
+    if (result === 0) return registerPomoAndStopCountdown()
+
     setCountdownTimeout(setTimeout(function() {
       const second = result - 1
       startCountdown(second)
@@ -32,9 +39,14 @@ function App() {
     console.log(result)
   }
 
-  const pauseCountdown = () => {
-    clearTimeout(countdownTimeout)
-    setButton(true)
+  const registerPomoAndStopCountdown = () => {
+    pauseCountdown()
+    registerPomo()
+  }
+
+  const registerPomo = () => {
+    Object.assign(pomo, { realizedPomos: pomo.realizedPomos + 1 })
+    setPomo(pomo)
   }
 
   const formatedCountdown = useMemo(() => {
@@ -42,6 +54,8 @@ function App() {
       let minutes = Math.floor((countdownValue / 60) % 60)
       let seconds = ('00' + Math.floor((countdownValue) % 60)).slice(-2)
       return `${minutes}:${seconds}`
+    } else {
+      return '00:00'
     }
   }, [countdownValue])
 
