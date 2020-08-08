@@ -67,9 +67,17 @@ function App() {
 
   const progressBar = useMemo(() => {
     if (countdownValue > 0) {
-      return <div className='progress-bar'></div>
+      const maxWidth = 290
+      const defaultMaxSecondsPomo = pomo.defaultMinutesPomo * 60
+      const proportion = (countdownValue * maxWidth) / defaultMaxSecondsPomo
+      const percent = (proportion / maxWidth) * 100
+      return <div className='progress-bar-border'>
+        <div className='progress-bar' style={{
+          width: `${percent}%`
+        }}></div>
+      </div>
     }
-  }, [countdownValue])
+  }, [countdownValue, pomo])
 
   return (
     <>
