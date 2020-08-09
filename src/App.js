@@ -66,7 +66,7 @@ function App() {
   }, [countdownValue])
 
   const progressBar = useMemo(() => {
-    if (countdownValue > 0) {
+    if (countdownValue >= 0) {
       const maxWidth = 290
       const defaultMaxSecondsPomo = pomo.defaultMinutesPomo * 60
       const proportion = (countdownValue * maxWidth) / defaultMaxSecondsPomo
@@ -83,22 +83,29 @@ function App() {
     <>
       <div className='container'>
         <h2>{pomo.title}</h2>
-        <span>{pomo.realizedPomos}</span>
-        <p>{formatedCountdown}</p>
+        <span>{pomo.realizedPomos} pomos</span>
+
+        <div className="countdownBorder">
+          <p>{formatedCountdown}</p>
+        </div>
+
         {button === 'start' && <button
+          className='button'
           onClick={() => startCountdown(countdownValue)}
         >
-          Start
+          Iniciar
         </button>}
         {button === 'pause' && <button
+          className='button'
           onClick={pauseCountdown}
         >
-          Pause
+          Pausar
         </button>}
         {button === 'continue' && <button
+          className='button'
           onClick={resetCountdown}
         >
-          Continue
+          Continuar
         </button>}
 
         {progressBar}
