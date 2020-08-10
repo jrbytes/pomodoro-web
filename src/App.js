@@ -75,16 +75,27 @@ function App() {
       const defaultMaxSecondsPomo = pomo.defaultMinutesPomo * 60
       const proportion = (countdownValue * maxWidth) / defaultMaxSecondsPomo
       const percent = (proportion / maxWidth) * 100
+      const percentNumber = Math.round(percent)
 
       return (
-        <div className="progress-bar-border">
+        <>
+          <div className="progress-bar-border">
+            <div
+              className="progress-bar"
+              style={{
+                width: `${percent}%`,
+              }}
+            ></div>
+          </div>
           <div
-            className="progress-bar"
+            className="progress-bar-percent"
             style={{
-              width: `${percent}%`,
+              opacity: `${percentNumber === 0 ? '0' : '1'}`,
             }}
-          ></div>
-        </div>
+          >
+            {percentNumber}%
+          </div>
+        </>
       )
     }
   }, [countdownValue, pomo])
