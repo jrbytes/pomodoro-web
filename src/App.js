@@ -57,7 +57,7 @@ function App() {
 
   const formatedCountdown = useMemo(() => {
     if (countdownValue > 0) {
-      let minutes = Math.floor((countdownValue / 60) % 60)
+      let minutes = ('00' + Math.floor((countdownValue / 60) % 60)).slice(-2)
       let seconds = ('00' + Math.floor((countdownValue) % 60)).slice(-2)
       return `${minutes}:${seconds}`
     } else {
@@ -71,6 +71,7 @@ function App() {
       const defaultMaxSecondsPomo = pomo.defaultMinutesPomo * 60
       const proportion = (countdownValue * maxWidth) / defaultMaxSecondsPomo
       const percent = (proportion / maxWidth) * 100
+
       return <div className='progress-bar-border'>
         <div className='progress-bar' style={{
           width: `${percent}%`
@@ -82,8 +83,11 @@ function App() {
   return (
     <>
       <div className='container'>
-        <h2>{pomo.title}</h2>
-        <span>{pomo.realizedPomos} pomos</span>
+
+        <div className="header-tasks-pomos">
+          <h2>{pomo.title}</h2>
+          <span>{pomo.realizedPomos} pomos</span>
+        </div>
 
         <div className="countdownBorder">
           <p>{formatedCountdown}</p>

@@ -1,3 +1,18 @@
+.header-tasks-pomos {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-tasks-pomos h2 {
+  color: var(--color-text-title);
+}
+
+.header-tasks-pomos span {
+  color: var(--color-text-base);
+}
+
 .countdownBorder {
   width: 12rem;
   height: 12rem;
@@ -13,6 +28,7 @@
 
 .countdownBorder p {
   font-size: 4rem;
+  color: var(--color-text-title);
 }
 
 .progress-bar-border {
