@@ -29,14 +29,16 @@ function App() {
     setButton('start')
   }
 
-  const startCountdown = (result) => {
+  const startCountdown = result => {
     if (result === 0) return registerPomoAndStopCountdown()
 
-    setCountdownTimeout(setTimeout(function() {
-      const second = result - 1
-      startCountdown(second)
-      setCountdownValue(second)
-    }, 1000))
+    setCountdownTimeout(
+      setTimeout(function () {
+        const second = result - 1
+        startCountdown(second)
+        setCountdownValue(second)
+      }, 1000),
+    )
     setButton('pause')
     console.log(result)
   }
@@ -60,7 +62,7 @@ function App() {
   const formatedCountdown = useMemo(() => {
     if (countdownValue > 0) {
       let minutes = ('00' + Math.floor((countdownValue / 60) % 60)).slice(-2)
-      let seconds = ('00' + Math.floor((countdownValue) % 60)).slice(-2)
+      let seconds = ('00' + Math.floor(countdownValue % 60)).slice(-2)
       return `${minutes}:${seconds}`
     } else {
       return '00:00'
@@ -74,22 +76,26 @@ function App() {
       const proportion = (countdownValue * maxWidth) / defaultMaxSecondsPomo
       const percent = (proportion / maxWidth) * 100
 
-      return <div className='progress-bar-border'>
-        <div className='progress-bar' style={{
-          width: `${percent}%`
-        }}></div>
-      </div>
+      return (
+        <div className="progress-bar-border">
+          <div
+            className="progress-bar"
+            style={{
+              width: `${percent}%`,
+            }}
+          ></div>
+        </div>
+      )
     }
   }, [countdownValue, pomo])
 
   return (
     <>
-      <div className='container'>
-
+      <div className="container">
         <div className="header-tasks-pomos">
           <h2>{pomo.title}</h2>
           <span>
-            <IoIosAlarm className='icon-clock' />
+            <IoIosAlarm className="icon-clock" />
             {pomo.realizedPomos}
           </span>
         </div>
@@ -98,27 +104,27 @@ function App() {
           <p>{formatedCountdown}</p>
         </div>
 
-        {button === 'start' && <button
-          className='button'
-          onClick={() => startCountdown(countdownValue)}
-        >
-          <IoIosPlay className='icon-button' />
-          Iniciar
-        </button>}
-        {button === 'pause' && <button
-          className='button'
-          onClick={pauseCountdown}
-        >
-          <IoIosPause className='icon-button' />
-          Pausar
-        </button>}
-        {button === 'continue' && <button
-          className='button'
-          onClick={resetCountdown}
-        >
-          <IoIosRefresh className='icon-button' />
-          Continuar
-        </button>}
+        {button === 'start' && (
+          <button
+            className="button"
+            onClick={() => startCountdown(countdownValue)}
+          >
+            <IoIosPlay className="icon-button" />
+            Iniciar
+          </button>
+        )}
+        {button === 'pause' && (
+          <button className="button" onClick={pauseCountdown}>
+            <IoIosPause className="icon-button" />
+            Pausar
+          </button>
+        )}
+        {button === 'continue' && (
+          <button className="button" onClick={resetCountdown}>
+            <IoIosRefresh className="icon-button" />
+            Continuar
+          </button>
+        )}
 
         {progressBar}
       </div>
