@@ -15,6 +15,7 @@ function App() {
         title: 'Jr Bytes - Stack: Node, React and React Native.',
         realizedPomos: 7,
         defaultMinutesPomo: 1,
+        settingProgressBarPercent: false,
       }
 
       setPomo(task)
@@ -87,14 +88,16 @@ function App() {
               }}
             ></div>
           </div>
-          <div
-            className="progress-bar-percent"
-            style={{
-              opacity: `${percentNumber === 0 ? '0' : '1'}`,
-            }}
-          >
-            {percentNumber}%
-          </div>
+          {pomo.settingProgressBarPercent && (
+            <div
+              className="progress-bar-percent"
+              style={{
+                opacity: `${percentNumber === 0 ? '0' : '1'}`,
+              }}
+            >
+              {percentNumber}%
+            </div>
+          )}
         </>
       )
     }
