@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react'
+import { IoIosAlarm, IoIosPlay, IoIosPause, IoIosRefresh } from 'react-icons/io'
+
 import './App.css'
 
 function App() {
@@ -10,7 +12,7 @@ function App() {
   useEffect(() => {
     function loadTaskData() {
       const task = {
-        title: 'Tarefa 1',
+        title: 'Jr Bytes - Stack: Node, React and React Native.',
         realizedPomos: 7,
         defaultMinutesPomo: 1,
       }
@@ -86,7 +88,10 @@ function App() {
 
         <div className="header-tasks-pomos">
           <h2>{pomo.title}</h2>
-          <span>{pomo.realizedPomos} pomos</span>
+          <span>
+            <IoIosAlarm className='icon-clock' />
+            {pomo.realizedPomos}
+          </span>
         </div>
 
         <div className="countdownBorder">
@@ -97,18 +102,21 @@ function App() {
           className='button'
           onClick={() => startCountdown(countdownValue)}
         >
+          <IoIosPlay className='icon-button' />
           Iniciar
         </button>}
         {button === 'pause' && <button
           className='button'
           onClick={pauseCountdown}
         >
+          <IoIosPause className='icon-button' />
           Pausar
         </button>}
         {button === 'continue' && <button
           className='button'
           onClick={resetCountdown}
         >
+          <IoIosRefresh className='icon-button' />
           Continuar
         </button>}
 
