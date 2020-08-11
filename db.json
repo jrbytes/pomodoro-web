@@ -1,0 +1,49 @@
+{ "tasks":
+  [
+    {
+      "id": 1,
+      "title": "Fazer trabalho de Biologia",
+      "realizedPomos": 2,
+      "defaultMinutesPomo": 25,
+      "settingProgressBarPercent": true
+    },
+    {
+      "id": 2,
+      "title": "Algoritmo - Programação Estruturada",
+      "realizedPomos": 5,
+      "defaultMinutesPomo": 25,
+      "settingProgressBarPercent": true
+    },
+    {
+      "id": 3,
+      "title": "Banco de dados relacional MySQL",
+      "realizedPomos": 7,
+      "defaultMinutesPomo": 25,
+      "settingProgressBarPercent": true
+    },
+    {
+      "id": 4,
+      "title": "Banco de dados não relacional MongoDB",
+      "realizedPomos": 12,
+      "defaultMinutesPomo": 25,
+      "settingProgressBarPercent": true
+    },
+    {
+      "id": 5,
+      "title": "Programação Orientada a Objeto",
+      "realizedPomos": 16,
+      "defaultMinutesPomo": 25,
+      "settingProgressBarPercent": true
+    }
+  ],
+  "users":
+  [
+    {
+      "name": "Jr Bytes",
+      "email": "itamazor@gmail.com",
+      "defaultMinutesPomo": 25,
+      "settingProgressBarPercent": true,
+      "theme": "light"
+    }
+  ]
+}

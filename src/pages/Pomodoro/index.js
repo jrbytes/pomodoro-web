@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import { IoIosAlarm, IoIosPlay, IoIosPause, IoIosRefresh } from 'react-icons/io'
 import { useParams } from 'react-router-dom'
+import api from '../../services/api'
 
 import './styles.css'
-import tasksData from '../../assets/data/data.json'
 
 function Pomodoro() {
   const [pomo, setPomo] = useState({})
@@ -14,11 +14,11 @@ function Pomodoro() {
   let { id } = useParams()
 
   useEffect(() => {
-    function loadTask() {
-      const getTaskById = tasksData.find(item => item.id === Number(id))
+    async function loadTask() {
+      const { data } = await api.get(`tasks/${id}`)
 
-      setPomo(getTaskById)
-      setCountdownValue(getTaskById.defaultMinutesPomo * 60)
+      setPomo(data)
+      setCountdownValue(data.defaultMinutesPomo * 60)
     }
 
     loadTask()

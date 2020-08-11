@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { IoIosAlarm, IoIosList } from 'react-icons/io'
 import { Link } from 'react-router-dom'
+import api from '../../services/api'
 
 import './styles.css'
-import tasksData from '../../assets/data/data.json'
 
 const Tasks = () => {
   const [tasks, setTasks] = useState([])
 
   useEffect(() => {
-    function loadTasks() {
-      setTasks(tasksData)
+    async function loadTasks() {
+      const { data } = await api.get('tasks')
+
+      setTasks(data)
     }
 
     loadTasks()
