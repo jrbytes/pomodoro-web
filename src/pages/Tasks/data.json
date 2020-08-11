@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Fazer trabalho de Biologia",
+    "realizedPomos": 2,
+    "defaultMinutesPomo": 25,
+    "settingProgressBarPercent": true
+  },
+  {
+    "title": "Algoritmo - Programação Estruturada",
+    "realizedPomos": 5,
+    "defaultMinutesPomo": 25,
+    "settingProgressBarPercent": true
+  },
+  {
+    "title": "Banco de dados relacional MySQL",
+    "realizedPomos": 7,
+    "defaultMinutesPomo": 25,
+    "settingProgressBarPercent": true
+  },
+  {
+    "title": "Banco de dados não relacional MongoDB",
+    "realizedPomos": 12,
+    "defaultMinutesPomo": 25,
+    "settingProgressBarPercent": true
+  },
+  {
+    "title": "Programação Orientada a Objeto",
+    "realizedPomos": 16,
+    "defaultMinutesPomo": 25,
+    "settingProgressBarPercent": true
+  }
+]

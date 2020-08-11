@@ -1,0 +1,38 @@
+.container h2 {
+  color: var(--color-text-title);
+  margin-bottom: 3rem;
+
+  display: flex;
+  align-items: center;
+}
+
+.task {
+  width: 90vw;
+  max-width: 700px;
+  margin-bottom: 0.8rem;
+  background-color: var(--color-box-base);
+  padding: 1rem 1.4rem;
+  border-radius: 0.3rem;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.task p {
+  color: var(--color-text-base);
+}
+
+.task span {
+  color: var(--color-text-complement);
+}
+
+.task-pomos {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  margin-left: 0.5rem;
+  color: var(--color-primary);
+}
