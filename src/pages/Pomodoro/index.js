@@ -49,9 +49,12 @@ function Pomodoro() {
     setButton('continue')
   }
 
-  const registerPomo = () => {
-    Object.assign(pomo, { realizedPomos: pomo.realizedPomos + 1 })
-    setPomo(pomo)
+  const registerPomo = async () => {
+    const { data } = await api.patch(`tasks/${id}`, {
+      realizedPomos: pomo.realizedPomos + 1,
+    })
+
+    setPomo(data)
   }
 
   const resetCountdown = () => {

@@ -1,10 +1,10 @@
-{ "tasks":
-  [
+{
+  "tasks": [
     {
       "id": "b70ef30-fd6c-566a-aca8-1401270f2214",
       "title": "Fazer trabalho de Biologia",
-      "realizedPomos": 2,
-      "defaultMinutesPomo": 25,
+      "realizedPomos": 6,
+      "defaultMinutesPomo": 1,
       "settingProgressBarPercent": true
     },
     {
@@ -17,7 +17,7 @@
     {
       "id": "0d12b5-3a20-b8f6-dd0a-c7c2fd6ba4",
       "title": "Banco de dados relacional MySQL",
-      "realizedPomos": 7,
+      "realizedPomos": 8,
       "defaultMinutesPomo": 25,
       "settingProgressBarPercent": true
     },
@@ -36,8 +36,7 @@
       "settingProgressBarPercent": true
     }
   ],
-  "users":
-  [
+  "users": [
     {
       "id": "e1a2c0-ff-461d-be21-5310a6b416f2",
       "name": "Jr Bytes",
