@@ -19,7 +19,7 @@ const Tasks = () => {
     }
 
     loadTitle()
-  }, [])
+  }, [id])
 
   useEffect(() => {
     async function loadTasks() {
