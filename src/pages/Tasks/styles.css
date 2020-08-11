@@ -1,9 +1,14 @@
-.container h2 {
+.title-tasks {
   color: var(--color-text-title);
   margin-bottom: 3rem;
 
   display: flex;
   align-items: center;
+}
+
+.container a {
+  text-decoration: none;
+  color: inherit;
 }
 
 .task {

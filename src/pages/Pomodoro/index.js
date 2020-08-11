@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import { IoIosAlarm, IoIosPlay, IoIosPause, IoIosRefresh } from 'react-icons/io'
+import { useParams } from 'react-router-dom'
 
 import './styles.css'
+import tasksData from '../../assets/data/data.json'
 
 function Pomodoro() {
   const [pomo, setPomo] = useState({})
@@ -9,21 +11,18 @@ function Pomodoro() {
   const [countdownTimeout, setCountdownTimeout] = useState(0)
   const [button, setButton] = useState('start')
 
-  useEffect(() => {
-    function loadTaskData() {
-      const task = {
-        title: 'Jr Bytes - Stack: Node, React and React Native.',
-        realizedPomos: 7,
-        defaultMinutesPomo: 25,
-        settingProgressBarPercent: true,
-      }
+  let { id } = useParams()
 
-      setPomo(task)
-      setCountdownValue(task.defaultMinutesPomo * 60)
+  useEffect(() => {
+    function loadTask() {
+      const getTaskById = tasksData.find(item => item.id === Number(id))
+
+      setPomo(getTaskById)
+      setCountdownValue(getTaskById.defaultMinutesPomo * 60)
     }
 
-    loadTaskData()
-  }, [])
+    loadTask()
+  }, [id])
 
   const pauseCountdown = () => {
     clearTimeout(countdownTimeout)

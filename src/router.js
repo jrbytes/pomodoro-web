@@ -8,7 +8,7 @@ function Routes() {
   return (
     <BrowserRouter>
       <Route path="/" exact component={Tasks} />
-      <Route path="/pomodoro" component={Pomodoro} />
+      <Route path="/pomodoro/:id" component={Pomodoro} />
     </BrowserRouter>
   )
 }

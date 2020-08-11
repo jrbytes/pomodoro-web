@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { IoIosAlarm, IoIosList } from 'react-icons/io'
+import { Link } from 'react-router-dom'
 
 import './styles.css'
-import tasksData from './data.json'
+import tasksData from '../../assets/data/data.json'
 
 const Tasks = () => {
   const [tasks, setTasks] = useState([])
@@ -17,18 +18,20 @@ const Tasks = () => {
 
   return (
     <div className="container">
-      <h2>
+      <h2 className="title-tasks">
         <IoIosList />
         Tarefas
       </h2>
       {tasks.map(item => (
-        <div className="task" key={item.title}>
-          <p>{item.title}</p>
-          <div className="task-pomos">
-            <span>{item.realizedPomos}</span>
-            <IoIosAlarm className="icon" />
+        <Link to={{ pathname: `/pomodoro/${item.id}` }} key={item.id}>
+          <div className="task">
+            <p>{item.title}</p>
+            <div className="task-pomos">
+              <span>{item.realizedPomos}</span>
+              <IoIosAlarm className="icon" />
+            </div>
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   )
