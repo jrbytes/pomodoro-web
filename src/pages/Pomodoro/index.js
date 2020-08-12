@@ -3,6 +3,7 @@ import { IoIosAlarm, IoIosPlay, IoIosPause, IoIosRefresh } from 'react-icons/io'
 import { useParams } from 'react-router-dom'
 import api from '../../services/api'
 
+import Header from '../../components/Header'
 import './styles.css'
 
 function Pomodoro() {
@@ -107,6 +108,7 @@ function Pomodoro() {
 
   return (
     <>
+      <Header />
       <div className="container-pomo">
         <div className="header-tasks-pomos">
           <h2>{pomo.title}</h2>

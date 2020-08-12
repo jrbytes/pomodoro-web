@@ -51,10 +51,23 @@ textarea {
   color: var(--color-text-base);
 }
 
+button {
+  outline: none;
+}
+
 .container {
   width: 90vw;
   max-width: 700px;
   margin: 0 auto;
+}
+
+.icon {
+  margin-left: 0.5rem;
+  color: var(--color-primary);
+}
+
+.icon:hover {
+  color: var(--color-primary-darker);
 }
 
 @media (min-width: 700px) {
