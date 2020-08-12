@@ -107,7 +107,7 @@ function Pomodoro() {
 
   return (
     <>
-      <div className="container">
+      <div className="container-pomo">
         <div className="header-tasks-pomos">
           <h2>{pomo.title}</h2>
           <span>

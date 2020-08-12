@@ -39,8 +39,8 @@ html, body, #root {
 
 #root {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
 }
 
 body,
@@ -54,11 +54,7 @@ textarea {
 .container {
   width: 90vw;
   max-width: 700px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  margin: 0 auto;
 }
 
 @media (min-width: 700px) {

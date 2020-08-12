@@ -1,0 +1,16 @@
+.header-container {
+  width: 100vw;
+  height: 4rem;
+  background-color: var(--color-box-base);
+  color: var(--color-primary);
+  padding: 0 2rem;
+  margin-bottom: 3rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-container span {
+  font-weight: 700;
+}

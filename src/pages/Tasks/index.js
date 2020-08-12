@@ -3,6 +3,7 @@ import { IoIosAlarm, IoIosList } from 'react-icons/io'
 import { Link, useParams } from 'react-router-dom'
 import api from '../../services/api'
 
+import Header from '../../components/Header'
 import './styles.css'
 
 const Tasks = () => {
@@ -32,23 +33,26 @@ const Tasks = () => {
   }, [id])
 
   return (
-    <div className="container">
-      <h2 className="title-tasks">
-        <IoIosList />
-        Tarefas - {title}
-      </h2>
-      {tasks.map(item => (
-        <Link to={{ pathname: `/pomodoro/${item.id}` }} key={item.id}>
-          <div className="task">
-            <p>{item.title}</p>
-            <div className="task-pomos">
-              <span>{item.realizedPomos}</span>
-              <IoIosAlarm className="icon" />
+    <>
+      <Header />
+      <div className="container">
+        <h2 className="title-tasks">
+          <IoIosList />
+          {title && `Tarefas - ${title}`}
+        </h2>
+        {tasks.map(item => (
+          <Link to={{ pathname: `/pomodoro/${item.id}` }} key={item.id}>
+            <div className="task">
+              <p>{item.title}</p>
+              <div className="task-pomos">
+                <span>{item.realizedPomos}</span>
+                <IoIosAlarm className="icon" />
+              </div>
             </div>
-          </div>
-        </Link>
-      ))}
-    </div>
+          </Link>
+        ))}
+      </div>
+    </>
   )
 }
 
