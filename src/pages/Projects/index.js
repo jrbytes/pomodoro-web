@@ -4,10 +4,12 @@ import { Link } from 'react-router-dom'
 import api from '../../services/api'
 
 import Header from '../../components/Header'
+import Modal from '../../components/Modal'
 import './styles.css'
 
 const Projects = () => {
   const [projects, setProjects] = useState([])
+  const [openModal, setOpenModal] = useState(false)
 
   useEffect(() => {
     async function loadProjects() {
@@ -19,6 +21,20 @@ const Projects = () => {
     loadProjects()
   }, [])
 
+  async function openUpdateProject(result) {
+    setOpenModal(true)
+    console.log(result)
+  }
+
+  function closeModal() {
+    setOpenModal(false)
+  }
+
+  async function updateProject() {
+    setOpenModal(false)
+    console.log('update here')
+  }
+
   return (
     <>
       <Header />
@@ -28,8 +44,8 @@ const Projects = () => {
           Projetos
         </h2>
         {projects.map(item => (
-          <Link to={{ pathname: `/tasks/${item.id}` }} key={item.id}>
-            <div className="projects">
+          <div className="projects" key={item.id}>
+            <Link to={{ pathname: `/tasks/${item.id}` }}>
               <div className="projects-color-title">
                 <IoIosBookmark
                   className="projects-booksmark"
@@ -37,11 +53,18 @@ const Projects = () => {
                 />
                 <p>{item.name}</p>
               </div>
+            </Link>
+            <button onClick={() => openUpdateProject(item.id)}>
               <IoIosCreate className="icon" />
-            </div>
-          </Link>
+            </button>
+          </div>
         ))}
       </div>
+      <Modal
+        open={openModal}
+        updateProject={updateProject}
+        closeModal={closeModal}
+      />
     </>
   )
 }

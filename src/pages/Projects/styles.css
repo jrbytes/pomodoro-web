@@ -18,6 +18,7 @@
   background-color: var(--color-box-base);
   padding: 1rem 1.4rem;
   border-radius: 0.3rem;
+  position: relative;
 
   display: flex;
   flex-direction: row;
@@ -26,6 +27,23 @@
 
 .projects p {
   color: var(--color-text-base);
+}
+
+.projects button {
+  width: 4rem;
+  height: 100%;
+  background-color: var(--color-box-base);;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin-right: 0.5rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .projects-color-title {
