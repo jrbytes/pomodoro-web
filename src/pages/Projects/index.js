@@ -54,7 +54,7 @@ const Projects = () => {
                 <p>{item.name}</p>
               </div>
             </Link>
-            <button onClick={() => openUpdateProject(item.id)}>
+            <button onClick={() => openUpdateProject(item)}>
               <IoIosCreate className="icon" />
             </button>
           </div>
@@ -62,6 +62,7 @@ const Projects = () => {
       </div>
       <Modal
         open={openModal}
+        title="Atualizar Projeto"
         updateProject={updateProject}
         closeModal={closeModal}
       />
