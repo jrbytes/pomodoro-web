@@ -17,7 +17,7 @@
   margin-bottom: 0.8rem;
   background-color: var(--color-box-base);
   padding: 1rem 1.4rem;
-  border-radius: 0.3rem;
+  border-radius: var(--border-radius-default);
   position: relative;
 
   display: flex;
@@ -32,7 +32,7 @@
 .projects button {
   width: 4rem;
   height: 100%;
-  background-color: var(--color-box-base);;
+  background-color: var(--color-box-base);
   border: none;
   cursor: pointer;
   position: absolute;

@@ -14,9 +14,12 @@
   --color-text-base: #6A6180;
   --color-line-in-white: #E6E6F0;
   --color-input-background: #F8F8FC;
+  --color-input-alert: #bb1e3c;
   --color-button-text: #FFFFFF;
   --color-box-base: #FFFFFF;
   --color-box-footer: #FAFAFC;
+
+  --border-radius-default: 0.3rem;
 
   font-size: 65%;
 }
@@ -45,6 +48,7 @@ html, body, #root {
 
 body,
 input,
+select,
 button,
 textarea {
   font: 400 1.6rem Roboto Condensed;

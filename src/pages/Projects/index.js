@@ -4,12 +4,14 @@ import { Link } from 'react-router-dom'
 import api from '../../services/api'
 
 import Header from '../../components/Header'
-import Modal from '../../components/Modal'
+import ModalProject from '../../components/ModalProject'
 import './styles.css'
 
 const Projects = () => {
   const [projects, setProjects] = useState([])
   const [openModal, setOpenModal] = useState(false)
+
+  const [projectData, setProjectData] = useState({})
 
   useEffect(() => {
     async function loadProjects() {
@@ -23,16 +25,28 @@ const Projects = () => {
 
   async function openUpdateProject(result) {
     setOpenModal(true)
-    console.log(result)
+    setProjectData(result)
   }
 
   function closeModal() {
     setOpenModal(false)
   }
 
-  async function updateProject() {
-    setOpenModal(false)
-    console.log('update here')
+  async function updateProject(result) {
+    const { id, name, color } = result
+
+    const { data } = await api.patch(`projects/${id}`, {
+      name,
+      color,
+    })
+
+    const updateStateOfProject = projects.map(item =>
+      item.id === data.id
+        ? { ...item, name: data.name, color: data.color }
+        : item,
+    )
+
+    setProjects(updateStateOfProject)
   }
 
   return (
@@ -60,9 +74,10 @@ const Projects = () => {
           </div>
         ))}
       </div>
-      <Modal
+      <ModalProject
         open={openModal}
         title="Atualizar Projeto"
+        projectData={projectData}
         updateProject={updateProject}
         closeModal={closeModal}
       />
