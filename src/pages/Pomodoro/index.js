@@ -108,7 +108,7 @@ function Pomodoro() {
 
   return (
     <>
-      <Header />
+      <Header goBackButton={true} />
       <div className="container-pomo">
         <div className="header-tasks-pomos">
           <h2>{pomo.title}</h2>

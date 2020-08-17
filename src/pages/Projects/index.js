@@ -65,7 +65,7 @@ const Projects = () => {
 
   return (
     <>
-      <Header />
+      <Header goBackButton={false} />
       <div className="container">
         <h2 className="title-projects">
           <IoIosBook />

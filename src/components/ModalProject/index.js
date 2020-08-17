@@ -47,7 +47,7 @@ const ModalProject = ({
   }
 
   return (
-    <div className={`modal ${openModal ? 'active' : ''}`}>
+    <div className={`modal${openModal ? ' active' : ''}`}>
       <div className="modal-content">
         <div className="modal-title-close">
           <span className="close" onClick={closeModal}>

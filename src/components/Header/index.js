@@ -4,14 +4,20 @@ import { useHistory } from 'react-router-dom'
 
 import './styles.css'
 
-const Header = () => {
+const Header = ({ goBackButton }) => {
   let history = useHistory()
 
   return (
-    <header className="header-container">
-      <button onClick={history.goBack}>
-        <IoIosArrowBack className="icon" />
-      </button>
+    <header
+      className={`header-container${
+        goBackButton === false ? ' just-logo' : ''
+      }`}
+    >
+      {goBackButton === true && (
+        <button onClick={history.goBack}>
+          <IoIosArrowBack className="icon" />
+        </button>
+      )}
       <span>POMO</span>
     </header>
   )

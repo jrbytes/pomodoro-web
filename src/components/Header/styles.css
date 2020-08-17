@@ -11,6 +11,10 @@
   justify-content: space-between;
 }
 
+.header-container.just-logo {
+  justify-content: flex-end;
+}
+
 .header-container button {
   width: 4rem;
   height: 100%;

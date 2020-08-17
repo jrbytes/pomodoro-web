@@ -34,7 +34,7 @@ const Tasks = () => {
 
   return (
     <>
-      <Header />
+      <Header goBackButton={true} />
       <div className="container">
         <h2 className="title-tasks">
           <IoIosList />
