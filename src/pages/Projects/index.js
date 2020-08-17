@@ -24,6 +24,18 @@ const Projects = () => {
     loadProjects()
   }, [])
 
+  useEffect(() => {
+    function toCleanClass() {
+      if (colorWhenUpdating.length) {
+        setTimeout(() => {
+          setColorWhenUpdating('')
+        }, 3000)
+      }
+    }
+
+    toCleanClass()
+  }, [colorWhenUpdating])
+
   async function openUpdateProject(result) {
     setOpenModal(true)
     setProjectData(result)
@@ -61,8 +73,8 @@ const Projects = () => {
         </h2>
         {projects.map(item => (
           <div
-            className={`projects ${
-              colorWhenUpdating === item.id ? 'updated' : ''
+            className={`projects${
+              colorWhenUpdating === item.id ? ' updated' : ''
             }`}
             key={item.id}
           >

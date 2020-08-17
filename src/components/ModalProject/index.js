@@ -42,6 +42,10 @@ const ModalProject = ({
     setColor(e)
   }
 
+  function handleName(e) {
+    setName(e)
+  }
+
   return (
     <div className={`modal ${openModal ? 'active' : ''}`}>
       <div className="modal-content">
@@ -57,7 +61,8 @@ const ModalProject = ({
           <input
             type="text"
             name="name"
-            defaultValue={name}
+            value={name || ''}
+            onChange={e => handleName(e.target.value)}
             ref={register({
               required: {
                 value: true,
