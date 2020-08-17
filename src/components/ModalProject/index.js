@@ -38,6 +38,10 @@ const ModalProject = ({
     closeModal()
   }
 
+  function handleColor(e) {
+    setColor(e)
+  }
+
   return (
     <div className="modal" style={{ display: `${open ? 'block' : 'none'}` }}>
       <div className="modal-content">
@@ -72,7 +76,8 @@ const ModalProject = ({
 
           <select
             name="color"
-            defaultValue={color}
+            value={color}
+            onChange={e => handleColor(e.target.value)}
             ref={register({ required: true })}
           >
             <option value="violet">violet</option>
