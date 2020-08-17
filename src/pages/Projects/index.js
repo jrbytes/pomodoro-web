@@ -25,15 +25,18 @@ const Projects = () => {
   }, [])
 
   useEffect(() => {
+    let isSubscribed = true
+
     function toCleanClass() {
       if (colorWhenUpdating.length) {
         setTimeout(() => {
-          setColorWhenUpdating('')
+          if (isSubscribed) return setColorWhenUpdating('')
         }, 3000)
       }
     }
-
     toCleanClass()
+
+    return () => (isSubscribed = false)
   }, [colorWhenUpdating])
 
   async function openUpdateProject(result) {
