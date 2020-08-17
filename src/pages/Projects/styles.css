@@ -25,6 +25,11 @@
   justify-content: space-between;
 }
 
+.projects.updated {
+  animation-name: updated-element;
+  animation-duration: var(--updated-element-seconds);
+}
+
 .projects p {
   color: var(--color-text-base);
 }
@@ -32,7 +37,7 @@
 .projects button {
   width: 4rem;
   height: 100%;
-  background-color: var(--color-box-base);
+  background-color: transparent;
   border: none;
   cursor: pointer;
   position: absolute;

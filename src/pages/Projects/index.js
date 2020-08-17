@@ -10,6 +10,7 @@ import './styles.css'
 const Projects = () => {
   const [projects, setProjects] = useState([])
   const [openModal, setOpenModal] = useState(false)
+  const [colorWhenUpdating, setColorWhenUpdating] = useState('')
 
   const [projectData, setProjectData] = useState({})
 
@@ -47,6 +48,7 @@ const Projects = () => {
     )
 
     setProjects(updateStateOfProject)
+    setColorWhenUpdating(data.id)
   }
 
   return (
@@ -58,7 +60,12 @@ const Projects = () => {
           Projetos
         </h2>
         {projects.map(item => (
-          <div className="projects" key={item.id}>
+          <div
+            className={`projects ${
+              colorWhenUpdating === item.id ? 'updated' : ''
+            }`}
+            key={item.id}
+          >
             <Link to={{ pathname: `/tasks/${item.id}` }}>
               <div className="projects-color-title">
                 <IoIosBookmark

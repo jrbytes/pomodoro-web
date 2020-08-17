@@ -17,11 +17,20 @@
   --color-input-alert: #bb1e3c;
   --color-button-text: #FFFFFF;
   --color-box-base: #FFFFFF;
+  --color-box-base-updated: #fde871;
   --color-box-footer: #FAFAFC;
 
   --border-radius-default: 0.3rem;
 
+  --updated-element-seconds: 3s;
+
   font-size: 65%;
+}
+
+@keyframes updated-element {
+  0% {background-color: var(--color-box-base);}
+  10% {background-color: var(--color-box-base-updated);}
+  100% {background-color: var(--color-box-base);}
 }
 
 * {
