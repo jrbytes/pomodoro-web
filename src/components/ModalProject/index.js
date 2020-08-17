@@ -5,7 +5,7 @@ import { IoIosClose } from 'react-icons/io'
 import './styles.css'
 
 const ModalProject = ({
-  open,
+  openModal,
   title,
   projectData,
   updateProject,
@@ -43,7 +43,7 @@ const ModalProject = ({
   }
 
   return (
-    <div className="modal" style={{ display: `${open ? 'block' : 'none'}` }}>
+    <div className={`modal ${openModal ? 'active' : ''}`}>
       <div className="modal-content">
         <div className="modal-title-close">
           <span className="close" onClick={closeModal}>

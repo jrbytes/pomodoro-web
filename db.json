@@ -2,7 +2,7 @@
   "projects": [
     {
       "id": "6e66784-0e1c-cf1-6708-848c66518f6f",
-      "name": "Development",
+      "name": "Desenvolvimento",
       "color": "black"
     },
     {
@@ -31,7 +31,7 @@
     {
       "id": "fd30100-8107-2550-5f13-2a51845a47",
       "title": "Algoritmo - Programação Estruturada",
-      "realizedPomos": 9,
+      "realizedPomos": 10,
       "defaultMinutesPomo": 1,
       "settingProgressBarPercent": true,
       "project_id": "6e66784-0e1c-cf1-6708-848c66518f6f"

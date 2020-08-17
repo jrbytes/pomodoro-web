@@ -75,7 +75,7 @@ const Projects = () => {
         ))}
       </div>
       <ModalProject
-        open={openModal}
+        openModal={openModal}
         title="Atualizar Projeto"
         projectData={projectData}
         updateProject={updateProject}
