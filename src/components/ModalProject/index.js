@@ -1,11 +1,16 @@
-/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { IoIosClose } from 'react-icons/io'
 
 import './styles.css'
 
-const Modal = ({ open, title, projectData, updateProject, closeModal }) => {
+const ModalProject = ({
+  open,
+  title,
+  projectData,
+  updateProject,
+  closeModal,
+}) => {
   const { handleSubmit, register, errors } = useForm()
 
   const [id, setId] = useState('')
@@ -86,4 +91,4 @@ const Modal = ({ open, title, projectData, updateProject, closeModal }) => {
   )
 }
 
-export default Modal
+export default ModalProject

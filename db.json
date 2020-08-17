@@ -3,12 +3,12 @@
     {
       "id": "6e66784-0e1c-cf1-6708-848c66518f6f",
       "name": "Development",
-      "color": "black"
+      "color": "green"
     },
     {
       "id": "2bdcedb-c25a-3f1e-443e-b6a2463d856",
       "name": "Estudo",
-      "color": "green"
+      "color": "gray"
     }
   ],
   "tasks": [
