@@ -77,7 +77,7 @@ const Projects = () => {
         {projects.map(item => (
           <div
             className={`projects${
-              colorWhenUpdating === item.id ? ' updated' : ''
+              colorWhenUpdating === item.id ? ' updated-element' : ''
             }`}
             key={item.id}
           >

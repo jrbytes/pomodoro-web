@@ -33,6 +33,11 @@
   100% {background-color: var(--color-box-base);}
 }
 
+.updated-element {
+  animation-name: updated-element;
+  animation-duration: var(--updated-element-seconds);
+}
+
 * {
   margin: 0;
   padding: 0;

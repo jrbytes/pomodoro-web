@@ -25,11 +25,6 @@
   justify-content: space-between;
 }
 
-.projects.updated {
-  animation-name: updated-element;
-  animation-duration: var(--updated-element-seconds);
-}
-
 .projects p {
   color: var(--color-text-base);
 }
