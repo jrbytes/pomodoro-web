@@ -3,6 +3,8 @@ import { IoIosAlarm, IoIosList, IoIosCreate } from 'react-icons/io'
 import { Link, useParams } from 'react-router-dom'
 import api from '../../services/api'
 
+import { useCleanClassCSS } from '../../hooks/cleanClassCSS'
+
 import Header from '../../components/Header'
 import ModalTask from '../../components/ModalTask'
 import './styles.css'
@@ -13,7 +15,7 @@ const Tasks = () => {
 
   const [openModal, setOpenModal] = useState(false)
   const [taskData, setTaskData] = useState({})
-  const [colorWhenUpdating, setColorWhenUpdating] = useState('')
+  const [colorWhenUpdating, setColorWhenUpdating] = useCleanClassCSS()
 
   let { id } = useParams()
 
@@ -23,34 +25,15 @@ const Tasks = () => {
 
       setTitle(data.name)
     }
-
     loadTitle()
-  }, [id])
 
-  useEffect(() => {
     async function loadTasks() {
       const { data } = await api.get(`tasks?project_id=${id}`)
 
       setTasks(data)
     }
-
     loadTasks()
   }, [id])
-
-  useEffect(() => {
-    let isSubscribed = true
-
-    function toCleanClass() {
-      if (colorWhenUpdating.length) {
-        setTimeout(() => {
-          if (isSubscribed) return setColorWhenUpdating('')
-        }, 3000)
-      }
-    }
-    toCleanClass()
-
-    return () => (isSubscribed = false)
-  }, [colorWhenUpdating])
 
   const openUpdateTask = result => {
     setOpenModal(true)

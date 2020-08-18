@@ -3,16 +3,19 @@ import { IoIosCreate, IoIosBookmark, IoIosBook } from 'react-icons/io'
 import { Link } from 'react-router-dom'
 import api from '../../services/api'
 
+import { useCleanClassCSS } from '../../hooks/cleanClassCSS'
+
 import Header from '../../components/Header'
 import ModalProject from '../../components/ModalProject'
 import './styles.css'
 
 const Projects = () => {
   const [projects, setProjects] = useState([])
-  const [openModal, setOpenModal] = useState(false)
-  const [colorWhenUpdating, setColorWhenUpdating] = useState('')
 
+  const [openModal, setOpenModal] = useState(false)
   const [projectData, setProjectData] = useState({})
+
+  const [colorWhenUpdating, setColorWhenUpdating] = useCleanClassCSS()
 
   useEffect(() => {
     async function loadProjects() {
@@ -23,21 +26,6 @@ const Projects = () => {
 
     loadProjects()
   }, [])
-
-  useEffect(() => {
-    let isSubscribed = true
-
-    function toCleanClass() {
-      if (colorWhenUpdating.length) {
-        setTimeout(() => {
-          if (isSubscribed) return setColorWhenUpdating('')
-        }, 3000)
-      }
-    }
-    toCleanClass()
-
-    return () => (isSubscribed = false)
-  }, [colorWhenUpdating])
 
   async function openUpdateProject(result) {
     setOpenModal(true)
@@ -98,7 +86,7 @@ const Projects = () => {
       </div>
       <ModalProject
         openModal={openModal}
-        title="Atualizar Projeto"
+        title="Editar Projeto"
         projectData={projectData}
         updateProject={updateProject}
         closeModal={closeModal}
