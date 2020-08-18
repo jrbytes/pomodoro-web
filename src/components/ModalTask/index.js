@@ -39,8 +39,15 @@ const ModalTask = ({
     setTitle(e)
   }
 
+  function closeModalClickingOutside(e) {
+    if (e === 'modal active') return closeModal()
+  }
+
   return (
-    <div className={`modal${openModal ? ' active' : ''}`}>
+    <div
+      className={`modal${openModal ? ' active' : ''}`}
+      onClick={e => closeModalClickingOutside(e.target.className)}
+    >
       <div className="modal-content">
         <div className="modal-title-close">
           <span className="close" onClick={closeModal}>
