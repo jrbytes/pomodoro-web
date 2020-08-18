@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-export function useCleanClassCSS() {
+export function useToCleanCSSClass() {
   const [colorWhenUpdating, setColorWhenUpdating] = useState('')
 
   useEffect(() => {

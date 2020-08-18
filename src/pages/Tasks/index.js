@@ -3,7 +3,7 @@ import { IoIosAlarm, IoIosList, IoIosCreate } from 'react-icons/io'
 import { Link, useParams } from 'react-router-dom'
 import api from '../../services/api'
 
-import { useCleanClassCSS } from '../../hooks/cleanClassCSS'
+import { useToCleanCSSClass } from '../../hooks/toCleanCSSClass'
 
 import Header from '../../components/Header'
 import ModalTask from '../../components/ModalTask'
@@ -15,7 +15,7 @@ const Tasks = () => {
 
   const [openModal, setOpenModal] = useState(false)
   const [taskData, setTaskData] = useState({})
-  const [colorWhenUpdating, setColorWhenUpdating] = useCleanClassCSS()
+  const [colorWhenUpdating, setColorWhenUpdating] = useToCleanCSSClass()
 
   let { id } = useParams()
 

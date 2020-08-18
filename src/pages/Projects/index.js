@@ -3,7 +3,7 @@ import { IoIosCreate, IoIosBookmark, IoIosBook } from 'react-icons/io'
 import { Link } from 'react-router-dom'
 import api from '../../services/api'
 
-import { useCleanClassCSS } from '../../hooks/cleanClassCSS'
+import { useToCleanCSSClass } from '../../hooks/toCleanCSSClass'
 
 import Header from '../../components/Header'
 import ModalProject from '../../components/ModalProject'
@@ -15,7 +15,7 @@ const Projects = () => {
   const [openModal, setOpenModal] = useState(false)
   const [projectData, setProjectData] = useState({})
 
-  const [colorWhenUpdating, setColorWhenUpdating] = useCleanClassCSS()
+  const [colorWhenUpdating, setColorWhenUpdating] = useToCleanCSSClass()
 
   useEffect(() => {
     async function loadProjects() {
