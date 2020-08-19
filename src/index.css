@@ -88,6 +88,30 @@ button {
   color: var(--color-primary-darker);
 }
 
+.form-buttons-modal {
+  margin-top: 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.form-buttons-modal button {
+  width: 4rem;
+  margin-left: 1rem;
+  background-color: var(--color-input-alert);
+  color: var(--color-title-in-primary);
+  border: none;
+  border-radius: var(--border-radius-default);
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  font-size: 1.9rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @media (min-width: 700px) {
   :root {
     font-size: 75%;

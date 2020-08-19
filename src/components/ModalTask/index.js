@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { IoIosClose } from 'react-icons/io'
+import { IoIosClose, IoMdTrash } from 'react-icons/io'
 
 import './styles.css'
 
@@ -10,6 +10,7 @@ const ModalTask = ({
   taskData,
   updateTask,
   closeModal,
+  deleteItem,
 }) => {
   const { handleSubmit, register, errors } = useForm()
 
@@ -40,6 +41,11 @@ const ModalTask = ({
 
   function closeModalClickingOutside(e) {
     if (e === 'modal active') return closeModal()
+  }
+
+  function handleDeleteItem(e) {
+    e.preventDefault()
+    deleteItem(id)
   }
 
   return (
@@ -78,7 +84,13 @@ const ModalTask = ({
           />
           {errors.name && <span>{errors.name.message}</span>}
 
-          <input type="submit" value="Atualizar" />
+          <div className="form-buttons-modal">
+            <input type="submit" value="Atualizar" />
+
+            <button onClick={e => handleDeleteItem(e)}>
+              <IoMdTrash />
+            </button>
+          </div>
         </form>
       </div>
     </div>

@@ -77,6 +77,18 @@ const Tasks = () => {
     setColorWhenUpdating(data.id)
   }
 
+  const deleteItem = async result => {
+    const { data } = await api.delete(`tasks/${result}`)
+
+    if (!data) return
+
+    const deleteItemOfTasks = tasks.filter(item => item.id !== result)
+
+    setTasks(deleteItemOfTasks)
+
+    closeModal()
+  }
+
   return (
     <>
       <Header goBackButton={true} />
@@ -116,6 +128,7 @@ const Tasks = () => {
         taskData={taskData}
         updateTask={updateTask}
         closeModal={closeModal}
+        deleteItem={deleteItem}
       />
     </>
   )

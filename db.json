@@ -13,14 +13,8 @@
   ],
   "tasks": [
     {
-      "id": "b70ef30-fd6c-566a-aca8-1401270f2214",
-      "name": "Fazer trabalho de Biologia",
-      "realizedPomos": 7,
-      "project_id": "2bdcedb-c25a-3f1e-443e-b6a2463d856"
-    },
-    {
       "id": "32ac525-b2af-44f-03e7-ca018d57e0bd",
-      "name": "Estudar prova de Ciências - Biologia",
+      "name": "Estudar prova de Ciências",
       "realizedPomos": 2,
       "project_id": "2bdcedb-c25a-3f1e-443e-b6a2463d856"
     },
@@ -49,9 +43,9 @@
       "project_id": "6e66784-0e1c-cf1-6708-848c66518f6f"
     },
     {
-      "id": "46c3af6-4187-7a05-4402-72f83ffd746",
-      "name": "Estudar Inglês",
-      "realizedPomos": 1,
+      "id": "1f1a83d-5e6-4ddc-1b66-2ea6a20ab54",
+      "name": "Fazer trabalho de Biologia",
+      "realizedPomos": 0,
       "project_id": "2bdcedb-c25a-3f1e-443e-b6a2463d856"
     }
   ],
