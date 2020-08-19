@@ -5,12 +5,17 @@ import { useForm } from 'react-hook-form'
 import './styles.css'
 
 function CreateItem({ createTask }) {
-  const { handleSubmit, register, errors } = useForm()
-
   const [title, setTitle] = useState('')
+
+  const { handleSubmit, register, reset, errors } = useForm({
+    defaultValues: {
+      title,
+    },
+  })
 
   const onSubmit = data => {
     createTask(data)
+    reset()
   }
 
   function handleTitle(e) {
@@ -26,7 +31,6 @@ function CreateItem({ createTask }) {
             type="text"
             name="title"
             placeholder={errors.title && errors.title.message}
-            defaultValue={title}
             onChange={e => handleTitle(e.target.value)}
             ref={register({
               required: {
