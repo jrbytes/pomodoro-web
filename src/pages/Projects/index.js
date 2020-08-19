@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import api from '../../services/api'
 
 import { useToCleanCSSClass } from '../../hooks/toCleanCSSClass'
+import { useHandleEsc } from '../../hooks/handleEsc'
 
 import Header from '../../components/Header'
 import ModalProject from '../../components/ModalProject'
@@ -16,6 +17,7 @@ const Projects = () => {
   const [projectData, setProjectData] = useState({})
 
   const [colorWhenUpdating, setColorWhenUpdating] = useToCleanCSSClass()
+  const [handleEsc] = useHandleEsc()
 
   useEffect(() => {
     async function loadProjects() {
@@ -57,7 +59,7 @@ const Projects = () => {
   return (
     <>
       <Header goBackButton={false} />
-      <div className="container">
+      <div className="container" onKeyUp={handleEsc && closeModal}>
         <h2 className="title-projects">
           <IoIosBook />
           Projetos

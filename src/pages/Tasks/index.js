@@ -5,6 +5,7 @@ import api from '../../services/api'
 import uuid from 'react-uuid'
 
 import { useToCleanCSSClass } from '../../hooks/toCleanCSSClass'
+import { useHandleEsc } from '../../hooks/handleEsc'
 
 import Header from '../../components/Header'
 import ModalTask from '../../components/ModalTask'
@@ -18,6 +19,7 @@ const Tasks = () => {
   const [openModal, setOpenModal] = useState(false)
   const [taskData, setTaskData] = useState({})
   const [colorWhenUpdating, setColorWhenUpdating] = useToCleanCSSClass()
+  const [handleEsc] = useHandleEsc()
 
   let { id } = useParams()
 
@@ -78,7 +80,7 @@ const Tasks = () => {
   return (
     <>
       <Header goBackButton={true} />
-      <div className="container">
+      <div className="container" onKeyUp={handleEsc && closeModal}>
         <h2 className="title-tasks">
           <IoIosList />
           {title && `Tarefas - ${title}`}
