@@ -5,7 +5,7 @@ import uuid from 'react-uuid'
 import api from '../../services/api'
 
 import { useToCleanCSSClass } from '../../hooks/toCleanCSSClass'
-import { useHandleEsc } from '../../hooks/handleEsc'
+import { useHandleCloseModal } from '../../hooks/handleCloseModal'
 
 import Header from '../../components/Header'
 import ModalProject from '../../components/ModalProject'
@@ -19,7 +19,7 @@ const Projects = () => {
   const [projectData, setProjectData] = useState({})
 
   const [colorWhenUpdating, setColorWhenUpdating] = useToCleanCSSClass()
-  const [handleEsc] = useHandleEsc()
+  const [handleEsc] = useHandleCloseModal()
 
   useEffect(() => {
     async function loadProjects() {

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { IoIosClose } from 'react-icons/io'
 
-import { useHandleEsc } from '../../hooks/handleEsc'
+import { useHandleCloseModal } from '../../hooks/handleCloseModal'
 
 import './styles.css'
 
@@ -14,7 +14,9 @@ const ModalProject = ({
   closeModal,
 }) => {
   const { handleSubmit, register, errors } = useForm()
-  const [handleEsc] = useHandleEsc()
+  const [handleEsc, closeModalClickingOutside] = useHandleCloseModal({
+    closeModal,
+  })
 
   const [id, setId] = useState('')
   const [name, setName] = useState('')
@@ -47,10 +49,6 @@ const ModalProject = ({
 
   function handleName(e) {
     setName(e)
-  }
-
-  function closeModalClickingOutside(e) {
-    if (e === 'modal active') return closeModal()
   }
 
   return (

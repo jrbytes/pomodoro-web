@@ -5,7 +5,7 @@ import api from '../../services/api'
 import uuid from 'react-uuid'
 
 import { useToCleanCSSClass } from '../../hooks/toCleanCSSClass'
-import { useHandleEsc } from '../../hooks/handleEsc'
+import { useHandleCloseModal } from '../../hooks/handleCloseModal'
 
 import Header from '../../components/Header'
 import ModalTask from '../../components/ModalTask'
@@ -19,7 +19,7 @@ const Tasks = () => {
   const [openModal, setOpenModal] = useState(false)
   const [taskData, setTaskData] = useState({})
   const [colorWhenUpdating, setColorWhenUpdating] = useToCleanCSSClass()
-  const [handleEsc] = useHandleEsc()
+  const [handleEsc] = useHandleCloseModal()
 
   let { id } = useParams()
 
