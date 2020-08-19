@@ -53,6 +53,12 @@
       "title": "Estudar Inglês",
       "realizedPomos": 1,
       "project_id": "2bdcedb-c25a-3f1e-443e-b6a2463d856"
+    },
+    {
+      "id": "fc41f50-365a-f62a-54da-72c48e58d8c",
+      "title": "Teste de cor",
+      "realizedPomos": 0,
+      "project_id": "2bdcedb-c25a-3f1e-443e-b6a2463d856"
     }
   ],
   "users": [
