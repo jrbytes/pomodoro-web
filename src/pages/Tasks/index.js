@@ -67,6 +67,7 @@ const Tasks = () => {
     const { data } = await api.post('tasks', {
       id: uuid(),
       title,
+      realizedPomos: 0,
       project_id: id,
     })
 

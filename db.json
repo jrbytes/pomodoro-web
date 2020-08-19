@@ -16,49 +16,43 @@
       "id": "b70ef30-fd6c-566a-aca8-1401270f2214",
       "title": "Fazer trabalho de Biologia",
       "realizedPomos": 7,
-      "defaultMinutesPomo": 1,
-      "settingProgressBarPercent": true,
       "project_id": "2bdcedb-c25a-3f1e-443e-b6a2463d856"
     },
     {
       "id": "32ac525-b2af-44f-03e7-ca018d57e0bd",
       "title": "Estudar prova de Ciências - Biologia",
       "realizedPomos": 2,
-      "defaultMinutesPomo": 25,
-      "settingProgressBarPercent": true,
       "project_id": "2bdcedb-c25a-3f1e-443e-b6a2463d856"
     },
     {
       "id": "fd30100-8107-2550-5f13-2a51845a47",
       "title": "Algoritmo - Programação Estruturada",
       "realizedPomos": 10,
-      "defaultMinutesPomo": 1,
-      "settingProgressBarPercent": true,
       "project_id": "6e66784-0e1c-cf1-6708-848c66518f6f"
     },
     {
       "id": "0d12b5-3a20-b8f6-dd0a-c7c2fd6ba4",
       "title": "Banco de dados relacional MySQL",
       "realizedPomos": 8,
-      "defaultMinutesPomo": 25,
-      "settingProgressBarPercent": true,
       "project_id": "6e66784-0e1c-cf1-6708-848c66518f6f"
     },
     {
       "id": "a0df750-ee61-227c-0fc6-ea47feb75c4f",
       "title": "Banco de dados não relacional MongoDB",
       "realizedPomos": 12,
-      "defaultMinutesPomo": 25,
-      "settingProgressBarPercent": true,
       "project_id": "6e66784-0e1c-cf1-6708-848c66518f6f"
     },
     {
       "id": "710b20e-db62-75d2-6e8-7bd3774d10c",
       "title": "Programação Orientada a Objeto",
-      "realizedPomos": 16,
-      "defaultMinutesPomo": 25,
-      "settingProgressBarPercent": true,
+      "realizedPomos": 17,
       "project_id": "6e66784-0e1c-cf1-6708-848c66518f6f"
+    },
+    {
+      "id": "46c3af6-4187-7a05-4402-72f83ffd746",
+      "title": "Estudar Inglês",
+      "realizedPomos": 1,
+      "project_id": "2bdcedb-c25a-3f1e-443e-b6a2463d856"
     }
   ],
   "users": [

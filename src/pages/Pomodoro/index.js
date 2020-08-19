@@ -8,6 +8,7 @@ import './styles.css'
 
 function Pomodoro() {
   const [pomo, setPomo] = useState({})
+  const [user, setUser] = useState({})
   const [countdownValue, setCountdownValue] = useState('')
   const [countdownTimeout, setCountdownTimeout] = useState(0)
   const [button, setButton] = useState('start')
@@ -19,10 +20,16 @@ function Pomodoro() {
       const { data } = await api.get(`tasks/${id}`)
 
       setPomo(data)
+    }
+    loadTask()
+
+    async function loadUser() {
+      const { data } = await api.get(`users/e1a2c0-ff-461d-be21-5310a6b416f2`)
+
+      setUser(data)
       setCountdownValue(data.defaultMinutesPomo * 60)
     }
-
-    loadTask()
+    loadUser()
   }, [id])
 
   const pauseCountdown = () => {
@@ -59,7 +66,7 @@ function Pomodoro() {
   }
 
   const resetCountdown = () => {
-    setCountdownValue(pomo.defaultMinutesPomo * 60)
+    setCountdownValue(user.defaultMinutesPomo * 60)
     setButton('start')
   }
 
@@ -76,7 +83,7 @@ function Pomodoro() {
   const progressBar = useMemo(() => {
     if (countdownValue >= 0) {
       const maxWidth = 290
-      const defaultMaxSecondsPomo = pomo.defaultMinutesPomo * 60
+      const defaultMaxSecondsPomo = user.defaultMinutesPomo * 60
       const proportion = (countdownValue * maxWidth) / defaultMaxSecondsPomo
       const percent = (proportion / maxWidth) * 100
       const percentNumber = Math.round(percent)
@@ -91,7 +98,7 @@ function Pomodoro() {
               }}
             ></div>
           </div>
-          {pomo.settingProgressBarPercent && (
+          {user.settingProgressBarPercent && (
             <div
               className="progress-bar-percent"
               style={{
@@ -104,7 +111,7 @@ function Pomodoro() {
         </>
       )
     }
-  }, [countdownValue, pomo])
+  }, [countdownValue, user])
 
   return (
     <>
