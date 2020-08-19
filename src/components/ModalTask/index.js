@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { IoIosClose, IoMdTrash } from 'react-icons/io'
 
+import { useHandleEsc } from '../../hooks/handleEsc'
+
 import './styles.css'
 
 const ModalTask = ({
@@ -13,6 +15,7 @@ const ModalTask = ({
   deleteItem,
 }) => {
   const { handleSubmit, register, errors } = useForm()
+  const [handleEsc] = useHandleEsc()
 
   const [id, setId] = useState('')
   const [name, setName] = useState('')
@@ -52,6 +55,7 @@ const ModalTask = ({
     <div
       className={`modal${openModal ? ' active' : ''}`}
       onClick={e => closeModalClickingOutside(e.target.className)}
+      onKeyUp={handleEsc && closeModal}
     >
       <div className="modal-content">
         <div className="modal-title-close">
