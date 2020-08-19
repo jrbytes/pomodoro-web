@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { IoIosCreate, IoIosBookmark, IoIosBook } from 'react-icons/io'
 import { Link } from 'react-router-dom'
+import uuid from 'react-uuid'
 import api from '../../services/api'
 
 import { useToCleanCSSClass } from '../../hooks/toCleanCSSClass'
@@ -8,6 +9,7 @@ import { useHandleEsc } from '../../hooks/handleEsc'
 
 import Header from '../../components/Header'
 import ModalProject from '../../components/ModalProject'
+import CreateItem from '../../components/CreateItem'
 import './styles.css'
 
 const Projects = () => {
@@ -56,6 +58,19 @@ const Projects = () => {
     setColorWhenUpdating(data.id)
   }
 
+  const createItem = async result => {
+    const { name } = result
+
+    const { data } = await api.post('projects', {
+      id: uuid(),
+      name,
+      color: 'violet',
+    })
+
+    setProjects([...projects, data])
+    setColorWhenUpdating(data.id)
+  }
+
   return (
     <>
       <Header goBackButton={false} />
@@ -64,6 +79,9 @@ const Projects = () => {
           <IoIosBook />
           Projetos
         </h2>
+
+        <CreateItem createItem={createItem} />
+
         {projects.map(item => (
           <div
             className={`projects${

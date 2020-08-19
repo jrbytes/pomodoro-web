@@ -14,18 +14,17 @@ const ModalTask = ({
   const { handleSubmit, register, errors } = useForm()
 
   const [id, setId] = useState('')
-  const [title, setTitle] = useState('')
+  const [name, setName] = useState('')
 
   useEffect(() => {
-    function loadTitleData() {
-      const { id } = taskData
-      const { title } = taskData
+    function loadData() {
+      const { id, name } = taskData
 
       setId(id)
-      setTitle(title)
+      setName(name)
     }
 
-    loadTitleData()
+    loadData()
   }, [taskData])
 
   const onSubmit = data => {
@@ -35,8 +34,8 @@ const ModalTask = ({
     closeModal()
   }
 
-  function handleTitle(e) {
-    setTitle(e)
+  function handleName(e) {
+    setName(e)
   }
 
   function closeModalClickingOutside(e) {
@@ -60,9 +59,9 @@ const ModalTask = ({
         <form onSubmit={handleSubmit(onSubmit)} className="form">
           <input
             type="text"
-            name="title"
-            value={title || ''}
-            onChange={e => handleTitle(e.target.value)}
+            name="name"
+            value={name || ''}
+            onChange={e => handleName(e.target.value)}
             ref={register({
               required: {
                 value: true,
@@ -72,7 +71,7 @@ const ModalTask = ({
               min: 1,
               maxLength: 240,
               pattern: {
-                value: title,
+                value: name,
               },
             })}
             id={errors.name && errors.name.message ? 'form-error' : ''}

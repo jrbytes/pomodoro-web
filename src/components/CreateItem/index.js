@@ -4,22 +4,18 @@ import { useForm } from 'react-hook-form'
 
 import './styles.css'
 
-function CreateItem({ createTask }) {
-  const [title, setTitle] = useState('')
+function CreateItem({ createItem }) {
+  const [name, setName] = useState('')
 
-  const { handleSubmit, register, reset, errors } = useForm({
-    defaultValues: {
-      title,
-    },
-  })
+  const { handleSubmit, register, reset, errors } = useForm()
 
   const onSubmit = data => {
-    createTask(data)
+    createItem(data)
     reset()
   }
 
-  function handleTitle(e) {
-    setTitle(e)
+  function handleName(e) {
+    setName(e)
   }
 
   return (
@@ -29,9 +25,9 @@ function CreateItem({ createTask }) {
         <form onSubmit={handleSubmit(onSubmit)}>
           <input
             type="text"
-            name="title"
-            placeholder={errors.title && errors.title.message}
-            onChange={e => handleTitle(e.target.value)}
+            name="name"
+            placeholder={errors.name && errors.name.message}
+            onChange={e => handleName(e.target.value)}
             ref={register({
               required: {
                 value: true,
@@ -39,13 +35,11 @@ function CreateItem({ createTask }) {
               },
               maxLength: 240,
               pattern: {
-                value: title,
+                value: name,
               },
             })}
             id={
-              errors.title && errors.title.message
-                ? 'form-error-placeholder'
-                : ''
+              errors.name && errors.name.message ? 'form-error-placeholder' : ''
             }
           />
 

@@ -45,14 +45,14 @@ const Tasks = () => {
   }
 
   const updateTask = async result => {
-    const { id, title } = result
+    const { id, name } = result
 
     const { data } = await api.patch(`tasks/${id}`, {
-      title,
+      name,
     })
 
     const updateStateOfTask = tasks.map(item =>
-      item.id === data.id ? { ...item, title: data.title } : item,
+      item.id === data.id ? { ...item, name: data.name } : item,
     )
 
     setTasks(updateStateOfTask)
@@ -63,12 +63,12 @@ const Tasks = () => {
     setOpenModal(false)
   }
 
-  const createTask = async result => {
-    const { title } = result
+  const createItem = async result => {
+    const { name } = result
 
     const { data } = await api.post('tasks', {
       id: uuid(),
-      title,
+      name,
       realizedPomos: 0,
       project_id: id,
     })
@@ -86,7 +86,7 @@ const Tasks = () => {
           {title && `Tarefas - ${title}`}
         </h2>
 
-        <CreateItem createTask={createTask} />
+        <CreateItem createItem={createItem} />
 
         {tasks.map(item => (
           <div
@@ -96,7 +96,7 @@ const Tasks = () => {
             key={item.id}
           >
             <Link to={{ pathname: `/pomodoro/${item.id}` }}>
-              <p>{item.title}</p>
+              <p>{item.name}</p>
             </Link>
 
             <div className="task-pomos">
