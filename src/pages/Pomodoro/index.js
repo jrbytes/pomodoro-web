@@ -118,7 +118,7 @@ function Pomodoro() {
       <Header goBackButton={true} />
       <div className="container-pomo">
         <div className="header-tasks-pomos">
-          <h2>{pomo.title}</h2>
+          <h2>{pomo.name}</h2>
           <span>
             <IoIosAlarm className="icon-clock" />
             {pomo.realizedPomos}
