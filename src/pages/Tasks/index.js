@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { IoIosAlarm, IoIosList, IoIosCreate } from 'react-icons/io'
 import { Link, useParams } from 'react-router-dom'
 import api from '../../services/api'
+import uuid from 'react-uuid'
 
 import { useToCleanCSSClass } from '../../hooks/toCleanCSSClass'
 
 import Header from '../../components/Header'
 import ModalTask from '../../components/ModalTask'
+import CreateItem from '../../components/CreateItem'
 import './styles.css'
 
 const Tasks = () => {
@@ -59,6 +61,18 @@ const Tasks = () => {
     setOpenModal(false)
   }
 
+  const createTask = async result => {
+    const { title } = result
+
+    const { data } = await api.post('tasks', {
+      id: uuid(),
+      title,
+      project_id: id,
+    })
+
+    setTasks([...tasks, data])
+  }
+
   return (
     <>
       <Header goBackButton={true} />
@@ -67,6 +81,8 @@ const Tasks = () => {
           <IoIosList />
           {title && `Tarefas - ${title}`}
         </h2>
+
+        <CreateItem createTask={createTask} />
 
         {tasks.map(item => (
           <div

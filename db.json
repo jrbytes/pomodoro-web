@@ -66,7 +66,7 @@
       "id": "e1a2c0-ff-461d-be21-5310a6b416f2",
       "name": "Jr Bytes",
       "email": "itamazor@gmail.com",
-      "defaultMinutesPomo": 25,
+      "defaultMinutesPomo": 1,
       "settingProgressBarPercent": true,
       "theme": "light"
     }
