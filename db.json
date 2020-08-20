@@ -2,7 +2,7 @@
   "projects": [
     {
       "id": "6e66784-0e1c-cf1-6708-848c66518f6f",
-      "name": "Desenvolvimento",
+      "name": "Development",
       "color": "black"
     },
     {
@@ -43,14 +43,8 @@
       "project_id": "6e66784-0e1c-cf1-6708-848c66518f6f"
     },
     {
-      "id": "1f1a83d-5e6-4ddc-1b66-2ea6a20ab54",
-      "name": "Fazer trabalho de Biologia",
-      "realizedPomos": 0,
-      "project_id": "2bdcedb-c25a-3f1e-443e-b6a2463d856"
-    },
-    {
-      "id": "6784fb8-d05d-3805-01ac-443f8b0020e4",
-      "name": "TesteJun",
+      "id": "f2c3d84-2a8a-5cd7-450d-5a805ccec08",
+      "name": "Estudar Inglês",
       "realizedPomos": 1,
       "project_id": "2bdcedb-c25a-3f1e-443e-b6a2463d856"
     }

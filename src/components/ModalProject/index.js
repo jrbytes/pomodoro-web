@@ -66,7 +66,11 @@ const ModalProject = ({
           {title}
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="form">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="form"
+          autoComplete="off"
+        >
           <input
             type="text"
             name="name"

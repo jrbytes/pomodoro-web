@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useForm } from 'react-hook-form'
 import { IoIosClose, IoMdTrash } from 'react-icons/io'
 
@@ -23,6 +23,16 @@ const ModalTask = ({
 
   const [id, setId] = useState('')
   const [name, setName] = useState('')
+
+  const nameRef = useRef(null)
+
+  useEffect(() => {
+    if (openModal) {
+      setTimeout(() => {
+        nameRef.current.focus()
+      }, 100)
+    }
+  }, [openModal])
 
   useEffect(() => {
     function loadData() {
@@ -70,24 +80,31 @@ const ModalTask = ({
         </div>
 
         {!question && (
-          <form onSubmit={handleSubmit(onSubmit)} className="form">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="form"
+            autoComplete="off"
+          >
             <input
               type="text"
               name="name"
               value={name || ''}
               onChange={e => handleName(e.target.value)}
-              ref={register({
-                required: {
-                  value: true,
-                  message: 'É necessário renomear o projeto para atualizar',
-                },
-                max: 240,
-                min: 1,
-                maxLength: 240,
-                pattern: {
-                  value: name,
-                },
-              })}
+              ref={e => {
+                register(e, {
+                  required: {
+                    value: true,
+                    message: 'É necessário renomear o projeto para atualizar',
+                  },
+                  max: 240,
+                  min: 1,
+                  maxLength: 240,
+                  pattern: {
+                    value: name,
+                  },
+                })
+                nameRef.current = e
+              }}
               id={errors.name && errors.name.message ? 'form-error' : ''}
             />
             {errors.name && <span>{errors.name.message}</span>}
