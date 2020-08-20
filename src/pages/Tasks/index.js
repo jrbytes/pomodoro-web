@@ -18,6 +18,7 @@ const Tasks = () => {
 
   const [openModal, setOpenModal] = useState(false)
   const [taskData, setTaskData] = useState({})
+  const [question, setQuestion] = useState(false)
   const [colorWhenUpdating, setColorWhenUpdating] = useToCleanCSSClass()
   const [handleEsc] = useHandleCloseModal()
 
@@ -61,6 +62,14 @@ const Tasks = () => {
 
   const closeModal = () => {
     setOpenModal(false)
+
+    setTimeout(() => {
+      setQuestion(false)
+    }, 300)
+  }
+
+  const handleSetQuestion = result => {
+    setQuestion(result)
   }
 
   const createItem = async result => {
@@ -129,6 +138,8 @@ const Tasks = () => {
         updateTask={updateTask}
         closeModal={closeModal}
         deleteItem={deleteItem}
+        handleSetQuestion={handleSetQuestion}
+        question={question}
       />
     </>
   )

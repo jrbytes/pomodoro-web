@@ -29,6 +29,18 @@
   width: 80%; /* Could be more or less, depending on screen size */
 }
 
+.modal-content-text-question p {
+  margin-top: 1.7rem;
+  text-align: center;
+}
+
+.modal-content-text-question p:last-child {
+  margin: 0;
+  font-size: 1.4rem;
+  font-family: monospace;
+  text-align: center;
+}
+
 /* The Close Button */
 .close {
   color: #aaa;

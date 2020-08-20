@@ -13,6 +13,8 @@ const ModalTask = ({
   updateTask,
   closeModal,
   deleteItem,
+  handleSetQuestion,
+  question,
 }) => {
   const { handleSubmit, register, errors } = useForm()
   const [handleEsc, closeModalClickingOutside] = useHandleCloseModal({
@@ -46,6 +48,9 @@ const ModalTask = ({
 
   function handleDeleteItem(e) {
     e.preventDefault()
+
+    if (taskData.realizedPomos > 0) return handleSetQuestion(true)
+
     deleteItem(id)
   }
 
@@ -64,36 +69,56 @@ const ModalTask = ({
           {titleModal}
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="form">
-          <input
-            type="text"
-            name="name"
-            value={name || ''}
-            onChange={e => handleName(e.target.value)}
-            ref={register({
-              required: {
-                value: true,
-                message: 'É necessário renomear o projeto para atualizar',
-              },
-              max: 240,
-              min: 1,
-              maxLength: 240,
-              pattern: {
-                value: name,
-              },
-            })}
-            id={errors.name && errors.name.message ? 'form-error' : ''}
-          />
-          {errors.name && <span>{errors.name.message}</span>}
+        {!question && (
+          <form onSubmit={handleSubmit(onSubmit)} className="form">
+            <input
+              type="text"
+              name="name"
+              value={name || ''}
+              onChange={e => handleName(e.target.value)}
+              ref={register({
+                required: {
+                  value: true,
+                  message: 'É necessário renomear o projeto para atualizar',
+                },
+                max: 240,
+                min: 1,
+                maxLength: 240,
+                pattern: {
+                  value: name,
+                },
+              })}
+              id={errors.name && errors.name.message ? 'form-error' : ''}
+            />
+            {errors.name && <span>{errors.name.message}</span>}
 
-          <div className="form-buttons-modal">
-            <input type="submit" value="Atualizar" />
+            <div className="form-buttons-modal">
+              <input type="submit" value="Atualizar" />
 
-            <button onClick={e => handleDeleteItem(e)}>
-              <IoMdTrash />
-            </button>
-          </div>
-        </form>
+              <button onClick={e => handleDeleteItem(e)}>
+                <IoMdTrash />
+              </button>
+            </div>
+          </form>
+        )}
+
+        {question && (
+          <>
+            <div className="modal-content-text-question">
+              <p>
+                Opss! Tem certeza que deseja apagar a tarefa{' '}
+                <strong>{name}</strong>?
+              </p>
+              <p>
+                Essa ação pode excluir pomodoros executados. Considere renomear.
+              </p>
+            </div>
+            <div className="form-buttons-modal-question">
+              <button onClick={() => deleteItem(id)}>Sim</button>
+              <button onClick={closeModal}>Não</button>
+            </div>
+          </>
+        )}
       </div>
     </div>
   )

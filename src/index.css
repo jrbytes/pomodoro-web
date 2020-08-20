@@ -112,6 +112,34 @@ button {
   justify-content: center;
 }
 
+.form-buttons-modal-question {
+  margin-top: 1.7rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-buttons-modal-question button {
+  width: 6rem;
+  margin-left: 1rem;
+  background-color: var(--color-input-alert);
+  color: var(--color-title-in-primary);
+  border: none;
+  border-radius: var(--border-radius-default);
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  font-size: 1.6rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-buttons-modal-question button:last-child {
+  background-color: var(--color-primary);
+}
+
 @media (min-width: 700px) {
   :root {
     font-size: 75%;
