@@ -101,7 +101,7 @@ const Tasks = () => {
   return (
     <>
       <Header goBackButton={true} />
-      <div className="container" onKeyUp={handleEsc && closeModal}>
+      <div className="container" onKeyUp={handleEsc}>
         <h2 className="title-tasks">
           <IoIosList />
           {title && `Tarefas - ${title}`}

@@ -74,7 +74,7 @@ const Projects = () => {
   return (
     <>
       <Header goBackButton={false} />
-      <div className="container" onKeyUp={handleEsc && closeModal}>
+      <div className="container" onKeyUp={handleEsc}>
         <h2 className="title-projects">
           <IoIosBook />
           Projetos

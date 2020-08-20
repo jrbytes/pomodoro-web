@@ -6,7 +6,9 @@ export function useHandleCloseModal(props) {
   }
 
   const handleEsc = e => {
-    if (e.keyCode === 27) return true
+    if (e.keyCode === 27) {
+      return props.closeModal()
+    }
   }
 
   return [handleEsc, closeModalClickingOutside]

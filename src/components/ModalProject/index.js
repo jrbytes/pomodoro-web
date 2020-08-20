@@ -55,7 +55,7 @@ const ModalProject = ({
     <div
       className={`modal${openModal ? ' active' : ''}`}
       onClick={e => closeModalClickingOutside(e.target.className)}
-      onKeyUp={handleEsc && closeModal}
+      onKeyUp={handleEsc}
     >
       <div className="modal-content">
         <div className="modal-title-close">
