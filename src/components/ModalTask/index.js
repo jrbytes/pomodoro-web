@@ -17,9 +17,13 @@ const ModalTask = ({
   handleSetQuestion,
   question,
 }) => {
-  const { handleSubmit, register, errors } = useForm()
+  const { handleSubmit, register, errors, clearErrors, reset } = useForm()
   const [handleEsc, closeModalClickingOutside] = useHandleCloseModal({
     closeModal,
+    openModal,
+    clearErrors,
+    errors: errors.name,
+    reset,
   })
   const [nameRef] = useHandleFieldFocusAtModal({ openModal })
 
@@ -44,8 +48,9 @@ const ModalTask = ({
     closeModal()
   }
 
-  function handleName(e) {
+  const handleName = e => {
     setName(e)
+    console.log(e)
   }
 
   function handleDeleteItem(e) {
@@ -67,7 +72,7 @@ const ModalTask = ({
           <span className="close" onClick={closeModal}>
             <IoIosClose className="icon" />
           </span>
-          {console.log()}
+
           {titleModal}
         </div>
 

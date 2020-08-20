@@ -14,9 +14,13 @@ const ModalProject = ({
   updateProject,
   closeModal,
 }) => {
-  const { handleSubmit, register, errors, clearErrors } = useForm()
+  const { handleSubmit, register, errors, clearErrors, reset } = useForm()
   const [handleEsc, closeModalClickingOutside] = useHandleCloseModal({
     closeModal,
+    openModal,
+    clearErrors,
+    errors: errors.name,
+    reset,
   })
   const [nameRef] = useHandleFieldFocusAtModal({ openModal })
 
@@ -37,12 +41,6 @@ const ModalProject = ({
 
     loadProjectData()
   }, [projectData])
-
-  useEffect(() => {
-    if (!openModal && errors.name) {
-      clearErrors()
-    }
-  }, [openModal, clearErrors, errors])
 
   const onSubmit = data => {
     Object.assign(data, { id })
