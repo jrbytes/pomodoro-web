@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { IoIosClose, IoMdTrash } from 'react-icons/io'
 
 import { useHandleCloseModal } from '../../hooks/handleCloseModal'
+import { useHandleFieldFocusAtModal } from '../../hooks/handleFieldFocusAtModal'
 
 import './styles.css'
 
@@ -20,19 +21,10 @@ const ModalTask = ({
   const [handleEsc, closeModalClickingOutside] = useHandleCloseModal({
     closeModal,
   })
+  const [nameRef] = useHandleFieldFocusAtModal({ openModal })
 
   const [id, setId] = useState('')
   const [name, setName] = useState('')
-
-  const nameRef = useRef(null)
-
-  useEffect(() => {
-    if (openModal) {
-      setTimeout(() => {
-        nameRef.current.focus()
-      }, 100)
-    }
-  }, [openModal])
 
   useEffect(() => {
     function loadData() {

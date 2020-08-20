@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import { IoIosClose } from 'react-icons/io'
 
 import { useHandleCloseModal } from '../../hooks/handleCloseModal'
+import { useHandleFieldFocusAtModal } from '../../hooks/handleFieldFocusAtModal'
 
 import './styles.css'
 
@@ -17,6 +18,7 @@ const ModalProject = ({
   const [handleEsc, closeModalClickingOutside] = useHandleCloseModal({
     closeModal,
   })
+  const [nameRef] = useHandleFieldFocusAtModal({ openModal })
 
   const [id, setId] = useState('')
   const [name, setName] = useState('')
@@ -76,18 +78,21 @@ const ModalProject = ({
             name="name"
             value={name || ''}
             onChange={e => handleName(e.target.value)}
-            ref={register({
-              required: {
-                value: true,
-                message: 'É necessário renomear o projeto para atualizar',
-              },
-              max: 240,
-              min: 1,
-              maxLength: 240,
-              pattern: {
-                value: name,
-              },
-            })}
+            ref={e => {
+              register(e, {
+                required: {
+                  value: true,
+                  message: 'É necessário renomear o projeto para atualizar',
+                },
+                max: 240,
+                min: 1,
+                maxLength: 240,
+                pattern: {
+                  value: name,
+                },
+              })
+              nameRef.current = e
+            }}
             id={errors.name && errors.name.message ? 'form-error' : ''}
           />
           {errors.name && <span>{errors.name.message}</span>}
