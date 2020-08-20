@@ -96,6 +96,12 @@ button {
   justify-content: flex-end;
 }
 
+.form-buttons-modal input[type=submit] {
+  background-color: var(--color-primary);
+  color: var(--color-title-in-primary);
+  cursor: pointer;
+}
+
 .form-buttons-modal button {
   width: 4rem;
   margin-left: 1rem;

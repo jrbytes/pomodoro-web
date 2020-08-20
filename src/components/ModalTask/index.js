@@ -50,7 +50,6 @@ const ModalTask = ({
 
   const handleName = e => {
     setName(e)
-    console.log(e)
   }
 
   function handleDeleteItem(e) {

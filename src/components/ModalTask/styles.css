@@ -102,9 +102,3 @@
   color: var(--color-input-alert);
   margin: 0.5rem 0;
 }
-
-.form input[type=submit] {
-  background-color: var(--color-primary);
-  color: var(--color-title-in-primary);
-  cursor: pointer;
-}

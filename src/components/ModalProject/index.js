@@ -49,12 +49,12 @@ const ModalProject = ({
     closeModal()
   }
 
-  function handleColor(e) {
-    setColor(e)
-  }
-
   function handleName(e) {
     setName(e)
+  }
+
+  function handleColor(e) {
+    setColor(e)
   }
 
   return (
@@ -116,7 +116,9 @@ const ModalProject = ({
             <option value="gray">gray</option>
           </select>
 
-          <input type="submit" value="Atualizar" />
+          <div className="form-buttons-modal">
+            <input type="submit" value="Atualizar" />
+          </div>
         </form>
       </div>
     </div>
