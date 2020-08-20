@@ -24,17 +24,14 @@ const ModalProject = ({
   })
   const [nameRef] = useHandleFieldFocusAtModal({ openModal })
 
-  const [id, setId] = useState('')
   const [name, setName] = useState('')
   const [color, setColor] = useState('')
 
   useEffect(() => {
     function loadProjectData() {
-      const { id } = projectData
       const { name } = projectData
       const { color } = projectData
 
-      setId(id)
       setName(name)
       setColor(color)
     }
@@ -43,7 +40,6 @@ const ModalProject = ({
   }, [projectData])
 
   const onSubmit = data => {
-    Object.assign(data, { id })
     updateProject(data)
 
     closeModal()

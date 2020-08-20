@@ -27,14 +27,12 @@ const ModalTask = ({
   })
   const [nameRef] = useHandleFieldFocusAtModal({ openModal })
 
-  const [id, setId] = useState('')
   const [name, setName] = useState('')
 
   useEffect(() => {
     function loadData() {
-      const { id, name } = taskData
+      const { name } = taskData
 
-      setId(id)
       setName(name)
     }
 
@@ -42,7 +40,6 @@ const ModalTask = ({
   }, [taskData])
 
   const onSubmit = data => {
-    Object.assign(data, { id })
     updateTask(data)
 
     closeModal()
@@ -57,7 +54,7 @@ const ModalTask = ({
 
     if (taskData.realizedPomos > 0) return handleSetQuestion(true)
 
-    deleteItem(id)
+    deleteItem(taskData.id)
   }
 
   return (
@@ -127,7 +124,7 @@ const ModalTask = ({
               </p>
             </div>
             <div className="form-buttons-modal-question">
-              <button onClick={() => deleteItem(id)}>Sim</button>
+              <button onClick={() => deleteItem(taskData.id)}>Sim</button>
               <button onClick={closeModal}>Não</button>
             </div>
           </>

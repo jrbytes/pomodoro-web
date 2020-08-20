@@ -46,9 +46,13 @@ const Tasks = () => {
   }
 
   const updateTask = async result => {
-    const { id, name } = result
+    const { name } = result
 
-    const { data } = await api.patch(`tasks/${id}`, {
+    const nameIsEqual = taskData.name === result.name
+
+    if (nameIsEqual) return
+
+    const { data } = await api.patch(`tasks/${taskData.id}`, {
       name,
     })
 

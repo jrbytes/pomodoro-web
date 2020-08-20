@@ -41,9 +41,14 @@ const Projects = () => {
   }
 
   async function updateProject(result) {
-    const { id, name, color } = result
+    const { name, color } = result
 
-    const { data } = await api.patch(`projects/${id}`, {
+    const nameIsEqual = projectData.name === result.name
+    const colorIsEqual = projectData.color === result.color
+
+    if (nameIsEqual && colorIsEqual) return
+
+    const { data } = await api.patch(`projects/${projectData.id}`, {
       name,
       color,
     })

@@ -22,7 +22,7 @@ function CreateItem({ createItem }) {
     <>
       <div className="create-task">
         <IoMdAdd className="icon-create-task icon" />
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
           <input
             type="text"
             name="name"

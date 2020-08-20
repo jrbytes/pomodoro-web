@@ -2,7 +2,7 @@
   "projects": [
     {
       "id": "6e66784-0e1c-cf1-6708-848c66518f6f",
-      "name": "Development",
+      "name": "Desenvolvimento",
       "color": "black"
     },
     {
@@ -44,13 +44,13 @@
     },
     {
       "id": "f2c3d84-2a8a-5cd7-450d-5a805ccec08",
-      "name": "Estudo de Inglês",
+      "name": "Estudo de Inglês - Write phrases to description of commit .",
       "realizedPomos": 1,
       "project_id": "2bdcedb-c25a-3f1e-443e-b6a2463d856"
     },
     {
       "id": "77c11e-072c-e4ce-7f0f-54ec4cb3030",
-      "name": "Estudar useContext()",
+      "name": "Estudar useContext",
       "realizedPomos": 1,
       "project_id": "2bdcedb-c25a-3f1e-443e-b6a2463d856"
     }
