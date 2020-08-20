@@ -20,7 +20,7 @@ const Tasks = () => {
   const [taskData, setTaskData] = useState({})
   const [question, setQuestion] = useState(false)
   const [colorWhenUpdating, setColorWhenUpdating] = useToCleanCSSClass()
-  const [handleEsc] = useHandleCloseModal()
+  const [handleEsc] = useHandleCloseModal({ closeModal })
 
   let { id } = useParams()
 
@@ -60,7 +60,7 @@ const Tasks = () => {
     setColorWhenUpdating(data.id)
   }
 
-  const closeModal = () => {
+  function closeModal() {
     setOpenModal(false)
 
     setTimeout(() => {

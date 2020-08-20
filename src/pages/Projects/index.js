@@ -19,7 +19,7 @@ const Projects = () => {
   const [projectData, setProjectData] = useState({})
 
   const [colorWhenUpdating, setColorWhenUpdating] = useToCleanCSSClass()
-  const [handleEsc] = useHandleCloseModal()
+  const [handleEsc] = useHandleCloseModal({ closeModal })
 
   useEffect(() => {
     async function loadProjects() {
