@@ -85,7 +85,10 @@ const Projects = () => {
           Projetos
         </h2>
 
-        <CreateItem createItem={createItem} />
+        <CreateItem
+          createItem={createItem}
+          errorMessage="É necessário digitar um projeto"
+        />
 
         {projects.map(item => (
           <div

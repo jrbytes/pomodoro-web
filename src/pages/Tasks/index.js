@@ -111,7 +111,10 @@ const Tasks = () => {
           {title && `Tarefas - ${title}`}
         </h2>
 
-        <CreateItem createItem={createItem} />
+        <CreateItem
+          createItem={createItem}
+          errorMessage="É necessário digitar uma tarefa"
+        />
 
         {tasks.map(item => (
           <div

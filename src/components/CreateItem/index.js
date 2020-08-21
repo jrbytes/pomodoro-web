@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 
 import './styles.css'
 
-function CreateItem({ createItem }) {
+function CreateItem({ createItem, errorMessage }) {
   const [name, setName] = useState('')
 
   const { handleSubmit, register, reset, errors } = useForm()
@@ -31,7 +31,7 @@ function CreateItem({ createItem }) {
             ref={register({
               required: {
                 value: true,
-                message: 'É necessário cadastrar algo',
+                message: errorMessage,
               },
               maxLength: 240,
               pattern: {
