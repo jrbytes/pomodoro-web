@@ -30,15 +30,17 @@ function CreateItem({ createItem, errorMessage }) {
           <input
             type="text"
             name="name"
+            value={name || ''}
             placeholder={errors.name && errors.name.message}
             onChange={e => handleName(e.target.value)}
             ref={e => {
-              register({
+              register(e, {
                 required: {
                   value: true,
                   message: errorMessage,
                 },
                 maxLength: 240,
+                min: 1,
                 pattern: {
                   value: name,
                 },
