@@ -79,39 +79,45 @@ const Projects = () => {
   return (
     <>
       <Header goBackButton={false} />
-      <div className="container" onKeyUp={handleEsc}>
-        <h2 className="title-projects">
-          <IoIosBook />
-          Projetos
-        </h2>
 
-        <CreateItem
-          createItem={createItem}
-          errorMessage="É necessário digitar um projeto"
-        />
+      {projects.length ? (
+        <div className="container" onKeyUp={handleEsc}>
+          <h2 className="title-projects">
+            <IoIosBook />
+            Projetos
+          </h2>
 
-        {projects.map(item => (
-          <div
-            className={`projects${
-              colorWhenUpdating === item.id ? ' updated-element' : ''
-            }`}
-            key={item.id}
-          >
-            <Link to={{ pathname: `/tasks/${item.id}` }}>
-              <div className="projects-color-title">
-                <IoIosBookmark
-                  className="projects-booksmark"
-                  style={{ color: `${item.color}` }}
-                />
-                <p>{item.name}</p>
-              </div>
-            </Link>
-            <button onClick={() => openUpdateProject(item)}>
-              <IoIosCreate className="icon" />
-            </button>
-          </div>
-        ))}
-      </div>
+          <CreateItem
+            createItem={createItem}
+            errorMessage="É necessário digitar um projeto"
+          />
+
+          {projects.map(item => (
+            <div
+              className={`projects${
+                colorWhenUpdating === item.id ? ' updated-element' : ''
+              }`}
+              key={item.id}
+            >
+              <Link to={{ pathname: `/tasks/${item.id}` }}>
+                <div className="projects-color-title">
+                  <IoIosBookmark
+                    className="projects-booksmark"
+                    style={{ color: `${item.color}` }}
+                  />
+                  <p>{item.name}</p>
+                </div>
+              </Link>
+              <button onClick={() => openUpdateProject(item)}>
+                <IoIosCreate className="icon" />
+              </button>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="loader">Loading...</div>
+      )}
+
       <ModalProject
         openModal={openModal}
         title="Editar Projeto"

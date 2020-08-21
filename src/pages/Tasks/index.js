@@ -105,39 +105,45 @@ const Tasks = () => {
   return (
     <>
       <Header goBackButton={true} />
-      <div className="container" onKeyUp={handleEsc}>
-        <h2 className="title-tasks">
-          <IoIosList />
-          {title && `Tarefas - ${title}`}
-        </h2>
 
-        <CreateItem
-          createItem={createItem}
-          errorMessage="É necessário digitar uma tarefa"
-        />
+      {tasks.length && title.length ? (
+        <div className="container" onKeyUp={handleEsc}>
+          <h2 className="title-tasks">
+            <IoIosList />
+            {title && `Tarefas - ${title}`}
+          </h2>
 
-        {tasks.map(item => (
-          <div
-            className={`task${
-              colorWhenUpdating === item.id ? ' updated-element' : ''
-            }`}
-            key={item.id}
-          >
-            <Link to={{ pathname: `/pomodoro/${item.id}` }}>
-              <p>{item.name}</p>
-            </Link>
+          <CreateItem
+            createItem={createItem}
+            errorMessage="É necessário digitar uma tarefa"
+          />
 
-            <div className="task-pomos">
-              <span>{item.realizedPomos}</span>
-              <IoIosAlarm className="icon" />
+          {tasks.map(item => (
+            <div
+              className={`task${
+                colorWhenUpdating === item.id ? ' updated-element' : ''
+              }`}
+              key={item.id}
+            >
+              <Link to={{ pathname: `/pomodoro/${item.id}` }}>
+                <p>{item.name}</p>
+              </Link>
+
+              <div className="task-pomos">
+                <span>{item.realizedPomos}</span>
+                <IoIosAlarm className="icon" />
+              </div>
+
+              <button onClick={() => openUpdateTask(item)}>
+                <IoIosCreate className="icon" />
+              </button>
             </div>
+          ))}
+        </div>
+      ) : (
+        <div className="loader">Loading...</div>
+      )}
 
-            <button onClick={() => openUpdateTask(item)}>
-              <IoIosCreate className="icon" />
-            </button>
-          </div>
-        ))}
-      </div>
       <ModalTask
         openModal={openModal}
         titleModal={`Editar Tarefa de ${title}`}

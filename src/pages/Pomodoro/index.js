@@ -116,43 +116,48 @@ function Pomodoro() {
   return (
     <>
       <Header goBackButton={true} />
-      <div className="container-pomo">
-        <div className="header-tasks-pomos">
-          <h2>{pomo.name}</h2>
-          <span>
-            <IoIosAlarm className="icon-clock" />
-            {pomo.realizedPomos}
-          </span>
+
+      {user.name && pomo.name ? (
+        <div className="container-pomo">
+          <div className="header-tasks-pomos">
+            <h2>{pomo.name}</h2>
+            <span>
+              <IoIosAlarm className="icon-clock" />
+              {pomo.realizedPomos}
+            </span>
+          </div>
+
+          <div className="countdownBorder">
+            <p>{formatedCountdown}</p>
+          </div>
+
+          {button === 'start' && (
+            <button
+              className="button"
+              onClick={() => startCountdown(countdownValue)}
+            >
+              <IoIosPlay className="icon-button" />
+              Iniciar
+            </button>
+          )}
+          {button === 'pause' && (
+            <button className="button" onClick={pauseCountdown}>
+              <IoIosPause className="icon-button" />
+              Pausar
+            </button>
+          )}
+          {button === 'continue' && (
+            <button className="button" onClick={resetCountdown}>
+              <IoIosRefresh className="icon-button" />
+              Continuar
+            </button>
+          )}
+
+          {progressBar}
         </div>
-
-        <div className="countdownBorder">
-          <p>{formatedCountdown}</p>
-        </div>
-
-        {button === 'start' && (
-          <button
-            className="button"
-            onClick={() => startCountdown(countdownValue)}
-          >
-            <IoIosPlay className="icon-button" />
-            Iniciar
-          </button>
-        )}
-        {button === 'pause' && (
-          <button className="button" onClick={pauseCountdown}>
-            <IoIosPause className="icon-button" />
-            Pausar
-          </button>
-        )}
-        {button === 'continue' && (
-          <button className="button" onClick={resetCountdown}>
-            <IoIosRefresh className="icon-button" />
-            Continuar
-          </button>
-        )}
-
-        {progressBar}
-      </div>
+      ) : (
+        <div className="loader">Loading...</div>
+      )}
     </>
   )
 }
