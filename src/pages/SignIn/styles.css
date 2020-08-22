@@ -1,0 +1,19 @@
+.container-signin {
+  margin: auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-signin span {
+  margin-top: 1rem;
+  color: var(--color-input-alert);
+  text-align: center;
+}
+
+.title-signin {
+  font-size: 2rem;
+  color: var(--color-primary);
+}

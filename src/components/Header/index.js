@@ -1,6 +1,6 @@
 import React from 'react'
 import { IoIosArrowBack } from 'react-icons/io'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 
 import './styles.css'
 
@@ -18,7 +18,9 @@ const Header = ({ goBackButton }) => {
           <IoIosArrowBack className="icon" />
         </button>
       )}
-      <span>POMO</span>
+      <span>
+        <Link to="/profile">POMO</Link>
+      </span>
     </header>
   )
 }
