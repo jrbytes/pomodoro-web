@@ -14,6 +14,8 @@ import './styles.css'
 const Projects = () => {
   const [projects, setProjects] = useState([])
 
+  const [spinner, setSpinner] = useState(false)
+
   const [openModal, setOpenModal] = useState(false)
   const [projectData, setProjectData] = useState({})
 
@@ -25,8 +27,8 @@ const Projects = () => {
       const { data } = await api.get('projects')
 
       setProjects(data)
+      setSpinner(true)
     }
-
     loadProjects()
   }, [])
 
@@ -78,7 +80,7 @@ const Projects = () => {
     <>
       <Header goBackButton={false} />
 
-      {projects.length ? (
+      {spinner ? (
         <div className="container" onKeyUp={handleEsc}>
           <h2 className="title-projects">
             <IoIosBook />
@@ -111,6 +113,10 @@ const Projects = () => {
               </button>
             </div>
           ))}
+
+          {spinner === true && !projects.length && (
+            <span className="alert-no-items">Nenhum projeto cadastrado</span>
+          )}
         </div>
       ) : (
         <div className="loader">Loading...</div>
