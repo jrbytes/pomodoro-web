@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { IoIosCreate, IoIosBookmark, IoIosBook } from 'react-icons/io'
 import { Link } from 'react-router-dom'
-import uuid from 'react-uuid'
 import api from '../../services/api'
 
 import { useToCleanCSSClass } from '../../hooks/toCleanCSSClass'
@@ -67,7 +66,6 @@ const Projects = () => {
     const { name } = result
 
     const { data } = await api.post('projects', {
-      id: uuid(),
       name,
       color: 'violet',
     })

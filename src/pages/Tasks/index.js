@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { IoIosAlarm, IoIosList, IoIosCreate } from 'react-icons/io'
 import { Link, useParams } from 'react-router-dom'
 import api from '../../services/api'
-import uuid from 'react-uuid'
 
 import { useToCleanCSSClass } from '../../hooks/toCleanCSSClass'
 import { useHandleCloseModal } from '../../hooks/handleCloseModal'
@@ -16,6 +15,8 @@ const Tasks = () => {
   const [tasks, setTasks] = useState([])
   const [title, setTitle] = useState('')
 
+  const [spinner, setSpinner] = useState(false)
+
   const [openModal, setOpenModal] = useState(false)
   const [taskData, setTaskData] = useState({})
   const [question, setQuestion] = useState(false)
@@ -26,16 +27,18 @@ const Tasks = () => {
 
   useEffect(() => {
     async function loadTitle() {
-      const { data } = await api.get(`projects/${id}`)
+      const { data } = await api.get(`projects`)
+      const filter = await data.filter(item => item.id === id)
 
-      setTitle(data.name)
+      setTitle(filter[0].name)
     }
     loadTitle()
 
     async function loadTasks() {
-      const { data } = await api.get(`tasks?project_id=${id}`)
+      const { data } = await api.get(`tasks/${id}`)
 
       setTasks(data)
+      setSpinner(true)
     }
     loadTasks()
   }, [id])
@@ -79,11 +82,8 @@ const Tasks = () => {
   const createItem = async result => {
     const { name } = result
 
-    const { data } = await api.post('tasks', {
-      id: uuid(),
+    const { data } = await api.post(`tasks/${id}`, {
       name,
-      realizedPomos: 0,
-      project_id: id,
     })
 
     setTasks([...tasks, data])
@@ -106,7 +106,7 @@ const Tasks = () => {
     <>
       <Header goBackButton={true} />
 
-      {tasks.length && title.length ? (
+      {spinner ? (
         <div className="container" onKeyUp={handleEsc}>
           <h2 className="title-tasks">
             <IoIosList />
@@ -130,7 +130,7 @@ const Tasks = () => {
               </Link>
 
               <div className="task-pomos">
-                <span>{item.realizedPomos}</span>
+                <span>{item.realized_pomos}</span>
                 <IoIosAlarm className="icon" />
               </div>
 
@@ -139,6 +139,10 @@ const Tasks = () => {
               </button>
             </div>
           ))}
+
+          {spinner === true && !tasks.length && (
+            <span className="alert-no-items">Nenhuma tarefa cadastrada</span>
+          )}
         </div>
       ) : (
         <div className="loader">Loading...</div>

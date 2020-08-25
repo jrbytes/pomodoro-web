@@ -146,6 +146,10 @@ button {
   background-color: var(--color-primary);
 }
 
+.alert-no-items {
+  font-size: 1.4rem;
+}
+
 @media (min-width: 700px) {
   :root {
     font-size: 75%;
