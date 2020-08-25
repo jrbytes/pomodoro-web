@@ -55,7 +55,7 @@ const Tasks = () => {
 
     if (nameIsEqual) return
 
-    const { data } = await api.patch(`tasks/${taskData.id}`, {
+    const { data } = await api.patch(`tasks/${taskData.id}/${id}`, {
       name,
     })
 
