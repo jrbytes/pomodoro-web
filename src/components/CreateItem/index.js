@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { IoMdAdd, IoIosCheckmarkCircle } from 'react-icons/io'
 import { useForm } from 'react-hook-form'
 
@@ -7,19 +7,13 @@ import { useKeyboardShortcutTab } from '../../hooks/keyboardShotcutTab'
 import './styles.css'
 
 function CreateItem({ createItem, errorMessage }) {
-  const [name, setName] = useState('')
-
   const [nameRef] = useKeyboardShortcutTab()
 
-  const { handleSubmit, register, reset, errors } = useForm()
+  const { handleSubmit, register, errors, reset } = useForm()
 
   const onSubmit = data => {
     createItem(data)
     reset()
-  }
-
-  function handleName(e) {
-    setName(e)
   }
 
   return (
@@ -30,9 +24,7 @@ function CreateItem({ createItem, errorMessage }) {
           <input
             type="text"
             name="name"
-            value={name || ''}
             placeholder={errors.name && errors.name.message}
-            onChange={e => handleName(e.target.value)}
             ref={e => {
               register(e, {
                 required: {
@@ -41,9 +33,6 @@ function CreateItem({ createItem, errorMessage }) {
                 },
                 maxLength: 240,
                 min: 1,
-                pattern: {
-                  value: name,
-                },
               })
               nameRef.current = e
             }}
