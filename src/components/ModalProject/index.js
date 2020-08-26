@@ -24,15 +24,12 @@ const ModalProject = ({
   })
   const [nameRef] = useHandleFieldFocusAtModal({ openModal })
 
-  const [name, setName] = useState('')
   const [color, setColor] = useState('')
 
   useEffect(() => {
     function loadProjectData() {
-      const { name } = projectData
       const { color } = projectData
 
-      setName(name)
       setColor(color)
     }
 
@@ -41,12 +38,11 @@ const ModalProject = ({
 
   const onSubmit = data => {
     updateProject(data)
-
     closeModal()
-  }
 
-  function handleName(e) {
-    setName(e)
+    setTimeout(() => {
+      reset()
+    }, 300)
   }
 
   function handleColor(e) {
@@ -76,8 +72,7 @@ const ModalProject = ({
           <input
             type="text"
             name="name"
-            value={name || ''}
-            onChange={e => handleName(e.target.value)}
+            defaultValue={projectData.name}
             ref={e => {
               register(e, {
                 required: {
@@ -87,9 +82,6 @@ const ModalProject = ({
                 max: 240,
                 min: 1,
                 maxLength: 240,
-                pattern: {
-                  value: name,
-                },
               })
               nameRef.current = e
             }}
