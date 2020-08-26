@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { useForm } from 'react-hook-form'
 import { IoIosClose, IoMdTrash } from 'react-icons/io'
 
@@ -27,26 +27,10 @@ const ModalTask = ({
   })
   const [nameRef] = useHandleFieldFocusAtModal({ openModal })
 
-  const [name, setName] = useState('')
-
-  useEffect(() => {
-    function loadData() {
-      const { name } = taskData
-
-      setName(name)
-    }
-
-    loadData()
-  }, [taskData])
-
   const onSubmit = data => {
     updateTask(data)
 
     closeModal()
-  }
-
-  const handleName = e => {
-    setName(e)
   }
 
   function handleDeleteItem(e) {
@@ -81,8 +65,7 @@ const ModalTask = ({
             <input
               type="text"
               name="name"
-              value={name || ''}
-              onChange={e => handleName(e.target.value)}
+              defaultValue={taskData.name}
               ref={e => {
                 register(e, {
                   required: {
@@ -92,9 +75,6 @@ const ModalTask = ({
                   max: 240,
                   min: 1,
                   maxLength: 240,
-                  pattern: {
-                    value: name,
-                  },
                 })
                 nameRef.current = e
               }}
@@ -117,7 +97,7 @@ const ModalTask = ({
             <div className="modal-content-text-question">
               <p>
                 Opss! Tem certeza que deseja apagar a tarefa{' '}
-                <strong>{name}</strong>?
+                <strong>{taskData.name}</strong>?
               </p>
               <p>
                 Essa ação pode excluir pomodoros executados. Considere renomear.

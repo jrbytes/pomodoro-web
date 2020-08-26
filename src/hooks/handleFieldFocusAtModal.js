@@ -6,6 +6,8 @@ export function useHandleFieldFocusAtModal(props) {
   useEffect(() => {
     if (props.openModal) {
       setTimeout(() => {
+        const textSize = nameRef.current.value.length
+        nameRef.current.setSelectionRange(textSize, textSize)
         nameRef.current.focus()
       }, 100)
     }
