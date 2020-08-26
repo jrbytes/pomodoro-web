@@ -36,7 +36,7 @@ const ModalTask = ({
   function handleDeleteItem(e) {
     e.preventDefault()
 
-    if (taskData.realizedPomos > 0) return handleSetQuestion(true)
+    if (taskData.realized_pomos > 0) return handleSetQuestion(true)
 
     deleteItem(taskData.id)
   }
