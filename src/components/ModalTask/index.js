@@ -70,7 +70,7 @@ const ModalTask = ({
                 register(e, {
                   required: {
                     value: true,
-                    message: 'É necessário renomear o projeto para atualizar',
+                    message: 'É necessário renomear a tarefa para atualizar',
                   },
                   max: 240,
                   min: 1,
