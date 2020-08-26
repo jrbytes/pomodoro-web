@@ -13,21 +13,25 @@ function Pomodoro() {
   const [countdownTimeout, setCountdownTimeout] = useState(0)
   const [button, setButton] = useState('start')
 
+  const [spinner, setSpinner] = useState(false)
+
   let { id } = useParams()
 
   useEffect(() => {
     async function loadTask() {
-      const { data } = await api.get(`tasks/${id}`)
+      const { data } = await api.get(`pomos/${id}`)
 
       setPomo(data)
     }
     loadTask()
 
     async function loadUser() {
-      const { data } = await api.get(`users/e1a2c0-ff-461d-be21-5310a6b416f2`)
+      const data = localStorage.getItem('@AppPomo:user')
+      const parsed = JSON.parse(data)
 
-      setUser(data)
-      setCountdownValue(data.defaultMinutesPomo * 60)
+      setUser(parsed)
+      setCountdownValue(parsed.default_minute * 60)
+      setSpinner(true)
     }
     loadUser()
   }, [id])
@@ -58,15 +62,15 @@ function Pomodoro() {
   }
 
   const registerPomo = async () => {
-    const { data } = await api.patch(`tasks/${id}`, {
-      realizedPomos: pomo.realizedPomos + 1,
+    const { data } = await api.patch(`pomos/${id}`, {
+      realized_pomos: pomo.realized_pomos + 1,
     })
 
     setPomo(data)
   }
 
   const resetCountdown = () => {
-    setCountdownValue(user.defaultMinutesPomo * 60)
+    setCountdownValue(user.default_minute * 60)
     setButton('start')
   }
 
@@ -83,7 +87,7 @@ function Pomodoro() {
   const progressBar = useMemo(() => {
     if (countdownValue >= 0) {
       const maxWidth = 290
-      const defaultMaxSecondsPomo = user.defaultMinutesPomo * 60
+      const defaultMaxSecondsPomo = user.default_minute * 60
       const proportion = (countdownValue * maxWidth) / defaultMaxSecondsPomo
       const percent = (proportion / maxWidth) * 100
       const percentNumber = Math.round(percent)
@@ -98,7 +102,7 @@ function Pomodoro() {
               }}
             ></div>
           </div>
-          {user.settingProgressBarPercent && (
+          {user.setting_progress_bar && (
             <div
               className="progress-bar-percent"
               style={{
@@ -117,13 +121,13 @@ function Pomodoro() {
     <>
       <Header goBackButton={true} />
 
-      {user.name && pomo.name ? (
+      {spinner ? (
         <div className="container-pomo">
           <div className="header-tasks-pomos">
             <h2>{pomo.name}</h2>
             <span>
               <IoIosAlarm className="icon-clock" />
-              {pomo.realizedPomos}
+              {pomo.realized_pomos}
             </span>
           </div>
 
