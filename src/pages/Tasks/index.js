@@ -86,7 +86,7 @@ const Tasks = () => {
       name,
     })
 
-    setTasks([...tasks, data])
+    setTasks([data, ...tasks])
     setColorWhenUpdating(data.id)
   }
 

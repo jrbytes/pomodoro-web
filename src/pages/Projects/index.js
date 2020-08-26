@@ -72,7 +72,7 @@ const Projects = () => {
       color: 'violet',
     })
 
-    setProjects([...projects, data])
+    setProjects([data, ...projects])
     setColorWhenUpdating(data.id)
   }
 

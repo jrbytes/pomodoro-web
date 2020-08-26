@@ -29,8 +29,11 @@ const ModalTask = ({
 
   const onSubmit = data => {
     updateTask(data)
-
     closeModal()
+
+    setTimeout(() => {
+      reset()
+    }, 300)
   }
 
   function handleDeleteItem(e) {
