@@ -5,5 +5,6 @@ Command to execute site:
 
 ## API
 
-Command to execute server fake:
-> `npx json-server --watch db.json --port 3333`
+Integrated with API: pomodoro-back-end
+
+> git clone www.github.com/jrbytes/pomodoro-back-end.git
