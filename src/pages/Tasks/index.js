@@ -9,6 +9,7 @@ import { useHandleCloseModal } from '../../hooks/handleCloseModal'
 import Header from '../../components/Header'
 import ModalTask from '../../components/ModalTask'
 import CreateItem from '../../components/CreateItem'
+import ListCompletedTasks from '../../components/ListCompletedTasks'
 import './styles.css'
 
 const Tasks = () => {
@@ -139,6 +140,8 @@ const Tasks = () => {
               </button>
             </div>
           ))}
+
+          <ListCompletedTasks project_id={id} />
 
           {spinner === true && !tasks.length && (
             <span className="alert-no-items">Nenhuma tarefa cadastrada</span>
