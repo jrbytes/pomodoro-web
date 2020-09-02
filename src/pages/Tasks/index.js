@@ -115,6 +115,17 @@ const Tasks = () => {
     setTasks(updateStateOfTask)
 
     closeModal()
+    setCompletedTasks(false)
+  }
+
+  const taskRecovery = async result => {
+    console.log(result)
+    const { data } = await api.patch(`completed-tasks/${result.id}/${id}`, {
+      completed: result.completed,
+    })
+
+    setTasks([...tasks, data])
+    setColorWhenUpdating(data.id)
   }
 
   return (
@@ -163,7 +174,9 @@ const Tasks = () => {
               <IoIosEyeOff />
             </button>
           </div>
-          {completedTasks && <ListCompletedTasks project_id={id} />}
+          {completedTasks && (
+            <ListCompletedTasks project_id={id} taskRecovery={taskRecovery} />
+          )}
 
           {spinner === true && !tasks.length && (
             <span className="alert-no-items">Nenhuma tarefa cadastrada</span>
