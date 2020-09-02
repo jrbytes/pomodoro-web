@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useMemo, useCallback } from 'react'
 import { IoIosAlarm, IoIosList, IoIosCreate, IoIosEyeOff } from 'react-icons/io'
 import { Link, useParams } from 'react-router-dom'
 import api from '../../services/api'
@@ -16,6 +16,10 @@ const Tasks = () => {
   const [tasks, setTasks] = useState([])
   const [title, setTitle] = useState('')
   const [completedTasks, setCompletedTasks] = useState(false)
+  const [
+    verifyIfContainTasksCompleted,
+    setVerifyIfContainTasksCompleted,
+  ] = useState(false)
 
   const [spinner, setSpinner] = useState(false)
 
@@ -116,17 +120,42 @@ const Tasks = () => {
 
     closeModal()
     setCompletedTasks(false)
+    searchCompletedTask()
   }
 
   const taskRecovery = async result => {
-    console.log(result)
     const { data } = await api.patch(`completed-tasks/${result.id}/${id}`, {
       completed: result.completed,
     })
 
     setTasks([...tasks, data])
     setColorWhenUpdating(data.id)
+    searchCompletedTask()
   }
+
+  const searchCompletedTask = useCallback(async () => {
+    const { data } = await api.get(`completed-tasks/${id}`)
+    const verifyIfTrue = data.length > 0 ? false : true
+    setVerifyIfContainTasksCompleted(verifyIfTrue)
+  }, [id])
+
+  const buttonCompletedTasks = useMemo(() => {
+    searchCompletedTask()
+    return (
+      <>
+        {!verifyIfContainTasksCompleted && (
+          <div className="completed-tasks">
+            <button
+              onClick={() => setCompletedTasks(completedTasks ? false : true)}
+            >
+              <span>{!completedTasks ? `Tarefas concluídas` : `Ocultar`}</span>
+              <IoIosEyeOff />
+            </button>
+          </div>
+        )}
+      </>
+    )
+  }, [verifyIfContainTasksCompleted, completedTasks, searchCompletedTask])
 
   return (
     <>
@@ -166,14 +195,7 @@ const Tasks = () => {
             </div>
           ))}
 
-          <div className="completed-tasks">
-            <button
-              onClick={() => setCompletedTasks(completedTasks ? false : true)}
-            >
-              <span>{!completedTasks ? `Tarefas concluídas` : `Ocultar`}</span>{' '}
-              <IoIosEyeOff />
-            </button>
-          </div>
+          {buttonCompletedTasks}
           {completedTasks && (
             <ListCompletedTasks project_id={id} taskRecovery={taskRecovery} />
           )}
