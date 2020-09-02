@@ -102,10 +102,14 @@ button {
   cursor: pointer;
 }
 
+.form-buttons-modal button:last-child {
+  background-color: var(--color-input-alert);
+}
+
 .form-buttons-modal button {
   width: 4rem;
   margin-left: 1rem;
-  background-color: var(--color-input-alert);
+  background-color: var(--color-primary-lighter);
   color: var(--color-title-in-primary);
   border: none;
   border-radius: var(--border-radius-default);

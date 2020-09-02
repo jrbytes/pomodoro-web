@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { IoIosAlarm, IoIosList, IoIosCreate } from 'react-icons/io'
+import { IoIosAlarm, IoIosList, IoIosCreate, IoIosEyeOff } from 'react-icons/io'
 import { Link, useParams } from 'react-router-dom'
 import api from '../../services/api'
 
@@ -15,6 +15,7 @@ import './styles.css'
 const Tasks = () => {
   const [tasks, setTasks] = useState([])
   const [title, setTitle] = useState('')
+  const [completedTasks, setCompletedTasks] = useState(false)
 
   const [spinner, setSpinner] = useState(false)
 
@@ -103,6 +104,19 @@ const Tasks = () => {
     closeModal()
   }
 
+  const completeItem = async result => {
+    const { data } = await api.patch(
+      `completed-tasks/${taskData.id}/${id}`,
+      result,
+    )
+
+    const updateStateOfTask = tasks.filter(item => item.id !== data.id)
+
+    setTasks(updateStateOfTask)
+
+    closeModal()
+  }
+
   return (
     <>
       <Header goBackButton={true} />
@@ -141,7 +155,15 @@ const Tasks = () => {
             </div>
           ))}
 
-          <ListCompletedTasks project_id={id} />
+          <div className="completed-tasks">
+            <button
+              onClick={() => setCompletedTasks(completedTasks ? false : true)}
+            >
+              <span>{!completedTasks ? `Tarefas concluídas` : `Ocultar`}</span>{' '}
+              <IoIosEyeOff />
+            </button>
+          </div>
+          {completedTasks && <ListCompletedTasks project_id={id} />}
 
           {spinner === true && !tasks.length && (
             <span className="alert-no-items">Nenhuma tarefa cadastrada</span>
@@ -158,6 +180,7 @@ const Tasks = () => {
         updateTask={updateTask}
         closeModal={closeModal}
         deleteItem={deleteItem}
+        completeItem={completeItem}
         handleSetQuestion={handleSetQuestion}
         question={question}
       />

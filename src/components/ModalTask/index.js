@@ -1,6 +1,6 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import { IoIosClose, IoMdTrash } from 'react-icons/io'
+import { IoIosClose, IoMdTrash, IoMdCheckbox } from 'react-icons/io'
 
 import { useHandleCloseModal } from '../../hooks/handleCloseModal'
 import { useHandleFieldFocusAtModal } from '../../hooks/handleFieldFocusAtModal'
@@ -14,6 +14,7 @@ const ModalTask = ({
   updateTask,
   closeModal,
   deleteItem,
+  completeItem,
   handleSetQuestion,
   question,
 }) => {
@@ -42,6 +43,14 @@ const ModalTask = ({
     if (taskData.realized_pomos > 0) return handleSetQuestion(true)
 
     deleteItem(taskData.id)
+  }
+
+  function handleToCompleteItem(e) {
+    e.preventDefault()
+
+    if (taskData.realized_pomos === 0) return window.alert('Ops, sem pomos')
+
+    completeItem({ completed: true })
   }
 
   return (
@@ -87,6 +96,10 @@ const ModalTask = ({
 
             <div className="form-buttons-modal">
               <input type="submit" value="Atualizar" />
+
+              <button onClick={e => handleToCompleteItem(e)}>
+                <IoMdCheckbox />
+              </button>
 
               <button onClick={e => handleDeleteItem(e)}>
                 <IoMdTrash />

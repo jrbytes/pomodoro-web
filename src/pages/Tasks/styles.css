@@ -55,3 +55,28 @@
   align-items: center;
   margin-right: 3rem;
 }
+
+.completed-tasks {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+}
+
+.completed-tasks button {
+  margin: 0 auto;
+  background-color: var(--color-box-base);
+  color: var(--color-text-complement);
+  font-size: 1.3rem;
+  padding: .4rem .8rem;
+  border: 0px;
+  border-radius: var(--border-radius-default);
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+}
+
+.completed-tasks span {
+  margin-right: .5rem;
+}
