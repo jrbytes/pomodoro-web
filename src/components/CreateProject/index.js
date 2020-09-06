@@ -1,19 +1,22 @@
 import React from 'react'
 import { IoMdAdd, IoIosCheckmarkCircle } from 'react-icons/io'
 import { useForm } from 'react-hook-form'
+import { useDispatch } from 'react-redux'
+
+import { addProject } from '../../store/modules/projects/actions'
 
 import { useKeyboardShortcutTab } from '../../hooks/keyboardShotcutTab'
 
 import './styles.css'
 
-function CreateItem({ createItem, handleAddProject, errorMessage }) {
+function CreateProject() {
   const [nameRef] = useKeyboardShortcutTab()
+  const dispatch = useDispatch()
 
   const { handleSubmit, register, errors, reset } = useForm()
 
   const onSubmit = data => {
-    // createItem(data)
-    handleAddProject(data)
+    dispatch(addProject(data))
     reset()
   }
 
@@ -30,7 +33,7 @@ function CreateItem({ createItem, handleAddProject, errorMessage }) {
               register(e, {
                 required: {
                   value: true,
-                  message: errorMessage,
+                  message: 'É necessário digitar um projeto',
                 },
                 maxLength: 240,
                 min: 1,
@@ -51,4 +54,4 @@ function CreateItem({ createItem, handleAddProject, errorMessage }) {
   )
 }
 
-export default CreateItem
+export default CreateProject

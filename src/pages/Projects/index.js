@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { IoIosCreate, IoIosBookmark, IoIosBook } from 'react-icons/io'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import api from '../../services/api'
 
 import { useToCleanCSSClass } from '../../hooks/toCleanCSSClass'
@@ -8,10 +9,13 @@ import { useHandleCloseModal } from '../../hooks/handleCloseModal'
 
 import Header from '../../components/Header'
 import ModalProject from '../../components/ModalProject'
-import CreateItem from '../../components/CreateItem'
+import CreateProject from '../../components/CreateProject'
 import './styles.css'
 
 const Projects = () => {
+  const project = useSelector(state => state.projects.items)
+  console.log(project)
+
   const [projects, setProjects] = useState([])
 
   const [spinner, setSpinner] = useState(false)
@@ -64,17 +68,17 @@ const Projects = () => {
     setColorWhenUpdating(data.id)
   }
 
-  const createItem = async result => {
-    const { name } = result
+  // const createItem = async result => {
+  //   const { name } = result
 
-    const { data } = await api.post('projects', {
-      name,
-      color: 'violet',
-    })
+  //   const { data } = await api.post('projects', {
+  //     name,
+  //     color: 'violet',
+  //   })
 
-    setProjects([data, ...projects])
-    setColorWhenUpdating(data.id)
-  }
+  //   setProjects([data, ...projects])
+  //   setColorWhenUpdating(data.id)
+  // }
 
   return (
     <>
@@ -87,10 +91,7 @@ const Projects = () => {
             Projetos
           </h2>
 
-          <CreateItem
-            createItem={createItem}
-            errorMessage="É necessário digitar um projeto"
-          />
+          <CreateProject />
 
           {projects.map(item => (
             <div
