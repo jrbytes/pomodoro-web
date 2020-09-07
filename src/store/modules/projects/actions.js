@@ -1,6 +1,8 @@
+import { ActionTypes } from './types'
+
 export function initialProjectState(projects) {
   return {
-    type: 'INITIAL_PROJECT_STATE',
+    type: ActionTypes.INITIAL_PROJECT_STATE,
     payload: {
       projects,
     },
@@ -9,7 +11,7 @@ export function initialProjectState(projects) {
 
 export function addProjectRequest(project) {
   return {
-    type: 'ADD_PROJECT_REQUEST',
+    type: ActionTypes.ADD_PROJECT_REQUEST,
     payload: {
       project,
     },
@@ -18,7 +20,7 @@ export function addProjectRequest(project) {
 
 export function addProjectSuccess(project) {
   return {
-    type: 'ADD_PROJECT_SUCCESS',
+    type: ActionTypes.ADD_PROJECT_SUCCESS,
     payload: {
       project,
     },
@@ -27,7 +29,7 @@ export function addProjectSuccess(project) {
 
 export function addProjectFailure(projectName) {
   return {
-    type: 'ADD_PROJECT_FAILURE',
+    type: ActionTypes.ADD_PROJECT_FAILURE,
     payload: {
       projectName,
     },

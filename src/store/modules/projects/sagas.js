@@ -1,5 +1,6 @@
 import { all, takeLatest, put } from 'redux-saga/effects'
 import { addProjectSuccess } from './actions'
+import { ActionTypes } from './types'
 import { addColorWhenUpdating } from '../defaultConfig/actions'
 import api from '../../../services/api'
 
@@ -15,4 +16,4 @@ function* checkProjects({ payload }) {
   yield put(addProjectSuccess(data))
 }
 
-export default all([takeLatest('ADD_PROJECT_REQUEST', checkProjects)])
+export default all([takeLatest(ActionTypes.ADD_PROJECT_REQUEST, checkProjects)])
