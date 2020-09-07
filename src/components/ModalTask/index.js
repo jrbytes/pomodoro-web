@@ -1,17 +1,19 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { IoIosClose, IoMdTrash, IoMdCheckbox } from 'react-icons/io'
+import { useDispatch } from 'react-redux'
 
 import { useHandleCloseModal } from '../../hooks/handleCloseModal'
 import { useHandleFieldFocusAtModal } from '../../hooks/handleFieldFocusAtModal'
 
 import './styles.css'
+import { ActionTypes } from '../../store/modules/tasks/types'
 
 const ModalTask = ({
   openModal,
   titleModal,
   taskData,
-  updateTask,
+  project_id,
   closeModal,
   deleteItem,
   completeItem,
@@ -26,10 +28,20 @@ const ModalTask = ({
     errors: errors.name,
     reset,
   })
+  const dispatch = useDispatch()
   const [nameRef] = useHandleFieldFocusAtModal({ openModal })
 
   const onSubmit = data => {
-    updateTask(data)
+    const dataBefore = taskData.name
+    const dataAfter = data.name
+
+    if (dataBefore === dataAfter) return
+
+    dispatch({
+      type: ActionTypes.UPDATE_TASK_REQUEST,
+      payload: { id: taskData.id, name: data.name, project_id },
+    })
+
     closeModal()
 
     setTimeout(() => {

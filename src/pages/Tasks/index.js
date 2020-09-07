@@ -67,25 +67,6 @@ const Tasks = () => {
     setTaskData(result)
   }
 
-  const updateTask = async result => {
-    const { name } = result
-
-    const nameIsEqual = taskData.name === result.name
-
-    if (nameIsEqual) return
-
-    const { data } = await api.patch(`tasks/${taskData.id}/${id}`, {
-      name,
-    })
-
-    // const updateStateOfTask = tasks.map(item =>
-    //   item.id === data.id ? { ...item, name: data.name } : item,
-    // )
-
-    // setTasks(updateStateOfTask)
-    setColorWhenUpdating(data.id)
-  }
-
   function closeModal() {
     setOpenModal(false)
 
@@ -211,7 +192,7 @@ const Tasks = () => {
         openModal={openModal}
         titleModal={`Editar Tarefa de ${title}`}
         taskData={taskData}
-        updateTask={updateTask}
+        project_id={id}
         closeModal={closeModal}
         deleteItem={deleteItem}
         completeItem={completeItem}

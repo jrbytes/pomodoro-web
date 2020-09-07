@@ -16,10 +16,12 @@ function* createTask({ payload }) {
 }
 
 function* updateTask({ payload }) {
-  const { data } = yield api.patch(`tasks/${payload.id}`, {
-    name: payload.name,
-    color: payload.color,
-  })
+  const { data } = yield api.patch(
+    `tasks/${payload.id}/${payload.project_id}`,
+    {
+      name: payload.name,
+    },
+  )
 
   yield put(addColorWhenUpdating(data.id))
   yield put(updateTaskSuccess(data))

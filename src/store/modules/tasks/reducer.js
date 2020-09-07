@@ -16,6 +16,15 @@ const tasks = (state = INITIAL_STATE, action) => {
 
       return Object.assign({}, state, { items: [task, ...state.items] })
     }
+    case ActionTypes.UPDATE_TASK_SUCCESS: {
+      const { task } = action.payload
+
+      return Object.assign({}, state, {
+        items: state.items.map(item =>
+          item.id === task.id ? { ...item, name: task.name } : item,
+        ),
+      })
+    }
     default: {
       return state
     }
