@@ -98,17 +98,6 @@ const Tasks = () => {
     setQuestion(result)
   }
 
-  // const createItem = async result => {
-  //   const { name } = result
-
-  //   const { data } = await api.post(`tasks/${id}`, {
-  //     name,
-  //   })
-
-  //   setTasks([data, ...tasks])
-  //   setColorWhenUpdating(data.id)
-  // }
-
   const deleteItem = async result => {
     const { data } = await api.delete(`tasks/${result}`)
 
