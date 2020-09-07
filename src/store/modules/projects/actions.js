@@ -35,3 +35,30 @@ export function addProjectFailure(projectName) {
     },
   }
 }
+
+export function updateProjectRequest(project) {
+  return {
+    type: ActionTypes.UPDATE_PROJECT_REQUEST,
+    payload: {
+      project,
+    },
+  }
+}
+
+export function updateProjectSuccess(project) {
+  return {
+    type: ActionTypes.UPDATE_PROJECT_SUCCESS,
+    payload: {
+      project,
+    },
+  }
+}
+
+export function updateProjectFailure(projectName) {
+  return {
+    type: ActionTypes.UPDATE_PROJECT_FAILURE,
+    payload: {
+      projectName,
+    },
+  }
+}

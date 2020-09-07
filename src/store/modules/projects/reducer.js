@@ -20,6 +20,17 @@ const projects = (state = INITIAL_STATE, action) => {
       console.log('failure', action.payload)
       break
     }
+    case ActionTypes.UPDATE_PROJECT_SUCCESS: {
+      const { project } = action.payload
+
+      return Object.assign({}, state, {
+        items: state.items.map(item =>
+          item.id === project.id
+            ? { ...item, name: project.name, color: project.color }
+            : item,
+        ),
+      })
+    }
     default: {
       return state
     }

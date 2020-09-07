@@ -53,29 +53,6 @@ const Projects = () => {
     setOpenModal(false)
   }
 
-  async function updateProject(result) {
-    const { name, color } = result
-
-    const nameIsEqual = projectData.name === result.name
-    const colorIsEqual = projectData.color === result.color
-
-    if (nameIsEqual && colorIsEqual) return
-
-    const { data } = await api.patch(`projects/${projectData.id}`, {
-      name,
-      color,
-    })
-
-    // const updateStateOfProject = projects.map(item =>
-    //   item.id === data.id
-    //     ? { ...item, name: data.name, color: data.color }
-    //     : item,
-    // )
-
-    // setProjects(updateStateOfProject)
-    setColorWhenUpdating(data.id)
-  }
-
   return (
     <>
       <Header goBackButton={false} />
@@ -123,7 +100,6 @@ const Projects = () => {
         openModal={openModal}
         title="Editar Projeto"
         projectData={projectData}
-        updateProject={updateProject}
         closeModal={closeModal}
       />
     </>
