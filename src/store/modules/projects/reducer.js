@@ -1,34 +1,27 @@
-import produce from 'immer'
-
 const INITIAL_STATE = {
   items: [],
 }
 
 const projects = (state = INITIAL_STATE, action) => {
-  return produce(state, draft => {
-    switch (action.type) {
-      case 'ADD_PROJECT': {
-        const { project } = action.payload
+  switch (action.type) {
+    case 'INITIAL_PROJECT_STATE': {
+      const projects = action.payload
 
-        const projectExists = draft.items.find(
-          item => item.project.name === project.name,
-        )
-
-        if (projectExists) {
-          return state
-        } else {
-          draft.items.push({
-            project,
-          })
-        }
-
-        break
-      }
-      default: {
-        return state
-      }
+      return Object.assign({}, state, { items: [...projects] })
     }
-  })
+    case 'ADD_PROJECT_SUCCESS': {
+      const { project } = action.payload
+
+      return Object.assign({}, state, { items: [project, ...state.items] })
+    }
+    case 'ADD_PROJECT_FAILURE': {
+      console.log('failure', action.payload)
+      break
+    }
+    default: {
+      return state
+    }
+  }
 }
 
 export default projects

@@ -3,7 +3,7 @@ import { IoMdAdd, IoIosCheckmarkCircle } from 'react-icons/io'
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 
-import { addProject } from '../../store/modules/projects/actions'
+import { addProjectRequest } from '../../store/modules/projects/actions'
 
 import { useKeyboardShortcutTab } from '../../hooks/keyboardShotcutTab'
 
@@ -16,7 +16,7 @@ function CreateProject() {
   const { handleSubmit, register, errors, reset } = useForm()
 
   const onSubmit = data => {
-    dispatch(addProject(data))
+    dispatch(addProjectRequest(data))
     reset()
   }
 

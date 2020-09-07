@@ -1,8 +1,35 @@
-export function addProject(project) {
+export function initialProjectState(projects) {
   return {
-    type: 'ADD_PROJECT',
+    type: 'INITIAL_PROJECT_STATE',
+    payload: {
+      projects,
+    },
+  }
+}
+
+export function addProjectRequest(project) {
+  return {
+    type: 'ADD_PROJECT_REQUEST',
     payload: {
       project,
+    },
+  }
+}
+
+export function addProjectSuccess(project) {
+  return {
+    type: 'ADD_PROJECT_SUCCESS',
+    payload: {
+      project,
+    },
+  }
+}
+
+export function addProjectFailure(projectName) {
+  return {
+    type: 'ADD_PROJECT_FAILURE',
+    payload: {
+      projectName,
     },
   }
 }

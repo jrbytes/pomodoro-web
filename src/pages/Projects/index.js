@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { IoIosCreate, IoIosBookmark, IoIosBook } from 'react-icons/io'
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import api from '../../services/api'
 
 import { useToCleanCSSClass } from '../../hooks/toCleanCSSClass'
@@ -13,10 +13,9 @@ import CreateProject from '../../components/CreateProject'
 import './styles.css'
 
 const Projects = () => {
-  const project = useSelector(state => state.projects.items)
-  console.log(project)
-
-  const [projects, setProjects] = useState([])
+  const dispatch = useDispatch()
+  const projects = useSelector(state => state.projects.items)
+  const effectCreateItem = useSelector(state => state.defaultConfig.items)
 
   const [spinner, setSpinner] = useState(false)
 
@@ -30,11 +29,19 @@ const Projects = () => {
     async function loadProjects() {
       const { data } = await api.get('projects')
 
-      setProjects(data)
+      dispatch({
+        type: 'INITIAL_PROJECT_STATE',
+        payload: data,
+      })
+
+      if (effectCreateItem.color_when_updating) {
+        setColorWhenUpdating(effectCreateItem.color_when_updating.id)
+      }
+
       setSpinner(true)
     }
     loadProjects()
-  }, [])
+  }, [dispatch, effectCreateItem, setColorWhenUpdating])
 
   async function openUpdateProject(result) {
     setOpenModal(true)
@@ -58,27 +65,15 @@ const Projects = () => {
       color,
     })
 
-    const updateStateOfProject = projects.map(item =>
-      item.id === data.id
-        ? { ...item, name: data.name, color: data.color }
-        : item,
-    )
+    // const updateStateOfProject = projects.map(item =>
+    //   item.id === data.id
+    //     ? { ...item, name: data.name, color: data.color }
+    //     : item,
+    // )
 
-    setProjects(updateStateOfProject)
+    // setProjects(updateStateOfProject)
     setColorWhenUpdating(data.id)
   }
-
-  // const createItem = async result => {
-  //   const { name } = result
-
-  //   const { data } = await api.post('projects', {
-  //     name,
-  //     color: 'violet',
-  //   })
-
-  //   setProjects([data, ...projects])
-  //   setColorWhenUpdating(data.id)
-  // }
 
   return (
     <>
