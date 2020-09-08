@@ -34,14 +34,6 @@ const ModalProject = ({ openModal, title, projectData, closeModal }) => {
   }, [projectData])
 
   const onSubmit = data => {
-    const dataBefore = JSON.stringify({
-      name: projectData.name,
-      color: projectData.color,
-    })
-    const dataAfter = JSON.stringify({ name: data.name, color: data.color })
-
-    if (dataBefore === dataAfter) return
-
     dispatch({
       type: ActionTypes.UPDATE_PROJECT_REQUEST,
       payload: {

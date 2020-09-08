@@ -1,8 +1,10 @@
-import { all, takeLatest, put } from 'redux-saga/effects'
+import { all, takeLatest, put, select } from 'redux-saga/effects'
 import { addProjectSuccess, updateProjectSuccess } from './actions'
 import { ActionTypes } from './types'
 import { addColorWhenUpdating } from '../defaultConfig/actions'
 import api from '../../../services/api'
+
+const getItems = state => state.projects.items
 
 function* createProject({ payload }) {
   const { project } = payload
@@ -17,6 +19,15 @@ function* createProject({ payload }) {
 }
 
 function* updateProject({ payload }) {
+  const previousState = yield select(getItems)
+  const [compareState] = previousState.filter(item => item.id === payload.id)
+
+  if (
+    compareState.name === payload.name &&
+    compareState.color === payload.color
+  )
+    return
+
   const { data } = yield api.patch(`projects/${payload.id}`, {
     name: payload.name,
     color: payload.color,
