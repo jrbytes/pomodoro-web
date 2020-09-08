@@ -176,7 +176,6 @@ const Tasks = () => {
         taskData={taskData}
         project_id={id}
         closeModal={closeModal}
-        // deleteItem={deleteItem}
         completeItem={completeItem}
         handleSetQuestion={handleSetQuestion}
         question={question}
