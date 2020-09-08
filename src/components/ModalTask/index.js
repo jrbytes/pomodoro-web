@@ -32,11 +32,6 @@ const ModalTask = ({
   const [nameRef] = useHandleFieldFocusAtModal({ openModal })
 
   const onSubmit = data => {
-    const dataBefore = taskData.name
-    const dataAfter = data.name
-
-    if (dataBefore === dataAfter) return
-
     dispatch({
       type: ActionTypes.UPDATE_TASK_REQUEST,
       payload: { id: taskData.id, name: data.name, project_id },
