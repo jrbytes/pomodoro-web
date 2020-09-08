@@ -32,6 +32,13 @@ const tasks = (state = INITIAL_STATE, action) => {
         items: state.items.filter(item => item.id !== taskId),
       })
     }
+    case ActionTypes.TASK_COMPLETE_SUCCESS: {
+      const { taskId } = action.payload
+      console.log(taskId)
+      return Object.assign({}, state, {
+        items: state.items.filter(item => item.id !== taskId),
+      })
+    }
     default: {
       return state
     }

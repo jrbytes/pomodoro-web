@@ -15,9 +15,10 @@ const ModalTask = ({
   taskData,
   project_id,
   closeModal,
-  completeItem,
   handleSetQuestion,
   question,
+  setCompletedTasks,
+  searchCompletedTask,
 }) => {
   const { handleSubmit, register, errors, clearErrors, reset } = useForm()
   const [handleEsc, closeModalClickingOutside] = useHandleCloseModal({
@@ -70,7 +71,14 @@ const ModalTask = ({
 
     if (taskData.realized_pomos === 0) return window.alert('Ops, sem pomos')
 
-    completeItem({ completed: true })
+    dispatch({
+      type: ActionTypes.TASK_COMPLETE_REQUEST,
+      payload: { id: taskData.id, project_id: taskData.project_id },
+    })
+
+    closeModal()
+    setCompletedTasks(false)
+    searchCompletedTask()
   }
 
   return (

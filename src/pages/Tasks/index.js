@@ -73,21 +73,6 @@ const Tasks = () => {
     setQuestion(result)
   }
 
-  const completeItem = async result => {
-    const { data } = await api.patch(
-      `completed-tasks/${taskData.id}/${id}`,
-      result,
-    )
-
-    // const updateStateOfTask = tasks.filter(item => item.id !== data.id)
-
-    // setTasks(updateStateOfTask)
-
-    closeModal()
-    setCompletedTasks(false)
-    searchCompletedTask()
-  }
-
   const taskRecovery = async result => {
     const { data } = await api.patch(`completed-tasks/${result.id}/${id}`, {
       completed: result.completed,
@@ -176,9 +161,10 @@ const Tasks = () => {
         taskData={taskData}
         project_id={id}
         closeModal={closeModal}
-        completeItem={completeItem}
         handleSetQuestion={handleSetQuestion}
         question={question}
+        setCompletedTasks={setCompletedTasks}
+        searchCompletedTask={searchCompletedTask}
       />
     </>
   )

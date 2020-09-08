@@ -1,5 +1,10 @@
 import { all, takeLatest, put, select } from 'redux-saga/effects'
-import { addTaskSuccess, updateTaskSuccess, deleteTaskSuccess } from './actions'
+import {
+  addTaskSuccess,
+  updateTaskSuccess,
+  deleteTaskSuccess,
+  taskCompleteSuccess,
+} from './actions'
 import { ActionTypes } from './types'
 import { addColorWhenUpdating } from '../defaultConfig/actions'
 import api from '../../../services/api'
@@ -35,14 +40,27 @@ function* updateTask({ payload }) {
 }
 
 function* deleteTask({ payload }) {
-  const { data } = yield api.delete(`tasks/${payload.id}`) // verificar se não fizer isso por pomo = 0
+  const { data } = yield api.delete(`tasks/${payload.id}`)
   if (!data) return
 
   yield put(deleteTaskSuccess(payload.id))
+}
+
+function* taskComplete({ payload }) {
+  const { data } = yield api.patch(
+    `completed-tasks/${payload.id}/${payload.project_id}`,
+    {
+      completed: true,
+    },
+  )
+  console.log(data)
+
+  yield put(taskCompleteSuccess(payload.id))
 }
 
 export default all([
   takeLatest(ActionTypes.ADD_TASK_REQUEST, createTask),
   takeLatest(ActionTypes.UPDATE_TASK_REQUEST, updateTask),
   takeLatest(ActionTypes.DELETE_TASK_REQUEST, deleteTask),
+  takeLatest(ActionTypes.TASK_COMPLETE_REQUEST, taskComplete),
 ])

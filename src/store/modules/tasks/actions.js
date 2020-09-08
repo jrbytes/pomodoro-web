@@ -89,3 +89,30 @@ export function deleteTaskFailure(taskId) {
     },
   }
 }
+
+export function taskCompleteRequest(taskId) {
+  return {
+    type: ActionTypes.TASK_COMPLETE_REQUEST,
+    payload: {
+      taskId,
+    },
+  }
+}
+
+export function taskCompleteSuccess(taskId) {
+  return {
+    type: ActionTypes.TASK_COMPLETE_SUCCESS,
+    payload: {
+      taskId,
+    },
+  }
+}
+
+export function taskCompleteFailure(taskId) {
+  return {
+    type: ActionTypes.TASK_COMPLETE_FAILURE,
+    payload: {
+      taskId,
+    },
+  }
+}
