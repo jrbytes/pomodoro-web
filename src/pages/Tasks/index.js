@@ -15,11 +15,15 @@ import ListCompletedTasks from '../../components/ListCompletedTasks'
 import './styles.css'
 
 const Tasks = () => {
+  let { id } = useParams()
+
   const dispatch = useDispatch()
+  const title = useSelector(state =>
+    state.projects.items.find(item => item.id === id),
+  )
   const tasks = useSelector(state => state.tasks.items)
   const effectCreateItem = useSelector(state => state.defaultConfig.items)
 
-  const [title, setTitle] = useState('')
   const [completedTasks, setCompletedTasks] = useState(false)
   const [
     verifyIfContainTasksCompleted,
@@ -34,17 +38,7 @@ const Tasks = () => {
   const [colorWhenUpdating, setColorWhenUpdating] = useToCleanCSSClass()
   const [handleEsc] = useHandleCloseModal({ closeModal })
 
-  let { id } = useParams()
-
   useEffect(() => {
-    async function loadTitle() {
-      const { data } = await api.get(`projects`)
-      const filter = await data.filter(item => item.id === id)
-
-      setTitle(filter[0].name)
-    }
-    loadTitle()
-
     async function loadTasks() {
       const { data } = await api.get(`tasks/${id}`)
 
@@ -148,7 +142,7 @@ const Tasks = () => {
         <div className="container" onKeyUp={handleEsc}>
           <h2 className="title-tasks">
             <IoIosList />
-            {title && `Tarefas - ${title}`}
+            {title && `Tarefas - ${title.name}`}
           </h2>
 
           <CreateTask project_id={id} />
