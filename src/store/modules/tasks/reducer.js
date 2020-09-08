@@ -25,6 +25,13 @@ const tasks = (state = INITIAL_STATE, action) => {
         ),
       })
     }
+    case ActionTypes.DELETE_TASK_SUCCESS: {
+      const { taskId } = action.payload
+
+      return Object.assign({}, state, {
+        items: state.items.filter(item => item.id !== taskId),
+      })
+    }
     default: {
       return state
     }

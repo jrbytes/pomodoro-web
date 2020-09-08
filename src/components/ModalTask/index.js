@@ -15,7 +15,6 @@ const ModalTask = ({
   taskData,
   project_id,
   closeModal,
-  deleteItem,
   completeItem,
   handleSetQuestion,
   question,
@@ -44,12 +43,26 @@ const ModalTask = ({
     }, 300)
   }
 
+  function handleDeleteItemWithQuestion(result) {
+    dispatch({
+      type: ActionTypes.DELETE_TASK_REQUEST,
+      payload: { id: result },
+    })
+
+    closeModal()
+  }
+
   function handleDeleteItem(e) {
     e.preventDefault()
 
     if (taskData.realized_pomos > 0) return handleSetQuestion(true)
 
-    deleteItem(taskData.id)
+    dispatch({
+      type: ActionTypes.DELETE_TASK_REQUEST,
+      payload: { id: taskData.id },
+    })
+
+    closeModal()
   }
 
   function handleToCompleteItem(e) {
@@ -127,7 +140,9 @@ const ModalTask = ({
               </p>
             </div>
             <div className="form-buttons-modal-question">
-              <button onClick={() => deleteItem(taskData.id)}>Sim</button>
+              <button onClick={() => handleDeleteItemWithQuestion(taskData.id)}>
+                Sim
+              </button>
               <button onClick={closeModal}>Não</button>
             </div>
           </>

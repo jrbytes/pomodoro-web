@@ -62,3 +62,30 @@ export function updateTaskFailure(taskName) {
     },
   }
 }
+
+export function deleteTaskRequest(taskId) {
+  return {
+    type: ActionTypes.DELETE_TASK_REQUEST,
+    payload: {
+      taskId,
+    },
+  }
+}
+
+export function deleteTaskSuccess(taskId) {
+  return {
+    type: ActionTypes.DELETE_TASK_SUCCESS,
+    payload: {
+      taskId,
+    },
+  }
+}
+
+export function deleteTaskFailure(taskId) {
+  return {
+    type: ActionTypes.DELETE_TASK_FAILURE,
+    payload: {
+      taskId,
+    },
+  }
+}

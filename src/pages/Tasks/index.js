@@ -73,18 +73,6 @@ const Tasks = () => {
     setQuestion(result)
   }
 
-  const deleteItem = async result => {
-    const { data } = await api.delete(`tasks/${result}`)
-
-    if (!data) return
-
-    // const deleteItemOfTasks = tasks.filter(item => item.id !== result)
-
-    // setTasks(deleteItemOfTasks)
-
-    closeModal()
-  }
-
   const completeItem = async result => {
     const { data } = await api.patch(
       `completed-tasks/${taskData.id}/${id}`,
@@ -184,11 +172,11 @@ const Tasks = () => {
 
       <ModalTask
         openModal={openModal}
-        titleModal={`Editar Tarefa de ${title}`}
+        titleModal={`Editar Tarefa de ${title ? title.name : ''}`}
         taskData={taskData}
         project_id={id}
         closeModal={closeModal}
-        deleteItem={deleteItem}
+        // deleteItem={deleteItem}
         completeItem={completeItem}
         handleSetQuestion={handleSetQuestion}
         question={question}
