@@ -7,7 +7,7 @@ const INITIAL_STATE = {
 const tasks = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case ActionTypes.INITIAL_TASK_STATE: {
-      const tasks = action.payload
+      const { tasks } = action.payload
 
       return Object.assign({}, state, { items: [...tasks] })
     }
@@ -32,9 +32,9 @@ const tasks = (state = INITIAL_STATE, action) => {
         items: state.items.filter(item => item.id !== taskId),
       })
     }
-    case ActionTypes.TASK_COMPLETE_SUCCESS: {
+    case ActionTypes.TASK_COMPLETE_TOGGLE_SUCCESS: {
       const { taskId } = action.payload
-      console.log(taskId)
+
       return Object.assign({}, state, {
         items: state.items.filter(item => item.id !== taskId),
       })

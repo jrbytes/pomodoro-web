@@ -44,7 +44,7 @@ const Tasks = () => {
 
       dispatch({
         type: ActionTypes.INITIAL_TASK_STATE,
-        payload: data,
+        payload: { tasks: data },
       })
 
       if (effectCreateItem.color_when_updating) {
@@ -73,20 +73,12 @@ const Tasks = () => {
     setQuestion(result)
   }
 
-  const taskRecovery = async result => {
-    const { data } = await api.patch(`completed-tasks/${result.id}/${id}`, {
-      completed: result.completed,
-    })
-
-    // setTasks([...tasks, data])
-    setColorWhenUpdating(data.id)
-    searchCompletedTask()
-  }
-
   const searchCompletedTask = useCallback(async () => {
-    const { data } = await api.get(`completed-tasks/${id}`)
-    const verifyIfTrue = data.length > 0 ? false : true
-    setVerifyIfContainTasksCompleted(verifyIfTrue)
+    setTimeout(async () => {
+      const { data } = await api.get(`completed-tasks/${id}`)
+      const verifyIfTrue = data.length > 0 ? false : true
+      setVerifyIfContainTasksCompleted(verifyIfTrue)
+    }, 200)
   }, [id])
 
   const buttonCompletedTasks = useMemo(() => {
@@ -144,7 +136,11 @@ const Tasks = () => {
 
           {buttonCompletedTasks}
           {completedTasks && (
-            <ListCompletedTasks project_id={id} taskRecovery={taskRecovery} />
+            <ListCompletedTasks
+              project_id={id}
+              setColorWhenUpdating={setColorWhenUpdating}
+              searchCompletedTask={searchCompletedTask}
+            />
           )}
 
           {spinner === true && !tasks.length && (

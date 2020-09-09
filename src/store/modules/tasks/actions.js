@@ -90,27 +90,27 @@ export function deleteTaskFailure(taskId) {
   }
 }
 
-export function taskCompleteRequest(taskId) {
+export function taskCompleteToggleRequest(taskId) {
   return {
-    type: ActionTypes.TASK_COMPLETE_REQUEST,
+    type: ActionTypes.TASK_COMPLETE_TOGGLE_REQUEST,
     payload: {
       taskId,
     },
   }
 }
 
-export function taskCompleteSuccess(taskId) {
+export function taskCompleteToggleSuccess(taskId) {
   return {
-    type: ActionTypes.TASK_COMPLETE_SUCCESS,
+    type: ActionTypes.TASK_COMPLETE_TOGGLE_SUCCESS,
     payload: {
       taskId,
     },
   }
 }
 
-export function taskCompleteFailure(taskId) {
+export function taskCompleteToggleFailure(taskId) {
   return {
-    type: ActionTypes.TASK_COMPLETE_FAILURE,
+    type: ActionTypes.TASK_COMPLETE_TOGGLE_FAILURE,
     payload: {
       taskId,
     },

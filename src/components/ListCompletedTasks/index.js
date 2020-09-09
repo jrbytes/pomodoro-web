@@ -1,31 +1,31 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { IoIosAlarm, IoIosUndo } from 'react-icons/io'
-
-import api from '../../services/api'
+import { useSelector, useDispatch } from 'react-redux'
+import { ActionTypes } from '../../store/modules/completedTasks/types'
 
 import './styles.css'
 
-const ListCompletedTasks = ({ project_id, taskRecovery }) => {
-  const [tasks, setTasks] = useState([])
-
-  useEffect(() => {
-    async function loadTasks() {
-      const { data } = await api.get(`completed-tasks/${project_id}`)
-
-      setTasks(data)
-    }
-    loadTasks()
-  }, [project_id])
+const ListCompletedTasks = ({ setColorWhenUpdating, searchCompletedTask }) => {
+  const dispatch = useDispatch()
+  const completedTasks = useSelector(state => state.completedTasks.items)
 
   function handleTaskRecovery(result) {
-    const updateStateOfTask = tasks.filter(item => item.id !== result.id)
-    setTasks(updateStateOfTask)
-    taskRecovery({ id: result.id, completed: false })
+    dispatch({
+      type: ActionTypes.TASK_RECOVERY_REQUEST,
+      payload: {
+        id: result.id,
+        project_id: result.project_id,
+        completed: false,
+      },
+    })
+
+    setColorWhenUpdating(result.id)
+    searchCompletedTask()
   }
 
   return (
     <>
-      {tasks.map(item => (
+      {completedTasks.map(item => (
         <div className="task" key={item.id} style={{ opacity: 0.7 }}>
           <p>
             <strike>{item.name}</strike>
