@@ -1,13 +1,18 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import { IoIosAlarm, IoIosPlay, IoIosPause, IoIosRefresh } from 'react-icons/io'
 import { useParams } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { ActionTypes } from '../../store/modules/pomodoro/types'
+
 import api from '../../services/api'
 
 import Header from '../../components/Header'
 import './styles.css'
 
 function Pomodoro() {
-  const [pomo, setPomo] = useState({})
+  const dispatch = useDispatch()
+  const pomo = useSelector(state => state.pomodoro.items)
+
   const [user, setUser] = useState({})
   const [countdownValue, setCountdownValue] = useState('')
   const [countdownTimeout, setCountdownTimeout] = useState(0)
@@ -21,7 +26,10 @@ function Pomodoro() {
     async function loadTask() {
       const { data } = await api.get(`pomos/${id}`)
 
-      setPomo(data)
+      dispatch({
+        type: ActionTypes.INITIAL_POMO_STATE,
+        payload: { pomodoro: data },
+      })
     }
     loadTask()
 
@@ -34,7 +42,7 @@ function Pomodoro() {
       setSpinner(true)
     }
     loadUser()
-  }, [id])
+  }, [id, dispatch])
 
   const pauseCountdown = () => {
     clearTimeout(countdownTimeout)
@@ -62,11 +70,10 @@ function Pomodoro() {
   }
 
   const registerPomo = async () => {
-    const { data } = await api.patch(`pomos/${id}`, {
-      realized_pomos: pomo.realized_pomos + 1,
+    dispatch({
+      type: ActionTypes.UPDATE_POMO_REQUEST,
+      payload: { id, realized_pomos: pomo.realized_pomos },
     })
-
-    setPomo(data)
   }
 
   const resetCountdown = () => {
