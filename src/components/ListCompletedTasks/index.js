@@ -5,7 +5,11 @@ import { ActionTypes } from '../../store/modules/completedTasks/types'
 
 import './styles.css'
 
-const ListCompletedTasks = ({ setColorWhenUpdating, searchCompletedTask }) => {
+const ListCompletedTasks = ({
+  setColorWhenUpdating,
+  searchCompletedTask,
+  setVerifyIfContainTasksCompleted,
+}) => {
   const dispatch = useDispatch()
   const completedTasks = useSelector(state => state.completedTasks.items)
 
@@ -21,6 +25,7 @@ const ListCompletedTasks = ({ setColorWhenUpdating, searchCompletedTask }) => {
 
     setColorWhenUpdating(result.id)
     searchCompletedTask()
+    setVerifyIfContainTasksCompleted(true)
   }
 
   return (

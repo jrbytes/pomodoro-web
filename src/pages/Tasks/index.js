@@ -28,7 +28,7 @@ const Tasks = () => {
   const [
     verifyIfContainTasksCompleted,
     setVerifyIfContainTasksCompleted,
-  ] = useState(false)
+  ] = useState(true)
 
   const [spinner, setSpinner] = useState(false)
 
@@ -102,7 +102,6 @@ const Tasks = () => {
   return (
     <>
       <Header goBackButton={true} />
-
       {spinner ? (
         <div className="container" onKeyUp={handleEsc}>
           <h2 className="title-tasks">
@@ -140,6 +139,9 @@ const Tasks = () => {
               project_id={id}
               setColorWhenUpdating={setColorWhenUpdating}
               searchCompletedTask={searchCompletedTask}
+              setVerifyIfContainTasksCompleted={
+                setVerifyIfContainTasksCompleted
+              }
             />
           )}
 
