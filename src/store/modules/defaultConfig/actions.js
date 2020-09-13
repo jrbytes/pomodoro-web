@@ -6,3 +6,12 @@ export function addColorWhenUpdating(id) {
     },
   }
 }
+
+export function removeColorWhenUpdating(id) {
+  return {
+    type: 'REMOVE_COLOR_WHEN_UPDATING',
+    payload: {
+      id,
+    },
+  }
+}

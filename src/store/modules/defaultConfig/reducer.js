@@ -9,6 +9,9 @@ const defaultConfig = (state = INITIAL_STATE, action) => {
 
       return Object.assign({}, state, { items: { color_when_updating: id } })
     }
+    case 'REMOVE_COLOR_WHEN_UPDATING': {
+      return Object.assign({}, state, { items: { color_when_updating: '' } })
+    }
     default: {
       return state
     }
