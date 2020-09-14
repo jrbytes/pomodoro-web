@@ -27,15 +27,6 @@ export function taskCompleteSuccess(taskId) {
   }
 }
 
-export function taskCompleteFailure(taskId) {
-  return {
-    type: ActionTypes.TASK_COMPLETE_FAILURE,
-    payload: {
-      taskId,
-    },
-  }
-}
-
 export function taskRecoveryRequest(taskId) {
   return {
     type: ActionTypes.TASK_RECOVERY_REQUEST,
@@ -48,15 +39,6 @@ export function taskRecoveryRequest(taskId) {
 export function taskRecoverySuccess(taskId) {
   return {
     type: ActionTypes.TASK_RECOVERY_SUCCESS,
-    payload: {
-      taskId,
-    },
-  }
-}
-
-export function taskRecoveryFailure(taskId) {
-  return {
-    type: ActionTypes.TASK_RECOVERY_FAILURE,
     payload: {
       taskId,
     },
