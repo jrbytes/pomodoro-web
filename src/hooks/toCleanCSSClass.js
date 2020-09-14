@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useDispatch } from 'react-redux'
 
 export function useToCleanCSSClass() {
@@ -6,13 +6,17 @@ export function useToCleanCSSClass() {
 
   const [colorWhenUpdating, setColorWhenUpdating] = useState('')
 
+  const toCleanStateRedux = useCallback(() => {
+    dispatch({ type: 'REMOVE_COLOR_WHEN_UPDATING' })
+  }, [dispatch])
+
   useEffect(() => {
     let isSubscribed = true
 
     function toCleanClass() {
       if (colorWhenUpdating.length) {
         setTimeout(() => {
-          dispatch({ type: 'REMOVE_COLOR_WHEN_UPDATING' })
+          toCleanStateRedux()
           if (isSubscribed) return setColorWhenUpdating('')
         }, 3000)
       }
@@ -20,7 +24,7 @@ export function useToCleanCSSClass() {
     toCleanClass()
 
     return () => (isSubscribed = false)
-  }, [colorWhenUpdating, dispatch])
+  }, [colorWhenUpdating, toCleanStateRedux])
 
   return [colorWhenUpdating, setColorWhenUpdating]
 }
