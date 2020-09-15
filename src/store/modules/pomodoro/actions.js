@@ -26,12 +26,3 @@ export function updatePomoSuccess(pomodoro) {
     },
   }
 }
-
-export function updatePomoFailure(pomodoroId) {
-  return {
-    type: ActionTypes.UPDATE_POMO_FAILURE,
-    payload: {
-      pomodoroId,
-    },
-  }
-}
