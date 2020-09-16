@@ -6,8 +6,8 @@ const INITIAL_STATE = {
 
 const projects = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case ActionTypes.INITIAL_PROJECT_STATE: {
-      const projects = action.payload
+    case ActionTypes.INITIAL_PROJECT_STATE_SUCCESS: {
+      const { projects } = action.payload
 
       return Object.assign({}, state, { items: [...projects] })
     }

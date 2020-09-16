@@ -3,7 +3,6 @@ import { IoIosCreate, IoIosBookmark, IoIosBook } from 'react-icons/io'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { ActionTypes } from '../../store/modules/projects/types'
-import api from '../../services/api'
 
 import { useToCleanCSSClass } from '../../hooks/toCleanCSSClass'
 import { useHandleCloseModal } from '../../hooks/handleCloseModal'
@@ -26,22 +25,19 @@ const Projects = () => {
   const [colorWhenUpdating, setColorWhenUpdating] = useToCleanCSSClass()
   const [handleEsc] = useHandleCloseModal({ closeModal })
 
+  useEffect(() => {}, [dispatch])
+
   useEffect(() => {
-    async function loadProjects() {
-      const { data } = await api.get('projects')
+    dispatch({
+      type: ActionTypes.INITIAL_PROJECT_STATE_REQUEST,
+      payload: 'teste',
+    })
 
-      dispatch({
-        type: ActionTypes.INITIAL_PROJECT_STATE,
-        payload: data,
-      })
-
-      if (effectCreateItem.color_when_updating) {
-        setColorWhenUpdating(effectCreateItem.color_when_updating.id)
-      }
-
-      setSpinner(true)
+    if (effectCreateItem.color_when_updating) {
+      setColorWhenUpdating(effectCreateItem.color_when_updating.id)
     }
-    loadProjects()
+
+    setSpinner(true)
   }, [dispatch, effectCreateItem, setColorWhenUpdating])
 
   async function openUpdateProject(result) {

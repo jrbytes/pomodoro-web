@@ -1,10 +1,20 @@
-import { all, takeLatest, put, select } from 'redux-saga/effects'
-import { addProjectSuccess, updateProjectSuccess } from './actions'
+import { all, takeLatest, put, select, call } from 'redux-saga/effects'
+import {
+  initialProjectStateSuccess,
+  addProjectSuccess,
+  updateProjectSuccess,
+} from './actions'
 import { ActionTypes } from './types'
 import { addColorWhenUpdating } from '../defaultConfig/actions'
 import api from '../../../services/api'
 
 const getItems = state => state.projects.items
+
+function* initialProject() {
+  const { data } = yield call(api.get, 'projects')
+
+  yield put(initialProjectStateSuccess(data))
+}
 
 function* createProject({ payload }) {
   const { project } = payload
@@ -38,6 +48,7 @@ function* updateProject({ payload }) {
 }
 
 export default all([
+  takeLatest(ActionTypes.INITIAL_PROJECT_STATE_REQUEST, initialProject),
   takeLatest(ActionTypes.ADD_PROJECT_REQUEST, createProject),
   takeLatest(ActionTypes.UPDATE_PROJECT_REQUEST, updateProject),
 ])

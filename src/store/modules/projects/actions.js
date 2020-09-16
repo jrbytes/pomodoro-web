@@ -1,8 +1,14 @@
 import { ActionTypes } from './types'
 
-export function initialProjectState(projects) {
+export function initialProjectStateRequest() {
   return {
-    type: ActionTypes.INITIAL_PROJECT_STATE,
+    type: ActionTypes.INITIAL_PROJECT_STATE_REQUEST,
+  }
+}
+
+export function initialProjectStateSuccess(projects) {
+  return {
+    type: ActionTypes.INITIAL_PROJECT_STATE_SUCCESS,
     payload: {
       projects,
     },
