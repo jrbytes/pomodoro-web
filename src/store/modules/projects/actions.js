@@ -27,15 +27,6 @@ export function addProjectSuccess(project) {
   }
 }
 
-export function addProjectFailure(projectName) {
-  return {
-    type: ActionTypes.ADD_PROJECT_FAILURE,
-    payload: {
-      projectName,
-    },
-  }
-}
-
 export function updateProjectRequest(project) {
   return {
     type: ActionTypes.UPDATE_PROJECT_REQUEST,
@@ -50,15 +41,6 @@ export function updateProjectSuccess(project) {
     type: ActionTypes.UPDATE_PROJECT_SUCCESS,
     payload: {
       project,
-    },
-  }
-}
-
-export function updateProjectFailure(projectName) {
-  return {
-    type: ActionTypes.UPDATE_PROJECT_FAILURE,
-    payload: {
-      projectName,
     },
   }
 }

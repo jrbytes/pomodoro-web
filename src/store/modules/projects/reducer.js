@@ -16,10 +16,6 @@ const projects = (state = INITIAL_STATE, action) => {
 
       return Object.assign({}, state, { items: [project, ...state.items] })
     }
-    case ActionTypes.ADD_PROJECT_FAILURE: {
-      console.log('failure', action.payload)
-      break
-    }
     case ActionTypes.UPDATE_PROJECT_SUCCESS: {
       const { project } = action.payload
 
