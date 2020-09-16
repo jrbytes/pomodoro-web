@@ -27,15 +27,6 @@ export function addTaskSuccess(task) {
   }
 }
 
-export function addTaskFailure(taskName) {
-  return {
-    type: ActionTypes.ADD_TASK_FAILURE,
-    payload: {
-      taskName,
-    },
-  }
-}
-
 export function updateTaskRequest(task) {
   return {
     type: ActionTypes.UPDATE_TASK_REQUEST,
@@ -54,15 +45,6 @@ export function updateTaskSuccess(task) {
   }
 }
 
-export function updateTaskFailure(taskName) {
-  return {
-    type: ActionTypes.UPDATE_TASK_FAILURE,
-    payload: {
-      taskName,
-    },
-  }
-}
-
 export function deleteTaskRequest(taskId) {
   return {
     type: ActionTypes.DELETE_TASK_REQUEST,
@@ -75,42 +57,6 @@ export function deleteTaskRequest(taskId) {
 export function deleteTaskSuccess(taskId) {
   return {
     type: ActionTypes.DELETE_TASK_SUCCESS,
-    payload: {
-      taskId,
-    },
-  }
-}
-
-export function deleteTaskFailure(taskId) {
-  return {
-    type: ActionTypes.DELETE_TASK_FAILURE,
-    payload: {
-      taskId,
-    },
-  }
-}
-
-export function taskCompleteToggleRequest(taskId) {
-  return {
-    type: ActionTypes.TASK_COMPLETE_TOGGLE_REQUEST,
-    payload: {
-      taskId,
-    },
-  }
-}
-
-export function taskCompleteToggleSuccess(taskId) {
-  return {
-    type: ActionTypes.TASK_COMPLETE_TOGGLE_SUCCESS,
-    payload: {
-      taskId,
-    },
-  }
-}
-
-export function taskCompleteToggleFailure(taskId) {
-  return {
-    type: ActionTypes.TASK_COMPLETE_TOGGLE_FAILURE,
     payload: {
       taskId,
     },

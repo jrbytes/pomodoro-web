@@ -32,13 +32,6 @@ const tasks = (state = INITIAL_STATE, action) => {
         items: state.items.filter(item => item.id !== taskId),
       })
     }
-    case ActionTypes.TASK_COMPLETE_TOGGLE_SUCCESS: {
-      const { taskId } = action.payload
-
-      return Object.assign({}, state, {
-        items: state.items.filter(item => item.id !== taskId),
-      })
-    }
     default: {
       return state
     }
