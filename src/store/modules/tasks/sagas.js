@@ -1,10 +1,21 @@
-import { all, takeLatest, put, select } from 'redux-saga/effects'
-import { addTaskSuccess, updateTaskSuccess, deleteTaskSuccess } from './actions'
+import { all, takeLatest, put, select, call } from 'redux-saga/effects'
+import {
+  initialTaskStateSuccess,
+  addTaskSuccess,
+  updateTaskSuccess,
+  deleteTaskSuccess,
+} from './actions'
 import { ActionTypes } from './types'
 import { addColorWhenUpdating } from '../defaultConfig/actions'
 import api from '../../../services/api'
 
 const getItems = state => state.tasks.items
+
+function* initialState({ payload }) {
+  const { data } = yield call(api.get, `tasks/${payload.tasks}`)
+
+  yield put(initialTaskStateSuccess(data))
+}
 
 function* createTask({ payload }) {
   const { task } = payload
@@ -42,6 +53,7 @@ function* deleteTask({ payload }) {
 }
 
 export default all([
+  takeLatest(ActionTypes.INITIAL_TASK_STATE_REQUEST, initialState),
   takeLatest(ActionTypes.ADD_TASK_REQUEST, createTask),
   takeLatest(ActionTypes.UPDATE_TASK_REQUEST, updateTask),
   takeLatest(ActionTypes.DELETE_TASK_REQUEST, deleteTask),

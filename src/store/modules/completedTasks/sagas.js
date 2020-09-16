@@ -4,7 +4,7 @@ import {
   taskRecoverySuccess,
   initialCompletedTaskState,
 } from './actions'
-import { initialTaskState } from '../tasks/actions'
+import { initialTaskStateSuccess } from '../tasks/actions'
 import { ActionTypes } from './types'
 import api from '../../../services/api'
 
@@ -22,7 +22,7 @@ function* taskComplete({ payload }) {
   const previousState = yield select(getItemsTask)
   const state = previousState.filter(item => item.id !== update.data.id)
   yield put(taskCompleteSuccess(update.data.id))
-  yield put(initialTaskState(state))
+  yield put(initialTaskStateSuccess(state))
 
   const initialCompletedTask = yield call(
     api.get,
@@ -45,7 +45,7 @@ function* taskRecovery({ payload }) {
   yield put(initialCompletedTaskState(state))
 
   const initialTask = yield call(api.get, `tasks/${payload.project_id}`)
-  yield put(initialTaskState(initialTask.data))
+  yield put(initialTaskStateSuccess(initialTask.data))
 }
 
 export default all([

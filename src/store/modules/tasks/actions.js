@@ -1,8 +1,17 @@
 import { ActionTypes } from './types'
 
-export function initialTaskState(tasks) {
+export function initialTaskStateRequest(tasks) {
   return {
-    type: ActionTypes.INITIAL_TASK_STATE,
+    type: ActionTypes.INITIAL_TASK_STATE_REQUEST,
+    payload: {
+      tasks,
+    },
+  }
+}
+
+export function initialTaskStateSuccess(tasks) {
+  return {
+    type: ActionTypes.INITIAL_TASK_STATE_SUCCESS,
     payload: {
       tasks,
     },

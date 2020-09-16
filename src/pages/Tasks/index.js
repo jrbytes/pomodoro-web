@@ -39,21 +39,16 @@ const Tasks = () => {
   const [handleEsc] = useHandleCloseModal({ closeModal })
 
   useEffect(() => {
-    async function loadTasks() {
-      const { data } = await api.get(`tasks/${id}`)
+    dispatch({
+      type: ActionTypes.INITIAL_TASK_STATE_REQUEST,
+      payload: { tasks: id },
+    })
 
-      dispatch({
-        type: ActionTypes.INITIAL_TASK_STATE,
-        payload: { tasks: data },
-      })
-
-      if (effectCreateItem.color_when_updating) {
-        setColorWhenUpdating(effectCreateItem.color_when_updating.id)
-      }
-
-      setSpinner(true)
+    if (effectCreateItem.color_when_updating) {
+      setColorWhenUpdating(effectCreateItem.color_when_updating.id)
     }
-    loadTasks()
+
+    setSpinner(true)
   }, [dispatch, id, effectCreateItem, setColorWhenUpdating])
 
   const openUpdateTask = result => {

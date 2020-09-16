@@ -6,7 +6,7 @@ const INITIAL_STATE = {
 
 const tasks = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case ActionTypes.INITIAL_TASK_STATE: {
+    case ActionTypes.INITIAL_TASK_STATE_SUCCESS: {
       const { tasks } = action.payload
 
       return Object.assign({}, state, { items: [...tasks] })
