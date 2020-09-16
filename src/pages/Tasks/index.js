@@ -1,12 +1,12 @@
-import React, { useEffect, useState, useMemo, useCallback } from 'react'
-import { IoIosAlarm, IoIosList, IoIosCreate, IoIosEyeOff } from 'react-icons/io'
+import React, { useEffect, useState } from 'react'
+import { IoIosAlarm, IoIosList, IoIosCreate } from 'react-icons/io'
 import { Link, useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { ActionTypes } from '../../store/modules/tasks/types'
-import api from '../../services/api'
 
 import { useToCleanCSSClass } from '../../hooks/toCleanCSSClass'
 import { useHandleCloseModal } from '../../hooks/handleCloseModal'
+import { useHandleCompletedTasks } from '../../hooks/handleCompletedTasks'
 
 import Header from '../../components/Header'
 import ModalTask from '../../components/ModalTask'
@@ -24,19 +24,20 @@ const Tasks = () => {
   const tasks = useSelector(state => state.tasks.items)
   const effectCreateItem = useSelector(state => state.defaultConfig.items)
 
-  const [completedTasks, setCompletedTasks] = useState(false)
+  const [colorWhenUpdating, setColorWhenUpdating] = useToCleanCSSClass()
+  const [handleEsc] = useHandleCloseModal({ closeModal })
   const [
-    verifyIfContainTasksCompleted,
+    buttonCompletedTasks,
+    searchCompletedTask,
+    setCompletedTasks,
+    completedTasks,
     setVerifyIfContainTasksCompleted,
-  ] = useState(true)
+  ] = useHandleCompletedTasks()
 
   const [spinner, setSpinner] = useState(false)
-
   const [openModal, setOpenModal] = useState(false)
   const [taskData, setTaskData] = useState({})
   const [question, setQuestion] = useState(false)
-  const [colorWhenUpdating, setColorWhenUpdating] = useToCleanCSSClass()
-  const [handleEsc] = useHandleCloseModal({ closeModal })
 
   useEffect(() => {
     dispatch({
@@ -67,32 +68,6 @@ const Tasks = () => {
   const handleSetQuestion = result => {
     setQuestion(result)
   }
-
-  const searchCompletedTask = useCallback(async () => {
-    setTimeout(async () => {
-      const { data } = await api.get(`completed-tasks/${id}`)
-      const verifyIfTrue = data.length > 0 ? false : true
-      setVerifyIfContainTasksCompleted(verifyIfTrue)
-    }, 200)
-  }, [id])
-
-  const buttonCompletedTasks = useMemo(() => {
-    searchCompletedTask()
-    return (
-      <>
-        {!verifyIfContainTasksCompleted && (
-          <div className="completed-tasks">
-            <button
-              onClick={() => setCompletedTasks(completedTasks ? false : true)}
-            >
-              <span>{!completedTasks ? `Tarefas concluídas` : `Ocultar`}</span>
-              <IoIosEyeOff />
-            </button>
-          </div>
-        )}
-      </>
-    )
-  }, [verifyIfContainTasksCompleted, completedTasks, searchCompletedTask])
 
   return (
     <>
