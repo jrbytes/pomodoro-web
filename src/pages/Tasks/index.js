@@ -41,7 +41,7 @@ const Tasks = () => {
   useEffect(() => {
     dispatch({
       type: ActionTypes.INITIAL_TASK_STATE_REQUEST,
-      payload: { tasks: id },
+      payload: { projectId: id },
     })
 
     if (effectCreateItem.color_when_updating) {

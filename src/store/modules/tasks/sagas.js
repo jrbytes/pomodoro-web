@@ -12,7 +12,7 @@ import api from '../../../services/api'
 const getItems = state => state.tasks.items
 
 function* initialState({ payload }) {
-  const { data } = yield call(api.get, `tasks/${payload.tasks}`)
+  const { data } = yield call(api.get, `tasks/${payload.projectId}`)
 
   yield put(initialTaskStateSuccess(data))
 }

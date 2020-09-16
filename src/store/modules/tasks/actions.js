@@ -1,10 +1,10 @@
 import { ActionTypes } from './types'
 
-export function initialTaskStateRequest(tasks) {
+export function initialTaskStateRequest(projectId) {
   return {
     type: ActionTypes.INITIAL_TASK_STATE_REQUEST,
     payload: {
-      tasks,
+      projectId,
     },
   }
 }
