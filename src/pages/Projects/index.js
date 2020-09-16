@@ -30,7 +30,6 @@ const Projects = () => {
   useEffect(() => {
     dispatch({
       type: ActionTypes.INITIAL_PROJECT_STATE_REQUEST,
-      payload: 'teste',
     })
 
     if (effectCreateItem.color_when_updating) {
