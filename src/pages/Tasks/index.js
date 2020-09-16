@@ -127,7 +127,6 @@ const Tasks = () => {
         openModal={openModal}
         titleModal={`Editar Tarefa de ${title ? title.name : ''}`}
         taskData={taskData}
-        project_id={id}
         closeModal={closeModal}
         handleSetQuestion={handleSetQuestion}
         question={question}

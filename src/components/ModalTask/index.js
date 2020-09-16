@@ -15,7 +15,6 @@ const ModalTask = ({
   openModal,
   titleModal,
   taskData,
-  project_id,
   closeModal,
   handleSetQuestion,
   question,
@@ -35,7 +34,7 @@ const ModalTask = ({
 
   useEffect(() => {
     async function loadTasks() {
-      const { data } = await api.get(`completed-tasks/${project_id}`)
+      const { data } = await api.get(`completed-tasks/${taskData.project_id}`)
 
       dispatch({
         type: ActionTypesTasks.INITIAL_COMPLETE_TASK_STATE,
@@ -43,12 +42,16 @@ const ModalTask = ({
       })
     }
     loadTasks()
-  }, [project_id, dispatch])
+  }, [taskData, dispatch])
 
   const onSubmit = data => {
     dispatch({
       type: ActionTypesTasks.UPDATE_TASK_REQUEST,
-      payload: { id: taskData.id, name: data.name, project_id },
+      payload: {
+        id: taskData.id,
+        name: data.name,
+        project_id: taskData.project_id,
+      },
     })
 
     closeModal()
