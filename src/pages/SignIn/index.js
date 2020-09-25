@@ -13,7 +13,7 @@ const SignIn = () => {
   const { signIn } = useAuth()
   const history = useHistory()
 
-  const { handleSubmit, register, errors, setError } = useForm()
+  const { handleSubmit, register, errors } = useForm()
 
   const [credentials, setCredentials] = useState(false)
 
@@ -27,12 +27,10 @@ const SignIn = () => {
 
         history.push('/projects')
       } catch (error) {
-        console.log(error)
-        setError()
         setCredentials(true)
       }
     },
-    [signIn, history, setError],
+    [signIn, history],
   )
 
   return (
