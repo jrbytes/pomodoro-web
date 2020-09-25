@@ -1,10 +1,11 @@
 import React, { useRef, useCallback, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
+import { IoIosCreate } from 'react-icons/io'
 
 import { useAuth } from '../../hooks/auth'
 
-import './styles.css'
+import { ContainerSignIn, Span, RegisterLink, Title } from './styles'
 
 const SignIn = () => {
   const emailRef = useRef(null)
@@ -35,9 +36,12 @@ const SignIn = () => {
   )
 
   return (
-    <div className="container-signin">
-      <div className="title-signin">Login</div>
+    <ContainerSignIn>
+      <Title>Login</Title>
+
       <form onSubmit={handleSubmit(onSubmit)} className="form">
+        {credentials && <Span>Suas credenciais estão incorretas</Span>}
+
         <input
           type="email"
           name="email"
@@ -55,6 +59,7 @@ const SignIn = () => {
             emailRef.current = e
           }}
         />
+        {errors.email && <Span>{errors.email.message}</Span>}
 
         <input
           type="password"
@@ -70,15 +75,18 @@ const SignIn = () => {
             },
           })}
         />
+        {errors.password && <Span>{errors.password.message}</Span>}
 
         <div className="form-buttons-modal">
           <input type="submit" value="Entrar" />
         </div>
       </form>
-      {errors.email && <span>{errors.email.message}</span>}
-      {errors.password && <span>{errors.password.message}</span>}
-      {credentials && <span>Suas credenciais estão incorretas</span>}
-    </div>
+
+      <RegisterLink>
+        <IoIosCreate />
+        <Link to="/signup">Cadastre-se</Link>
+      </RegisterLink>
+    </ContainerSignIn>
   )
 }
 
