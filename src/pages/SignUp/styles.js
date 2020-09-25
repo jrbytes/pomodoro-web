@@ -34,6 +34,10 @@ export const FormPasswords = styled.div`
 
   @media (max-width: 700px) {
     flex-direction: column;
+
+    div:last-child {
+      margin-left: 0;
+    }
   }
 `
 
