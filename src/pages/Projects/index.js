@@ -10,7 +10,8 @@ import { useHandleCloseModal } from '../../hooks/handleCloseModal'
 import Header from '../../components/Header'
 import ModalProject from '../../components/ModalProject'
 import CreateProject from '../../components/CreateProject'
-import './styles.css'
+
+import { Container, Title, Project, ProjectColorTitle } from './styles'
 
 const Projects = () => {
   const dispatch = useDispatch()
@@ -53,40 +54,37 @@ const Projects = () => {
       <Header goBackButton={false} />
 
       {spinner ? (
-        <div className="container" onKeyUp={handleEsc}>
-          <h2 className="title-projects">
+        <Container onKeyUp={handleEsc}>
+          <Title>
             <IoIosBook />
             Projetos
-          </h2>
+          </Title>
 
           <CreateProject />
 
           {projects.map(item => (
-            <div
-              className={`projects${
-                colorWhenUpdating === item.id ? ' updated-element' : ''
-              }`}
+            <Project
+              colorWhenUpdating={
+                colorWhenUpdating === item.id ? 'updated-element' : ''
+              }
               key={item.id}
             >
               <Link to={{ pathname: `/tasks/${item.id}` }}>
-                <div className="projects-color-title">
-                  <IoIosBookmark
-                    className="projects-booksmark"
-                    style={{ color: `${item.color}` }}
-                  />
+                <ProjectColorTitle>
+                  <IoIosBookmark style={{ color: `${item.color}` }} />
                   <p>{item.name}</p>
-                </div>
+                </ProjectColorTitle>
               </Link>
               <button onClick={() => openUpdateProject(item)}>
                 <IoIosCreate className="icon" />
               </button>
-            </div>
+            </Project>
           ))}
 
           {spinner === true && !projects.length && (
             <span className="alert-no-items">Nenhum projeto cadastrado</span>
           )}
-        </div>
+        </Container>
       ) : (
         <div className="loader">Loading...</div>
       )}
