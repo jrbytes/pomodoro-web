@@ -12,6 +12,8 @@ import Header from '../../components/Header'
 import ModalTask from '../../components/ModalTask'
 import CreateTask from '../../components/CreateTask'
 import ListCompletedTasks from '../../components/ListCompletedTasks'
+
+import { Container, Title, Task, TaskPomos } from './styles'
 import './styles.css'
 
 const Tasks = () => {
@@ -73,17 +75,17 @@ const Tasks = () => {
     <>
       <Header goBackButton={true} />
       {spinner ? (
-        <div className="container" onKeyUp={handleEsc}>
-          <h2 className="title-tasks">
+        <Container onKeyUp={handleEsc}>
+          <Title>
             <IoIosList />
             {title && `Tarefas - ${title.name}`}
-          </h2>
+          </Title>
 
           <CreateTask project_id={id} />
 
           {tasks.map(item => (
-            <div
-              className={`task${
+            <Task
+              className={`${
                 colorWhenUpdating === item.id ? ' updated-element' : ''
               }`}
               key={item.id}
@@ -92,15 +94,15 @@ const Tasks = () => {
                 <p>{item.name}</p>
               </Link>
 
-              <div className="task-pomos">
+              <TaskPomos>
                 <span>{item.realized_pomos}</span>
                 <IoIosAlarm className="icon" />
-              </div>
+              </TaskPomos>
 
               <button onClick={() => openUpdateTask(item)}>
                 <IoIosCreate className="icon" />
               </button>
-            </div>
+            </Task>
           ))}
 
           {buttonCompletedTasks}
@@ -118,7 +120,7 @@ const Tasks = () => {
           {spinner === true && !tasks.length && (
             <span className="alert-no-items">Nenhuma tarefa cadastrada</span>
           )}
-        </div>
+        </Container>
       ) : (
         <div className="loader">Loading...</div>
       )}
