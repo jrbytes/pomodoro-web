@@ -11,6 +11,12 @@ import api from '../../../services/api'
 const getItemsTask = state => state.tasks.items
 const getItemsCompletedTask = state => state.completedTasks.items
 
+function* initialState({ payload }) {
+  const { data } = yield call(api.get, `completed-tasks/${payload.project_id}`)
+
+  yield put(initialCompletedTaskState(data))
+}
+
 function* taskComplete({ payload }) {
   const update = yield call(
     api.patch,
@@ -49,6 +55,7 @@ function* taskRecovery({ payload }) {
 }
 
 export default all([
+  takeLatest(ActionTypes.INITIAL_COMPLETE_TASK_STATE_REQUEST, initialState),
   takeLatest(ActionTypes.TASK_COMPLETE_REQUEST, taskComplete),
   takeLatest(ActionTypes.TASK_RECOVERY_REQUEST, taskRecovery),
 ])
