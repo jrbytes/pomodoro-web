@@ -2,6 +2,8 @@ import React, { useState, useCallback, useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { IoIosEyeOff } from 'react-icons/io'
 
+import { CompletedTasks } from './styles/handleCompletedTasks'
+
 export function useHandleCompletedTasks() {
   const [completedTasks, setCompletedTasks] = useState(false)
   const [
@@ -20,14 +22,14 @@ export function useHandleCompletedTasks() {
     return (
       <>
         {!verifyIfContainTasksCompleted && (
-          <div className="completed-tasks">
+          <CompletedTasks>
             <button
               onClick={() => setCompletedTasks(completedTasks ? false : true)}
             >
               <span>{!completedTasks ? `Tarefas concluídas` : `Ocultar`}</span>
               <IoIosEyeOff />
             </button>
-          </div>
+          </CompletedTasks>
         )}
       </>
     )
