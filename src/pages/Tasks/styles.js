@@ -32,6 +32,9 @@ export const Task = styled.div`
   flex-direction: row;
   justify-content: space-between;
 
+  animation-name: ${props => props.colorWhenUpdating || ''};
+  animation-duration: var(--updated-element-seconds);
+
   p {
     color: var(--color-text-base);
   }

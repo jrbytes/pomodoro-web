@@ -14,7 +14,6 @@ import CreateTask from '../../components/CreateTask'
 import ListCompletedTasks from '../../components/ListCompletedTasks'
 
 import { Container, Title, Task, TaskPomos } from './styles'
-import './styles.css'
 
 const Tasks = () => {
   let { id } = useParams()
@@ -85,9 +84,9 @@ const Tasks = () => {
 
           {tasks.map(item => (
             <Task
-              className={`${
-                colorWhenUpdating === item.id ? ' updated-element' : ''
-              }`}
+              colorWhenUpdating={
+                colorWhenUpdating === item.id ? 'updated-element' : ''
+              }
               key={item.id}
             >
               <Link to={{ pathname: `/pomodoro/${item.id}` }}>
