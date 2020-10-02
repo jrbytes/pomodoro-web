@@ -1,15 +1,26 @@
-import React, { useState, useCallback, useMemo } from 'react'
-import { useSelector } from 'react-redux'
+import React, { useState, useEffect, useCallback, useMemo } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { IoIosEyeOff } from 'react-icons/io'
+
+import { ActionTypes } from '../store/modules/completedTasks/types'
 
 import { CompletedTasks } from './styles/handleCompletedTasks'
 
-export function useHandleCompletedTasks() {
+export function useHandleCompletedTasks({ id }) {
+  const dispatch = useDispatch()
+
   const [completedTasks, setCompletedTasks] = useState(false)
   const [
     verifyIfContainTasksCompleted,
     setVerifyIfContainTasksCompleted,
   ] = useState(true)
+
+  useEffect(() => {
+    dispatch({
+      type: ActionTypes.INITIAL_COMPLETE_TASK_STATE_REQUEST,
+      payload: { project_id: id },
+    })
+  }, [dispatch, id])
 
   const completedTasksData = useSelector(state => state.completedTasks.items)
   const searchCompletedTask = useCallback(() => {
