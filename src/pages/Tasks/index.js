@@ -33,7 +33,7 @@ const Tasks = () => {
     setCompletedTasks,
     completedTasks,
     setVerifyIfContainTasksCompleted,
-  ] = useHandleCompletedTasks()
+  ] = useHandleCompletedTasks({ id })
 
   const [spinner, setSpinner] = useState(false)
   const [openModal, setOpenModal] = useState(false)
