@@ -3,7 +3,7 @@ import { IoIosAlarm, IoIosUndo } from 'react-icons/io'
 import { useSelector, useDispatch } from 'react-redux'
 import { ActionTypes } from '../../store/modules/completedTasks/types'
 
-import './styles.css'
+import { Task, TaskPomos } from './styles'
 
 const ListCompletedTasks = ({
   setColorWhenUpdating,
@@ -31,20 +31,20 @@ const ListCompletedTasks = ({
   return (
     <>
       {completedTasks.map(item => (
-        <div className="task" key={item.id} style={{ opacity: 0.7 }}>
+        <Task key={item.id} style={{ opacity: 0.7 }}>
           <p>
             <strike>{item.name}</strike>
           </p>
 
-          <div className="task-pomos">
-            <span>{item.realized_pomos} </span>
+          <TaskPomos>
+            <span>{item.realized_pomos}</span>
             <IoIosAlarm className="icon" />
-          </div>
+          </TaskPomos>
 
           <button onClick={() => handleTaskRecovery(item)}>
             <IoIosUndo className="icon" />
           </button>
-        </div>
+        </Task>
       ))}
     </>
   )
