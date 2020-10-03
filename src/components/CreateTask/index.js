@@ -7,7 +7,7 @@ import { addTaskRequest } from '../../store/modules/tasks/actions'
 
 import { useKeyboardShortcutTab } from '../../hooks/keyboardShotcutTab'
 
-import './styles.css'
+import { CreateTaskCSS } from './styles'
 
 function CreateTask({ project_id }) {
   const [nameRef] = useKeyboardShortcutTab()
@@ -22,7 +22,7 @@ function CreateTask({ project_id }) {
 
   return (
     <>
-      <div className="create-task">
+      <CreateTaskCSS>
         <IoMdAdd className="icon-create-task icon" />
         <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
           <input
@@ -49,7 +49,7 @@ function CreateTask({ project_id }) {
             <IoIosCheckmarkCircle className="icon" />
           </button>
         </form>
-      </div>
+      </CreateTaskCSS>
     </>
   )
 }
