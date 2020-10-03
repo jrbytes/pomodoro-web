@@ -7,7 +7,16 @@ import { ActionTypes } from '../../store/modules/pomodoro/types'
 import api from '../../services/api'
 
 import Header from '../../components/Header'
-import './styles.css'
+
+import {
+  ContainerPomo,
+  HeaderTaskPomos,
+  CountdownBorder,
+  ProgressBarBorder,
+  ProgressBar,
+  ProgressBarPercent,
+  Button,
+} from './styles'
 
 function Pomodoro() {
   const dispatch = useDispatch()
@@ -101,23 +110,21 @@ function Pomodoro() {
 
       return (
         <>
-          <div className="progress-bar-border">
-            <div
-              className="progress-bar"
+          <ProgressBarBorder>
+            <ProgressBar
               style={{
                 width: `${percent}%`,
               }}
-            ></div>
-          </div>
+            ></ProgressBar>
+          </ProgressBarBorder>
           {user.setting_progress_bar && (
-            <div
-              className="progress-bar-percent"
+            <ProgressBarPercent
               style={{
                 opacity: `${percentNumber === 0 ? '0' : '1'}`,
               }}
             >
               {percentNumber}%
-            </div>
+            </ProgressBarPercent>
           )}
         </>
       )
@@ -129,43 +136,40 @@ function Pomodoro() {
       <Header goBackButton={true} />
 
       {spinner ? (
-        <div className="container-pomo">
-          <div className="header-tasks-pomos">
+        <ContainerPomo>
+          <HeaderTaskPomos>
             <h2>{pomo.name}</h2>
             <span>
               <IoIosAlarm className="icon-clock" />
               {pomo.realized_pomos}
             </span>
-          </div>
+          </HeaderTaskPomos>
 
-          <div className="countdownBorder">
+          <CountdownBorder>
             <p>{formatedCountdown}</p>
-          </div>
+          </CountdownBorder>
 
           {button === 'start' && (
-            <button
-              className="button"
-              onClick={() => startCountdown(countdownValue)}
-            >
+            <Button onClick={() => startCountdown(countdownValue)}>
               <IoIosPlay className="icon-button" />
               Iniciar
-            </button>
+            </Button>
           )}
           {button === 'pause' && (
-            <button className="button" onClick={pauseCountdown}>
+            <Button onClick={pauseCountdown}>
               <IoIosPause className="icon-button" />
               Pausar
-            </button>
+            </Button>
           )}
           {button === 'continue' && (
-            <button className="button" onClick={resetCountdown}>
+            <Button onClick={resetCountdown}>
               <IoIosRefresh className="icon-button" />
               Continuar
-            </button>
+            </Button>
           )}
 
           {progressBar}
-        </div>
+        </ContainerPomo>
       ) : (
         <div className="loader">Loading...</div>
       )}

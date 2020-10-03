@@ -1,4 +1,6 @@
-.container-pomo {
+import styled from 'styled-components'
+
+export const ContainerPomo = styled.div`
   width: 90vw;
   max-width: 700px;
 
@@ -7,33 +9,33 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
+`
 
-.header-tasks-pomos {
+export const HeaderTaskPomos = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
 
-.header-tasks-pomos h2 {
-  color: var(--color-text-title);
-  font-size: 2rem;
-  text-align: center;
-}
+  h2 {
+    color: var(--color-text-title);
+    font-size: 2rem;
+    text-align: center;
+  }
 
-.header-tasks-pomos span {
-  color: var(--color-text-base);
+  span {
+    color: var(--color-text-base);
 
-  display: flex;
-  align-items: center;
-}
+    display: flex;
+    align-items: center;
+  }
 
-.header-tasks-pomos span .icon-clock {
-  margin-right: 0.3rem;
-}
+  span .icon-clock {
+    margin-right: 0.3rem;
+  }
+`
 
-.countdownBorder {
+export const CountdownBorder = styled.div`
   width: 12rem;
   height: 12rem;
   margin: 3rem 0;
@@ -44,14 +46,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
 
-.countdownBorder p {
-  font-size: 4rem;
-  color: var(--color-text-title);
-}
+  p {
+    font-size: 4rem;
+    color: var(--color-text-title);
+  }
+`
 
-.progress-bar-border {
+export const ProgressBarBorder = styled.div`
   width: 30rem;
   height: 1.8rem;
   border: 1px solid var(--color-primary);
@@ -60,24 +62,24 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
+`
 
-.progress-bar {
+export const ProgressBar = styled.div`
   max-width: 29rem;
   height: 1.2rem;
   border-radius: 1rem;
   background-color: var(--color-secundary);
   transition: width 1s;
-}
+`
 
-.progress-bar-percent {
+export const ProgressBarPercent = styled.div`
   font-size: 1.2rem;
   font-weight: 700;
 
   transition: ease-in-out 1s;
-}
+`
 
-.button {
+export const Button = styled.div`
   width: 11rem;
   height: 4rem;
 
@@ -93,13 +95,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
 
-.button:hover {
-  background-color: var(--color-primary-dark);
-}
+  :hover {
+    background-color: var(--color-primary-dark);
+  }
 
-.icon-button {
-  margin-left: -0.4rem;
-  margin-right: 0.1rem;
-}
+  .icon-button {
+    margin-left: -0.4rem;
+    margin-right: 0.1rem;
+  }
+`
