@@ -2,17 +2,13 @@ import React from 'react'
 import { IoIosArrowBack } from 'react-icons/io'
 import { useHistory, Link } from 'react-router-dom'
 
-import './styles.css'
+import { ContainerHeader } from './styles'
 
 const Header = ({ goBackButton }) => {
   let history = useHistory()
 
   return (
-    <header
-      className={`header-container${
-        goBackButton === false ? ' just-logo' : ''
-      }`}
-    >
+    <ContainerHeader>
       {goBackButton === true && (
         <button onClick={history.goBack}>
           <IoIosArrowBack className="icon" />
@@ -21,7 +17,7 @@ const Header = ({ goBackButton }) => {
       <span>
         <Link to="/profile">POMO</Link>
       </span>
-    </header>
+    </ContainerHeader>
   )
 }
 
