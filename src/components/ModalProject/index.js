@@ -7,7 +7,7 @@ import { ActionTypes } from '../../store/modules/projects/types'
 import { useHandleCloseModal } from '../../hooks/handleCloseModal'
 import { useHandleFieldFocusAtModal } from '../../hooks/handleFieldFocusAtModal'
 
-import './styles.css'
+import { Modal, ModalContent, ModalTitleClose } from './styles'
 
 const ModalProject = ({ openModal, title, projectData, closeModal }) => {
   const { handleSubmit, register, errors, clearErrors, reset } = useForm()
@@ -55,25 +55,21 @@ const ModalProject = ({ openModal, title, projectData, closeModal }) => {
   }
 
   return (
-    <div
-      className={`modal${openModal ? ' active' : ''}`}
+    <Modal
+      openModal={openModal}
       onClick={e => closeModalClickingOutside(e.target.className)}
       onKeyUp={handleEsc}
     >
-      <div className="modal-content">
-        <div className="modal-title-close">
-          <span className="close" onClick={closeModal}>
+      <ModalContent>
+        <ModalTitleClose>
+          <span onClick={closeModal}>
             <IoIosClose className="icon" />
           </span>
 
           {title}
-        </div>
+        </ModalTitleClose>
 
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="form"
-          autoComplete="off"
-        >
+        <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
           <input
             type="text"
             name="name"
@@ -113,8 +109,8 @@ const ModalProject = ({ openModal, title, projectData, closeModal }) => {
             <input type="submit" value="Atualizar" />
           </div>
         </form>
-      </div>
-    </div>
+      </ModalContent>
+    </Modal>
   )
 }
 
