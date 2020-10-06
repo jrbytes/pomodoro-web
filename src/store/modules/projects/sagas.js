@@ -4,6 +4,7 @@ import {
   addProjectSuccess,
   updateProjectSuccess,
 } from './actions'
+import { initialTaskStateSuccess } from '../tasks/actions'
 import { ActionTypes } from './types'
 import { addColorWhenUpdating } from '../defaultConfig/actions'
 import api from '../../../services/api'
@@ -14,6 +15,8 @@ function* initialProject() {
   const { data } = yield call(api.get, 'projects')
 
   yield put(initialProjectStateSuccess(data))
+
+  yield put(initialTaskStateSuccess([]))
 }
 
 function* createProject({ payload }) {
