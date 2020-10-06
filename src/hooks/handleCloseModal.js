@@ -13,7 +13,8 @@ export function useHandleCloseModal(props) {
   }, [openModal, errors, clearErrors, reset])
 
   function closeModalClickingOutside(e) {
-    if (e === 'modal active') {
+    const click = props.closeModalRef.current.className
+    if (e === click) {
       return props.closeModal()
     }
   }

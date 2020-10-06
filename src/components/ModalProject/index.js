@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useForm } from 'react-hook-form'
 import { IoIosClose } from 'react-icons/io'
 import { useDispatch } from 'react-redux'
@@ -10,6 +10,8 @@ import { useHandleFieldFocusAtModal } from '../../hooks/handleFieldFocusAtModal'
 import { Modal, ModalContent, ModalTitleClose } from './styles'
 
 const ModalProject = ({ openModal, title, projectData, closeModal }) => {
+  const closeModalRef = useRef(null)
+
   const { handleSubmit, register, errors, clearErrors, reset } = useForm()
   const [handleEsc, closeModalClickingOutside] = useHandleCloseModal({
     closeModal,
@@ -17,6 +19,7 @@ const ModalProject = ({ openModal, title, projectData, closeModal }) => {
     clearErrors,
     errors: errors.name,
     reset,
+    closeModalRef,
   })
   const [nameRef] = useHandleFieldFocusAtModal({ openModal })
   const dispatch = useDispatch()
@@ -59,6 +62,7 @@ const ModalProject = ({ openModal, title, projectData, closeModal }) => {
       openModal={openModal}
       onClick={e => closeModalClickingOutside(e.target.className)}
       onKeyUp={handleEsc}
+      ref={closeModalRef}
     >
       <ModalContent>
         <ModalTitleClose>
