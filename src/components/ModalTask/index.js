@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useForm } from 'react-hook-form'
 import { IoIosClose, IoMdTrash, IoMdCheckbox } from 'react-icons/io'
 import { useDispatch } from 'react-redux'
@@ -7,9 +7,16 @@ import api from '../../services/api'
 import { useHandleCloseModal } from '../../hooks/handleCloseModal'
 import { useHandleFieldFocusAtModal } from '../../hooks/handleFieldFocusAtModal'
 
-import './styles.css'
 import { ActionTypes as ActionTypesTasks } from '../../store/modules/tasks/types'
 import { ActionTypes as ActionTypesCompletedTasks } from '../../store/modules/completedTasks/types'
+
+import {
+  Modal,
+  ModalContent,
+  ModalTitleClose,
+  ModalContentTextQuestion,
+  FormButtonsModalQuestion,
+} from './styles'
 
 const ModalTask = ({
   openModal,
@@ -21,6 +28,8 @@ const ModalTask = ({
   setCompletedTasks,
   searchCompletedTask,
 }) => {
+  const closeModalRef = useRef(null)
+
   const { handleSubmit, register, errors, clearErrors, reset } = useForm()
   const [handleEsc, closeModalClickingOutside] = useHandleCloseModal({
     closeModal,
@@ -28,6 +37,7 @@ const ModalTask = ({
     clearErrors,
     errors: errors.name,
     reset,
+    closeModalRef,
   })
   const dispatch = useDispatch()
   const [nameRef] = useHandleFieldFocusAtModal({ openModal })
@@ -103,26 +113,23 @@ const ModalTask = ({
   }
 
   return (
-    <div
-      className={`modal${openModal ? ' active' : ''}`}
+    <Modal
+      openModal={openModal}
       onClick={e => closeModalClickingOutside(e.target.className)}
       onKeyUp={handleEsc}
+      ref={closeModalRef}
     >
-      <div className="modal-content">
-        <div className="modal-title-close">
-          <span className="close" onClick={closeModal}>
+      <ModalContent>
+        <ModalTitleClose>
+          <span onClick={closeModal}>
             <IoIosClose className="icon" />
           </span>
 
           {titleModal}
-        </div>
+        </ModalTitleClose>
 
         {!question && (
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="form"
-            autoComplete="off"
-          >
+          <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
             <input
               type="text"
               name="name"
@@ -159,7 +166,7 @@ const ModalTask = ({
 
         {question && (
           <>
-            <div className="modal-content-text-question">
+            <ModalContentTextQuestion>
               <p>
                 Opss! Tem certeza que deseja apagar a tarefa{' '}
                 <strong>{taskData.name}</strong>?
@@ -167,17 +174,17 @@ const ModalTask = ({
               <p>
                 Essa ação pode excluir pomodoros executados. Considere renomear.
               </p>
-            </div>
-            <div className="form-buttons-modal-question">
+            </ModalContentTextQuestion>
+            <FormButtonsModalQuestion>
               <button onClick={() => handleDeleteItemWithQuestion(taskData.id)}>
                 Sim
               </button>
               <button onClick={closeModal}>Não</button>
-            </div>
+            </FormButtonsModalQuestion>
           </>
         )}
-      </div>
-    </div>
+      </ModalContent>
+    </Modal>
   )
 }
 
