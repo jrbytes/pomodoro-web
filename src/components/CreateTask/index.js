@@ -23,12 +23,19 @@ function CreateTask({ project_id }) {
   return (
     <>
       <CreateTaskCSS>
-        <IoMdAdd className="icon-create-task icon" />
+        <IoMdAdd />
         <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
           <input
             type="text"
             name="name"
             placeholder={errors.name && errors.name.message}
+            style={{
+              borderColor: `${
+                errors.name && errors.name.message
+                  ? 'var(--color-input-alert)'
+                  : ''
+              }`,
+            }}
             ref={e => {
               register(e, {
                 required: {
@@ -40,13 +47,10 @@ function CreateTask({ project_id }) {
               })
               nameRef.current = e
             }}
-            id={
-              errors.name && errors.name.message ? 'form-error-placeholder' : ''
-            }
           />
 
           <button>
-            <IoIosCheckmarkCircle className="icon" />
+            <IoIosCheckmarkCircle />
           </button>
         </form>
       </CreateTaskCSS>
