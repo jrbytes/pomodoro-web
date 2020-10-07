@@ -11,11 +11,12 @@ export const CompletedTasks = styled.div`
     margin: 0 auto;
     background-color: var(--color-box-base);
     color: var(--color-text-complement);
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     padding: 0.4rem 0.8rem;
     border: 0px;
     border-radius: var(--border-radius-default);
     cursor: pointer;
+    opacity: 0.7;
 
     display: flex;
     align-items: center;
