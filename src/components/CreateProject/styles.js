@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const CreateTask = styled.div`
+export const CreateProjectCSS = styled.div`
   width: 90vw;
   max-width: 700px;
   margin-bottom: 0.8rem;
@@ -13,13 +13,25 @@ export const CreateTask = styled.div`
   flex-direction: row;
   align-items: center;
 
+  svg {
+    margin-left: 1rem;
+    position: absolute;
+    color: var(--color-primary);
+    font-size: 2rem;
+  }
+
+  svg:last-child {
+    margin-left: 0;
+    font-size: 2.2rem;
+  }
+
   form {
     width: 100%;
     margin-right: 2.8rem;
 
     input {
       width: 100%;
-      padding-left: 2.3rem;
+      padding: 0.4rem 1rem 0.4rem 3.2rem;
       outline: 0;
       border: 2px solid var(--color-line-in-white);
       border-radius: var(--border-radius-default);
@@ -32,7 +44,7 @@ export const CreateTask = styled.div`
   }
 
   button {
-    width: 4rem;
+    width: 3.7rem;
     height: 100%;
     background-color: transparent;
     border: none;
@@ -41,19 +53,16 @@ export const CreateTask = styled.div`
     right: 0;
     top: 0;
     margin-right: 0.5rem;
+    margin-left: 1rem;
+    color: var(--color-primary);
 
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-  }
 
-  #form-error-placeholder {
-    border: 2px solid var(--color-input-alert);
-    border-radius: var(--border-radius-default);
-  }
-
-  .icon-create-task {
-    position: absolute;
+    :hover {
+      color: var(--color-primary-darker);
+    }
   }
 `

@@ -7,7 +7,7 @@ import { addProjectRequest } from '../../store/modules/projects/actions'
 
 import { useKeyboardShortcutTab } from '../../hooks/keyboardShotcutTab'
 
-import { CreateTask } from './styles'
+import { CreateProjectCSS } from './styles'
 
 function CreateProject() {
   const [nameRef] = useKeyboardShortcutTab()
@@ -22,13 +22,20 @@ function CreateProject() {
 
   return (
     <>
-      <CreateTask>
-        <IoMdAdd className="icon-create-task icon" />
+      <CreateProjectCSS>
+        <IoMdAdd />
         <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
           <input
             type="text"
             name="name"
             placeholder={errors.name && errors.name.message}
+            style={{
+              borderColor: `${
+                errors.name && errors.name.message
+                  ? 'var(--color-input-alert)'
+                  : ''
+              }`,
+            }}
             ref={e => {
               register(e, {
                 required: {
@@ -40,16 +47,13 @@ function CreateProject() {
               })
               nameRef.current = e
             }}
-            id={
-              errors.name && errors.name.message ? 'form-error-placeholder' : ''
-            }
           />
 
           <button>
-            <IoIosCheckmarkCircle className="icon" />
+            <IoIosCheckmarkCircle />
           </button>
         </form>
-      </CreateTask>
+      </CreateProjectCSS>
     </>
   )
 }
