@@ -37,6 +37,7 @@ export const Project = styled.div`
 
   p {
     color: var(--color-text-base);
+    padding: 0.4rem 1rem 0.4rem 0.7rem;
   }
 
   button {
@@ -54,6 +55,10 @@ export const Project = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
+
+    svg {
+      font-size: 2rem;
+    }
   }
 `
 
