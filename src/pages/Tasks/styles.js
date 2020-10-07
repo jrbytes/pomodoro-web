@@ -37,6 +37,7 @@ export const Task = styled.div`
 
   p {
     color: var(--color-text-base);
+    padding: 0.4rem 1rem 0.4rem 0.7rem;
   }
 
   button {
@@ -54,6 +55,10 @@ export const Task = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
+
+    svg {
+      font-size: 2rem;
+    }
   }
 
   span {
@@ -64,5 +69,9 @@ export const Task = styled.div`
 export const TaskPomos = styled.div`
   display: flex;
   align-items: center;
-  margin-right: 3rem;
+  margin: 0.2rem 3rem 0 0;
+
+  svg {
+    font-size: 2rem;
+  }
 `
