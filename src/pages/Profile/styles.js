@@ -75,6 +75,7 @@ export const FieldPassword = styled.div`
 
 export const UpdateButton = styled.button`
   width: 20vw;
+  position: relative;
 
   margin-top: 2.5rem;
   padding: 0.5rem 1rem;
@@ -85,12 +86,12 @@ export const UpdateButton = styled.button`
   cursor: pointer;
 `
 
-export const SignOutButton = styled.button`
-  margin-top: 3rem;
-  padding: 0.5rem 1rem;
+export const UpdatedMessage = styled.span`
+  position: absolute;
+  margin-top: 2rem;
+  padding: 1rem 2rem;
   background-color: var(--color-secundary);
-  border: none;
-  border-radius: var(--border-radius-default);
-  color: var(--color-title);
-  cursor: pointer;
+
+  opacity: ${props => (props.updated ? 1 : 0)};
+  transition: opacity 1s;
 `

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import Header from '../../components/Header'
@@ -6,59 +6,45 @@ import Header from '../../components/Header'
 import api from '../../services/api'
 import { useAuth } from '../../hooks/auth'
 
-import {
-  Container,
-  FormPasswords,
-  FieldPassword,
-  Field,
-  UpdateButton,
-  SignOutButton,
-} from './styles'
+import { Container, Field, UpdateButton, UpdatedMessage } from './styles'
 
 function Profile() {
-  const [credentials, setCredentials] = useState(false)
+  const { user, updateUser } = useAuth()
 
-  const { user, signOut } = useAuth()
+  const [updated, setUpdated] = useState(false)
 
-  const nameRef = useRef(null)
-  const emailRef = useRef(null)
-
-  const { handleSubmit, register, errors, setError, watch, reset } = useForm()
+  const { handleSubmit, register, errors, setError } = useForm()
 
   const onSubmit = async data => {
-    console.log(data)
     try {
-      await api.put('profile', data)
-      reset()
+      const response = await api.put('profile', data)
+      updateUser(response.data)
+      setUpdated(true)
     } catch (error) {
       setError()
-      setCredentials(true)
     }
   }
 
   return (
     <>
-      <Header goBackButton={false} />
+      <Header goBackButton={true} />
       <Container>
         <h2>Perfil</h2>
         <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
           <Field>
-            <label htmlFor="name">Nome Completo:</label>
+            <label htmlFor="name">Nome:</label>
             <input
               type="text"
               name="name"
               defaultValue={user.name}
-              ref={e => {
-                register(e, {
-                  required: {
-                    value: true,
-                    message: 'É necessário incluir um nome.',
-                  },
-                })
-                nameRef.current = e
-              }}
+              ref={register({
+                required: {
+                  value: true,
+                  message: 'É necessário incluir um nome.',
+                },
+              })}
             />
-            {errors.email && <span>{errors.email.message}</span>}
+            {errors.name && <span>{errors.name.message}</span>}
           </Field>
 
           <Field>
@@ -67,83 +53,80 @@ function Profile() {
               type="email"
               name="email"
               defaultValue={user.email}
-              ref={e => {
-                register(e, {
-                  required: {
-                    value: true,
-                    message: 'É necessário incluir um e-mail.',
-                  },
-                  pattern: {
-                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: 'Inclua um e-mail válido.',
-                  },
-                })
-                emailRef.current = e
-              }}
-            />
-          </Field>
-
-          <Field>
-            <label htmlFor="old_password">Senha antiga:</label>
-            <input
-              type="password"
-              name="old_password"
               ref={register({
                 required: {
-                  value: value => (value === 0 ? false : true),
-                  message: 'É necessário incluir a senha de autenticação.',
+                  value: true,
+                  message: 'É necessário incluir um e-mail.',
                 },
-                minLength: {
-                  value: 6,
-                  message: 'Sua senha deve ter 6 caracteres no mínimo.',
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: 'Inclua um e-mail válido.',
                 },
               })}
             />
-            {errors.old_password && <span>{errors.old_password.message}</span>}
+            {errors.email && <span>{errors.email.message}</span>}
           </Field>
 
-          <FormPasswords>
-            <FieldPassword>
-              <label htmlFor="password">Senha atual:</label>
-              <input
-                type="password"
-                name="password"
-                ref={register({
-                  required: {
-                    value: true,
-                    message: 'É necessário incluir uma senha.',
-                  },
-                  minLength: {
-                    value: 6,
-                    message: 'Sua senha deve ter 6 caracteres no mínimo.',
-                  },
-                })}
-              />
-              {errors.password && <span>{errors.password.message}</span>}
-            </FieldPassword>
+          <Field>
+            <label htmlFor="default_minute">Tempo do pomo:</label>
+            <input
+              type="text"
+              name="default_minute"
+              defaultValue={user.default_minute}
+              ref={register({
+                required: {
+                  value: true,
+                  message: 'É necessário incluir o tempo padrão do pomodoro.',
+                },
+              })}
+            />
+            {errors.default_minute && (
+              <span>{errors.default_minute.message}</span>
+            )}
+          </Field>
 
-            <FieldPassword>
-              <label htmlFor="password_confirmation">Confirmar Senha:</label>
-              <input
-                type="password"
-                name="password_confirmation"
-                ref={register({
-                  validate: value =>
-                    value === watch('password') ||
-                    'As senhas precisam ser iguais.',
-                })}
-              />
-              {errors.password_confirmation && (
-                <span>{errors.password_confirmation.message}</span>
-              )}
-            </FieldPassword>
-          </FormPasswords>
+          <Field>
+            <label htmlFor="setting_progress_bar">
+              Ver % da barra de progresso:
+            </label>
+            <input
+              type="text"
+              name="setting_progress_bar"
+              defaultValue={user.setting_progress_bar}
+              ref={register({
+                required: {
+                  value: true,
+                  message: 'É necessário definir deseja ver ou não.',
+                },
+              })}
+            />
+            {errors.setting_progress_bar && (
+              <span>{errors.setting_progress_bar.message}</span>
+            )}
+          </Field>
+
+          <Field>
+            <label htmlFor="theme">Tema:</label>
+            <input
+              type="text"
+              name="theme"
+              defaultValue={user.theme}
+              ref={register({
+                required: {
+                  value: true,
+                  message: 'É necessário escolher um tema.',
+                },
+              })}
+            />
+            {errors.theme && <span>{errors.theme.message}</span>}
+          </Field>
 
           <UpdateButton>Atualizar</UpdateButton>
-          {credentials && <span>Suas credenciais estão incorretas</span>}
         </form>
 
-        <SignOutButton onClick={signOut}>Deslogar</SignOutButton>
+        <UpdatedMessage updated={updated}>
+          Dados atualizados com sucesso!
+        </UpdatedMessage>
       </Container>
     </>
   )
